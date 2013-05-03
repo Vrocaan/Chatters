@@ -25,7 +25,6 @@ world
 			Reboot() // Restart server to ensure proper boot environment
 		..()
 		Console = new()	// spawn the Console <-- This starts everything else
-		swapmaps_mode = SWAPMAPS_SAV // set SwapMaps to use savfiles
 
 	Del()
 		del(Console) // last ditch effort to save before the world dies

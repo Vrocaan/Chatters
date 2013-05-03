@@ -89,12 +89,6 @@ mob
 			Set()
 				call(usr, "ShowSet")()
 
-			Help()
-				ShowHelp()
-
-			Cmail()
-				//ShowChattersMail()
-
 			Say(msg as text|null)
 				if(!msg) return
 				if(afk) ReturnAFK()

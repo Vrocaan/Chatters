@@ -234,26 +234,6 @@ mob
 				set hidden = 1
 				winshow(src, "credits", 0)
 
-			ShowHelp(t as text|null)
-				set hidden = 1
-				if(!t) t = "index"
-				var/HelpView/HV = new()
-				HV.Display(src, t)
-				del(HV)
-				winshow(src, "help", 1)
-
-			HideHelp()
-				set hidden = 1
-				winshow(src, "help", 0)
-
-			SearchHelp(t as text|null)
-				set hidden = 1
-				if(!t) t = winget(src, "help.search", "text")
-				else winset(src, "help.search", "text='[t]'")
-				var/HelpView/HV = new()
-				HV.Display(src, "search", t)
-				del(HV)
-
 			ShowProfile()
 				set hidden = 1
 				src << output(null, "profile.output")

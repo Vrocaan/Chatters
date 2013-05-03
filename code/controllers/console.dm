@@ -12,7 +12,6 @@ ServerConsole	// main controller
 		ErrMan   = new()
 		EventMan = new()
 		GameMan  = new()
-		HelpMan  = new()
 		LogMan   = new()
 		MsgMan   = new()
 
@@ -23,7 +22,6 @@ ServerConsole	// main controller
 		del(ChatMan)
 		del(ErrMan)
 		del(EventMan)
-		del(HelpMan)
 		del(LogMan)
 		del(MsgMan)
 		del(TextMan)
@@ -36,8 +34,6 @@ ServerConsole	// main controller
 		switch(href_list["dest"])
 			if("chatman")
 				ChatMan.Topic(href, href_list)
-			if("helpman")
-				HelpMan.Topic(href, href_list)
 			if("msgman")
 				MsgMan.Topic(href, href_list)
 
