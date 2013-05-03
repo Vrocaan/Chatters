@@ -3,6 +3,8 @@ changes
 *.rsc
 *.int
 *.lk
+*.log
+*.pid
 data/saves/logs
 data/saves/channels
 packet
