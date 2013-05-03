@@ -124,19 +124,7 @@ mob
 					else
 						fade_name = name
 				if(!gender) gender = client.gender
-				if(!NetMan.HostCheck(client))
-					if(Home)
-						ChanMan.Join(src, Home)
-					else
-						winset(src, "default.output", "is-visible=true")
-						winset(src, "default.child", "is-visible=false")
-						src << output("Please wait while your host configures the channel...", "default.output")
-						while(!Home) sleep(10)
-						winset(src, "default.output", "is-visible=false")
-						winset(src, "default.child", "is-visible=true")
-						ChanMan.Join(src, Home)
-				else if(Home)
-					ChanMan.Join(src, Home)
+				ChanMan.Join(src, Home)
 				for(var/obj/help/topic/T in world)
 					src << output("<a href='byond://?dest=helpman&action=view_topic&page=topics&target=[url_encode(T.name)]' style='color:#000000;text-decoration:none;'><img class=\"icon\" src=\"\ref[T.icon]\" iconstate=\"[T.icon_state]\">[T.name]</a>", "topics_grid.output")
 				spawn() Ticker()
@@ -153,8 +141,7 @@ mob
 
 				if(!fade_name) fade_name = name
 				if(!gender) gender = client.gender
-				if(!NetMan.HostCheck(client))
-					if(Home) ChanMan.Join(src, Home)
+				ChanMan.Join(src, Home)
 
 		Stat()
 			..()

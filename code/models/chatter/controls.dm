@@ -234,15 +234,6 @@ mob
 				set hidden = 1
 				winshow(src, "credits", 0)
 
-			ShowPublicChannels()
-				set hidden = 1
-				NetMan.UpdatePubChans(src)
-				winshow(src, "pub_chans", 1)
-
-			HidePublicChannels()
-				set hidden = 1
-				winshow(src, "pub_chans", 0)
-
 			ShowHelp(t as text|null)
 				set hidden = 1
 				if(!t) t = "index"

@@ -16,7 +16,6 @@ ServerConsole	// main controller
 		LogMan   = new()
 		MapMan   = new()
 		MsgMan   = new()
-		NetMan   = new()
 		PaintMan = new()
 
 	Del()
@@ -30,7 +29,6 @@ ServerConsole	// main controller
 		del(LogMan)
 		del(MapMan)
 		del(MsgMan)
-		del(NetMan)
 		del(PaintMan)
 		del(TextMan)
 		del(ListMan)
@@ -40,16 +38,12 @@ ServerConsole	// main controller
 		if(!href_list) href_list = params2list(href)
 		..()
 		switch(href_list["dest"])
-			if("chanman")
-				ChanMan.Topic(href, href_list)
 			if("chatman")
 				ChatMan.Topic(href, href_list)
 			if("helpman")
 				HelpMan.Topic(href, href_list)
 			if("msgman")
 				MsgMan.Topic(href, href_list)
-			if("netman")
-				NetMan.Topic(href, href_list)
 
 
 	proc
@@ -65,7 +59,7 @@ ServerConsole	// main controller
 			if(!T) return
 			var/online
 			for(var/mob/M in world)
-				if((M.ckey in ChanMan.devs) && M.client)
+				if((M.ckey in ChanMan.server.developers) && M.client)
 					if(!online) online = TRUE
 					M << output("<font color=green>[T]", "console.output")
 					winshow(M, "console", 1)
