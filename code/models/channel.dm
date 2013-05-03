@@ -217,8 +217,6 @@ Channel
 
 			world.status = "[Home.name] founded by [Home.founder] - [Home.chatters.len] chatter\s"
 
-			MapMan.Join(C)
-
 			winset(C, "[ckey(Home.name)].default_input", "text='> ';focus=true;")
 
 			chanbot.Say("[C.name] has joined [name]")

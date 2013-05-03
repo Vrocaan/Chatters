@@ -1,35 +1,6 @@
 
 Player
 	proc
-		Games(window as text|null)
-			set hidden = 1
-			var/mob/chatter/M = usr
-			if(!M || !M.client || !M.Chan) return
-			if(!window) window = "games_intro"
-			var/GamesView/GV = new()
-			GV.Display(M,window)
-			del(GV)
-
-		BrowseRollPlay()
-			set hidden = 1
-			call(usr,"Games")("roll_play")
-
-		BrowseTrivia()
-			set hidden = 1
-			call(usr,"Games")("trivia")
-
-		Browsehangman()
-			set hidden = 1
-			call(usr,"Games")("hangman")
-
-		BrowseOracle()
-			set hidden = 1
-			call(usr,"Games")("oracle")
-
-		BrowseQuest()
-			set hidden = 1
-			call(usr,"Games")("quest")
-
 		Roll(dice as text|null)
 			var/mob/chatter/M = usr
 			if(!M || !M.Chan) return
@@ -94,9 +65,3 @@ Player
 				switch(alert("This room description exceeds the recomended room description size. (500 characters) Would you like to view it anyways?","Room Description Size Alert! [M.Chan.room_desc_size] characters!","Yes","No"))
 					if("No") return
 			src << output("Looking around, you see....\n\t[M.Chan.room_desc]", "roll_play.output")
-
-
-		Quest(t as text|null)
-			set name = "?"
-			var/mob/chatter/M = usr
-			M << output("?> [t]","quest.output")

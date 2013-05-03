@@ -58,8 +58,6 @@ mob
 			//
 			name_notify = FALSE
 
-			tmp/Painter/Painter
-
 			tmp/OpRank/RankSelect
 			tmp/OpPrivilege/PrivSelectLeft
 			tmp/OpPrivilege/PrivSelectRight
@@ -169,10 +167,6 @@ mob
 						var/Messenger/M = msgHandlers[msgHandler]
 						msgHandlers -= msgHandler
 						del(M)
-			if(src.Painter)
-				var/open = winget(src, "map", "is-visible")
-				if(open == "false")
-					del(src.Painter)
 
 		Click()
 			call(usr, "LookAt")(key)

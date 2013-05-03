@@ -53,38 +53,6 @@ ColorView
 					M.background = color
 					winset(M, "style_colors.background_button", "background-color='[color]'")
 					winset(M, "style_colors.background", "text='[color]'")
-				if("primary")
-					if(!M.Painter) return
-					M.Painter.PC.name = color
-					M.Painter.PC.rgb = color
-					M.Painter.PC.icon -= "#FFFFFF"
-					M.Painter.PC.icon += color
-					if(M.Painter.Current)
-						M.Painter.Current.name = color
-						M.Painter.Current.rgb = color
-						M.Painter.Current.icon -= "#FFFFFF"
-						M.Painter.Current.icon += color
-					var/icon/I = new('./resources/icons/paint/canvas.dmi')
-					I.Blend(color, ICON_MULTIPLY)
-					PaintMan.icon_cache += color
-					PaintMan.icon_cache[color] = I
-					M.Painter.Current = null
-				if("secondary")
-					if(!M.Painter) return
-					M.Painter.SC.name = color
-					M.Painter.SC.rgb = color
-					M.Painter.SC.icon -= "#FFFFFF"
-					M.Painter.SC.icon += color
-					if(M.Painter.Current)
-						M.Painter.Current.name = color
-						M.Painter.Current.rgb = color
-						M.Painter.Current.icon -= "#FFFFFF"
-						M.Painter.Current.icon += color
-					var/icon/I = new('./resources/icons/paint/canvas.dmi')
-					I.Blend(color, ICON_MULTIPLY)
-					PaintMan.icon_cache += color
-					PaintMan.icon_cache[color] = I
-					M.Painter.Current = null
 				if("op_rank")
 					call(M, "SetOpRankColor")(color)
 

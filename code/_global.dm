@@ -176,8 +176,6 @@ proc
 	trim		(text)						return TextMan.Trim(text)
 	ltrim		(text)						return TextMan.lTrim(text)
 	rtrim		(text)						return TextMan.rTrim(text)
-	line		(x0, y0, x1, y1)			return PaintMan.line(x0, y0, x1, y1)
-	ellipse		(x1, y1, x2, y2, fill)		return PaintMan.ellipse(x1, y1, x2, y2, fill)
 	escapeQuotes(txt)						return TextMan.escapeQuotes(txt)
 
 

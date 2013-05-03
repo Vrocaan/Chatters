@@ -48,7 +48,6 @@ ChatterManager
 					C.key = T.key
 				var/SetView/SV = new(); SV.Initialize(C); del(SV)
 				var/HelpView/HV = new(); HV.Initialize(C); del(SV)
-				var/GamesView/GV = new(); GV.Initialize(C); del(SV)
 			else
 				C.name = T.name
 				C.key = T.key

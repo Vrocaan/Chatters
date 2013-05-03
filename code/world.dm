@@ -10,7 +10,6 @@ world
 	cache_lifespan = 1
 
 	mob = /mob/Temp		 // default temporary mob
-	turf = /turf/void // default temporary turf
 	visibility = 1		// Set to 0 in LoadServerCfg if we're not public, leave otherwise.
 
 	New()

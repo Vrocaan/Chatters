@@ -1,17 +1,5 @@
-
-turf
-	void
-		name = ""
-		icon = './resources/icons/atoms/turfs.dmi'
-		icon_state = "void"
-
-	default
-		icon = './resources/icons/atoms/turfs.dmi'
-
-
 obj
 	default
-		icon = './resources/icons/atoms/objects.dmi'
 
 	selection
 		var/obj/source
@@ -28,8 +16,6 @@ obj
 			source.DblClick(usr, location, ctl)
 
 	help
-		icon = './resources/icons/atoms/objects.dmi'
-
 		chapter
 			icon_state = "chapter"
 			var/indent = 0
