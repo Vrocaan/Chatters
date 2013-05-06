@@ -45,7 +45,6 @@
 #include "code\models\atoms.dm"
 #include "code\models\bot.dm"
 #include "code\models\channel.dm"
-#include "code\models\icons.dm"
 #include "code\models\messenger.dm"
 #include "code\models\op.dm"
 #include "code\models\player.dm"
