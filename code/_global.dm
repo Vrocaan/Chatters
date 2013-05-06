@@ -104,15 +104,11 @@ var/global
 	ChatterManager/ChatMan
 	ErrorManager/ErrMan
 	EventManager/EventMan
-	GameManager/GameMan
-	HelpManager/HelpMan
 	ListManager/ListMan
 	LogManager/LogMan
 	MapManager/MapMan
 	MessageManager/MsgMan
-	NetworkManager/NetMan
 	OperatorManager/OpMan
-	PaintManager/PaintMan
 	TextManager/TextMan
 
 	savefile_version = "0.1.6" // savefile versioning to reduce needless wipes

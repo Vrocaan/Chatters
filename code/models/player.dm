@@ -1,13 +1,31 @@
 
 Player
 	proc
+		CheckRoll(dice)
+			if(!dice) return
+			var/D, N, M, S, O, P
+			D = findtext(dice, "d")
+			if(!D || (D == length(dice))) return
+			N = round(max(min(text2num(copytext(dice, 1, D)),10),1))
+			M = findtext(dice, "+")
+			P = "+"
+			if(!M)
+				M = findtext(dice, "-")
+				P = ""
+			S = round(max(min(text2num(copytext(dice, D+1, M)),100),1))
+			if(M)
+				O = max(min(text2num(copytext(dice, M)),99),-99)
+				dice = "[N]d[S][P][O]"
+			else dice = "[N]d[S]"
+			return list(dice, N, S, O)
+
 		Roll(dice as text|null)
 			var/mob/chatter/M = usr
 			if(!M || !M.Chan) return
 			if(M.afk) M.ReturnAFK()
 			var/N, S, O, list/outcomes, results = "", outcome = 0, offset, addon
 			if(dice)
-				var/list/L = GameMan.CheckRoll(dice)
+				var/list/L = src.CheckRoll(dice)
 				if(L) dice = L[1]; N = L[2]; S = L[3]; O = L[4]
 			if(!dice)
 				N = round(max(min(input("How many dice shall you roll? (1 to 10)","Dice",1) as num | null,10),0))

@@ -123,8 +123,6 @@ mob
 						fade_name = name
 				if(!gender) gender = client.gender
 				ChanMan.Join(src, Home)
-				for(var/obj/help/topic/T in world)
-					src << output("<a href='byond://?dest=helpman&action=view_topic&page=topics&target=[url_encode(T.name)]' style='color:#000000;text-decoration:none;'><img class=\"icon\" src=\"\ref[T.icon]\" iconstate=\"[T.icon_state]\">[T.name]</a>", "topics_grid.output")
 				spawn() Ticker()
 
 			// Telnet users login differently
@@ -145,13 +143,6 @@ mob
 			..()
 			if(src.telnet) return
 			if(auto_away && (auto_away < client.inactivity/600) && !afk) afk(auto_reason)
-			if(Chan && Chan.players && Chan.players.len)
-				if(src in Chan.players)
-					if(winget(src,"games", "is-visible")=="false")
-						Chan.players -= src
-						Chan.players = Chan.SortWho(Chan.players)
-						GameMan.UpdateWho(Chan)
-						if(afk) ReturnAFK()
 			if(src.msgHandlers && src.msgHandlers.len)
 				for(var/msgHandler in msgHandlers)
 					var/open = winget(src, "cim_[msgHandler]", "is-visible")

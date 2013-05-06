@@ -11,7 +11,6 @@ ServerConsole	// main controller
 		ChatMan  = new()
 		ErrMan   = new()
 		EventMan = new()
-		GameMan  = new()
 		LogMan   = new()
 		MsgMan   = new()
 

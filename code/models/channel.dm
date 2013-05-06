@@ -28,8 +28,6 @@ Channel
 			chanbot
 		list
 			chatters
-			players
-			painters
 			operators
 			op_ranks
 			op_privileges
@@ -465,9 +463,6 @@ Channel
 
 			chatters = SortWho(chatters)
 			UpdateWho()
-			if(players && players.len)
-				players = SortWho(players)
-				GameMan.UpdateWho(src)
 			if(!ismute(C))
 				for(var/mob/chatter/c in chatters)
 					if(!(c.ignoring(C) & CHAT_IGNORE))
@@ -486,9 +481,6 @@ Channel
 			C.away_reason = null
 			chatters = SortWho(chatters)
 			UpdateWho()
-			if(players && players.len)
-				players = SortWho(players)
-				GameMan.UpdateWho(src)
 			if(!ismute(C))
 				for(var/mob/chatter/c in chatters)
 					if(!(c.ignoring(C) & CHAT_IGNORE))

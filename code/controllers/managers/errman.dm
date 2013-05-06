@@ -13,8 +13,4 @@ ErrorManager	// Handles all error reporting
 
 			if("200") ErrMsg = "Unable to open port: [Info]"
 
-			if("300") ErrMsg = "Unable to locate help contents file: contents.xml"
-			if("301") ErrMsg = "Unable to load help XML file: contents.xml"
-			if("302") ErrMsg = "Unable to load help topics XML"
-
 		CRASH("[ErrCode] : [ErrMsg]")
