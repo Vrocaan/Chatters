@@ -106,51 +106,11 @@ var/global
 	EventManager/EventMan
 	ListManager/ListMan
 	LogManager/LogMan
-	MapManager/MapMan
 	MessageManager/MsgMan
 	OperatorManager/OpMan
 	TextManager/TextMan
 
 	savefile_version = "0.1.6" // savefile versioning to reduce needless wipes
-
-
-
-	// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** //
-	// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** //
-	// *****													   ***** //
-	// ***** IF YOU FAIL TO UPDATE THIS YOUR SERVER WILL NOT START ***** //
-	// *****													   ***** //
-	// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** //
-	// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** //
-
-
-	rscHash = "69d0703e66f36405aef2192008066790" // verifies the rsc file
-
-		// Use Chatters Utilities to generate the rscHash after altering
-		// the rsc file. Paste the generated text here so that your code
-		// knows the current hash for the updated rsc file.
-
-		// If you modify the rsc (by either altering, creating or removing
-		// icons, by including, removing or altering sounds, by modifying
-		// the DMF, by changing the DMMs, or by including any library or
-		// code that does any of the above, etc) and you fail to update the
-		// rscHash vairable with the Chatters Utility program, your server
-		// will not start. Instead you will recieve:
-
-		// Chatter.rsc is out of date!
-
-		// and the server will close.
-
-
-	// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** //
-	// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** //
-	// *****													   ***** //
-	// ***** IF YOU FAIL TO UPDATE THIS YOUR SERVER WILL NOT START ***** //
-	// *****													   ***** //
-	// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** //
-	// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** //
-
-
 
 	list/debugs // debug messages saved when host is offline
 
@@ -173,27 +133,3 @@ proc
 	ltrim		(text)						return TextMan.lTrim(text)
 	rtrim		(text)						return TextMan.rTrim(text)
 	escapeQuotes(txt)						return TextMan.escapeQuotes(txt)
-
-
-	VerifyResources() // Makes sure the rsc file is up to date
-		return 1
-		if(!fexists("./Chatters.rsc"))
-			if(!fexists("./Chatters.zip"))
-				// ErrMan doesn't exist yet, so send to world.log directly
-				world.log << "\nChatters.rsc not found!"
-				world.log << "Please include the Chatters.rsc file with the Chatters.dmb."
-				return
-			else return "unpakit"
-		return 1
-		var/F = file("./Chatters.rsc")
-		if(!isfile(F))
-			world.log << "\nChatters.rsc is not a valid file!"
-			world.log << "Please include a valid Chatters.rsc file with the Chatters.dmb."
-			return
-		var/md5 = md5(F)
-		if(md5 != rscHash)
-			world.log << "\nChatters.rsc is out of date!"
-			world.log << "Please include the proper Chatters.rsc file with the Chatters.dmb, or use the Chatters Utilities program to generate an updated rscHash, and recompile the DMB file."
-			return
-		return 1
-

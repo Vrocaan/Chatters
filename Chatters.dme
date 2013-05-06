@@ -42,7 +42,6 @@
 #include "code\libraries\xml\Prolog.dm"
 #include "code\libraries\xml\Tree.dm"
 #include "code\libraries\xml\XML.dm"
-#include "code\libraries\zipfile\zipfile.dm"
 #include "code\models\atoms.dm"
 #include "code\models\bot.dm"
 #include "code\models\channel.dm"

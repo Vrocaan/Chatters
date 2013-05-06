@@ -13,16 +13,6 @@ world
 	visibility = 1		// Set to 0 in LoadServerCfg if we're not public, leave otherwise.
 
 	New()
-		var/rsc_check = VerifyResources()
-		if(!rsc_check)
-			spawn(10)
-				if(Host && Host.client)
-					Host << output("Chatters.rsc is missing, corrupt or out of date!\nPlease check your Options & Messages and correct the error.\nShutting down...", "main_menu_output.output")
-				del(src)
-		else if(rsc_check == "unpakit") // Unpack the hosting package
-			var/zipfile/Z = new("./Chatters.zip") // Dantom.zipfile ftw!
-			for(var/z in Z.Flist()) Z.Export("./", z) // export host files here
-			Reboot() // Restart server to ensure proper boot environment
 		..()
 		Console = new()	// spawn the Console <-- This starts everything else
 
