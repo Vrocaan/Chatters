@@ -1,4 +1,3 @@
-
 Thank you for downloading the Chatters Channel Server.
 
 Please take the time to read through the documentation carefully.
@@ -18,4 +17,4 @@ At the very least, you should open Chatters.zip with winzip or other unzipping u
 
 *** More Info ***
 
-Consult REALEASE.TXT for up to date information on this specific build.
+Consult RELEASE.TXT for up to date information on this specific build.
