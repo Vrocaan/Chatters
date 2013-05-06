@@ -67,7 +67,6 @@
 #include "code\views\set\filters.dm"
 #include "code\views\set\general.dm"
 #include "code\views\set\icons.dm"
-#include "code\views\set\security.dm"
 #include "code\views\set\style.dm"
 #include "code\views\set\system.dm"
 #include "code\views\set\style\colors.dm"

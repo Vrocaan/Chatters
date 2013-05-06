@@ -31,8 +31,6 @@ SetView
 				if(p in usr.verbs) usr.verbs -= p
 			for(var/p in typesof(/Settings/Filters/proc))
 				if(p in usr.verbs) usr.verbs -= p
-			for(var/p in typesof(/Settings/Security/proc))
-				if(p in usr.verbs) usr.verbs -= p
 			for(var/p in typesof(/Settings/System/proc))
 				if(p in usr.verbs) usr.verbs -= p
 			for(var/p in typesof(/Settings/Icons/proc))
@@ -164,8 +162,6 @@ SetView
 			for(var/p in typesof(/Settings/Events/proc)-/Settings/Events/proc)
 				if(!(p:name in C.verbs)) C.verbs += p
 			for(var/p in typesof(/Settings/Filters/proc)-/Settings/Filters/proc)
-				if(!(p:name in C.verbs)) C.verbs += p
-			for(var/p in typesof(/Settings/Security/proc)-/Settings/Security/proc)
 				if(!(p:name in C.verbs)) C.verbs += p
 			for(var/p in typesof(/Settings/System/proc)-/Settings/System/proc)
 				if(!(p:name in C.verbs)) C.verbs += p
