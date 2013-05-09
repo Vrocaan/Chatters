@@ -1,4 +1,4 @@
-Channel
+﻿Channel
 	var
 		founder
 		name
@@ -120,6 +120,12 @@ Channel
 
 			if(C.ckey in banned)
 				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "[ckey(name)].chat.default_output")
+				C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
+				del C
+				return
+
+			if(dd_hasprefix(C.ckey, "guest")) if("guest" in banned)
+				C << output("<font color='red'>Please login with your registered key, or visit <a href=\"http://www.byond.com/?invite=Cbgames\">http://www.byond.com/</a> to create a new key now.</font>", "[ckey(name)].chat.default_output")
 				C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
 				del C
 				return
@@ -309,6 +315,7 @@ Channel
 		Say(mob/chatter/C, msg, clean, window)
 			if(ismute(C))
 				chanbot.Say("I'm sorry, but you appear to be muted.",C)
+				if(dd_hasprefix(C.ckey, "guest")) chanbot.Say("Please login with your registered key, or visit http://www.byond.com/ to create a new key now.",C)
 				return
 
 			if(length(msg)>512)
@@ -483,11 +490,14 @@ Channel
 
 		ismute(mob/M)
 			if(mute && mute.len)
-				if(istext(M))
-					if(ckey(M) in mute) return 1
-				else if(ismob(M))
-					if(M.ckey in mute) return 1
+				var/search = ""
+				if(istext(M)) search = ckey(M)
+				else if(ismob(M)) search = M.ckey
 				else return 1
+				if(dd_hasprefix(search, "guest"))
+					if("guest" in mute) return 1
+				else
+					if(search in mute) return 1
 
 
 		TallyVotes(OpPrivilege/Priv, OpRank/Rank)
