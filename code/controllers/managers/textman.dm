@@ -10,12 +10,12 @@ TextManager
 						"\[#"="\[/#]",
 						"\[img]"="\[/img]")
 
-			html = list("<b>"="</b>",
+			html = list("<code>"="</code>",
+						"<b>"="</b>",
 						"<i>"="</i>",
 						"<u>"="</u>",
 						"<s>"="</s>",
 						"<font color=#"="</font>",
-						"<code>"="</code>",
 						"<img src='"="'>")
 
 			links = list("id"		= "http://www.byond.com/forum/?post=$s",
@@ -428,7 +428,7 @@ TextManager
 					link_hold = ""
 
 					for(var/i = length(link), i>0, i--)
-						link_hold += "ü"
+						link_hold += "ÅE"
 
 					pos1 = findtext(part2, "http://")
 					if(!pos1) pos1 = findtext(part2, "byond://")
@@ -459,7 +459,7 @@ TextManager
 			while(links.len)
 				for(var/l = pos, l <= L.len+1, l++)
 					pos = l
-					if(!findtext(L[l], "ü"))
+					if(!findtext(L[l], "ÅE"))
 						continue
 					else
 						L[l] = links[1]
