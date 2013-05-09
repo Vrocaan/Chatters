@@ -23,5 +23,5 @@ client
 				if(ckey(cmd) == ckey(v:name))
 					call(mob, v:name)(params)
 					success=1
-		if(!success) call(mob, "Say")(command)
+		if(!success && ChatMan.istelnet(src.key)) call(mob, "Say")(command)
 		..(command)
