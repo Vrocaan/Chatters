@@ -34,7 +34,7 @@ TextManager
 						 "bash"		= "http://www.bash.org/?$s",
 						 "bbash"	= "http://gazoot.byondhome.com/bbash/?quote=$s",
 						 "condo"	= "http://gazoot.byondhome.com/condo/site.dmb?browse&owner=$s",
-						 "issue"	= "https://github.com/kevans91/Chatters/issues/$s")
+						 "issue"	= "https://github.com/Stephen001/Chatters/issues/$s")
 
 	proc
 		Sanitize(msg)
