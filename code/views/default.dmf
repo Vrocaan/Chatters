@@ -255,7 +255,7 @@ window "about"
 		right-click = false
 		saved-params = ""
 		on-size = ""
-		text = "copyright ©2007 Andrew \"Xooxer\" Arnold"
+		text = "copyright (c)  2007 Andrew \"Xooxer\" Arnold"
 		image = ""
 		image-mode = center
 		keep-aspect = false
@@ -458,7 +458,7 @@ window "channel"
 		right-click = false
 		saved-params = ""
 		on-size = ""
-		command = "!> "
+		command = "!> \""
 		multi-line = false
 		is-password = false
 		no-command = false
@@ -15525,7 +15525,7 @@ window "style_colors"
 		right-click = false
 		saved-params = "pos;size;is-maximized"
 		on-size = ""
-		title = "≠        Colors"
+		title = "ÅEΩ        Colors"
 		titlebar = false
 		statusbar = false
 		can-close = false
@@ -16618,7 +16618,7 @@ window "style_default"
 		right-click = false
 		saved-params = "pos;size;is-maximized"
 		on-size = ""
-		title = "≠        Default CSS"
+		title = "ÅEΩ        Default CSS"
 		titlebar = false
 		statusbar = false
 		can-close = false
@@ -16897,7 +16897,7 @@ window "style_formats"
 		right-click = false
 		saved-params = "pos;size;is-maximized"
 		on-size = ""
-		title = "≠        Formats"
+		title = "ÅEΩ        Formats"
 		titlebar = false
 		statusbar = false
 		can-close = false
