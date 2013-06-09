@@ -10,7 +10,7 @@ To start your server, simply run Chatters.dmb, either through Dream Seeker or Dr
 Updating
 --------
 
-If you already have hosting files in your server's directory, it is recommended that you remove them and use the files provided in the hosting package that came with yuor dmb. You should be able to restore your configuration files and channel save files once updated.
+If you already have hosting files in your server's directory, it is recommended that you remove them and use the files provided in the hosting package that came with your dmb. You should be able to restore your configuration files and channel save files once updated.
 
 If you wish to participate in the development process, please sign up to our mailing list at http://www.freelists.org/list/chatters-devel
 
