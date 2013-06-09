@@ -20,7 +20,7 @@ CREATE TABLE USER_SETTINGS (
 	showwelcome TINYINT,
 	showmotd TINYINT,
 	clearonreboot TINYINT,
-	lines SMALLINT,
+	showlines SMALLINT,
 	highlightcode TINYINT,
 	windowwidth SMALLINT,
 	windowheight SMALLINT,
