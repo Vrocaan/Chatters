@@ -25,7 +25,6 @@ Messenger
 		winset(C, "[winname]",			"title='[name] - CIM';")
 		winset(C, "[winname].name_label","text='[name]';")
 		winset(C, "[winname].ignore",	"command='Ignore \"[name]\" \"1\"'")
-		winset(C, "[winname].profile",	"command='LookAt \"[name]\"'")
 		winset(C, "[winname].show",		"command='Showcode \"[name]\"'")
 		winset(C, "[winname].share",		"command='Share \"[name]\"'")
 		winset(C, "[winname].invite",	"command='invite \"[name]\"'")
@@ -50,15 +49,10 @@ Messenger
 		winset(C, "[winname].color6", "command='InsertColor \"color6\" \"[name]\"'")
 		winset(C, "[winname].color7", "command='InsertColor \"color7\" \"[name]\"'")
 
-		winset(C, "[winname].toggle_quickbar", "command='ToggleCIMBar \"[name]\"'")
-
 		winset(C, "[winname].input", "command='IM \"[name]\" \"'")
 		winset(C, "[winname].input", "focus=true")
 
 		winset(C, "[winname].output", "style='[TextMan.escapeQuotes(C.default_output_style)]';max-lines='[C.max_output]';")
-
-		if(!C.quickbar)
-			C.ToggleCIMBar(name)
 
 		if(!C.msgHandlers)
 			C.msgHandlers=new

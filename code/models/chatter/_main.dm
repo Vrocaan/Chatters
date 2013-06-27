@@ -32,12 +32,9 @@ mob
 			filter = 2
 			replacement_word = ""
 
-			quickbar = TRUE
 			showwho = TRUE
-			showtopic = TRUE
-			swaped_panes = FALSE
 			show_title = TRUE
-			show_welcome = TRUE
+			show_welcome = FALSE
 			show_motd = TRUE
 			show_qotd = TRUE
 			show_highlight = TRUE
@@ -49,7 +46,7 @@ mob
 
 			winsize = "640x480"
 
-			im_sounds = TRUE
+			im_sounds = FALSE
 			im_volume = 100
 			got_msg_snd = "./data/sndfx/mallert 010.wav"
 			snt_msg_snd = "./data/sndfx/mallert 009.wav"
@@ -160,8 +157,7 @@ mob
 						del(M)
 
 		Click()
-			call(usr, "LookAt")(key)
-
+			call(usr, "IM")(key)
 
 		Logout()
 			if(Console && Chan) ChanMan.Quit(src, Chan)

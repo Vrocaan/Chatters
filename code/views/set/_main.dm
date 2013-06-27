@@ -18,15 +18,11 @@ SetView
 		ShowSet()
 			set hidden = 1
 			winshow(src, "set", 1)
-			call(usr, "BrowseGeneral") ()
+			call(usr, "BrowseStyle") ()
 
 		HideSet()
 			set hidden = 1
 			winshow(src, "set", 0)
-			for(var/p in typesof(/Settings/General/proc))
-				if(p in usr.verbs) usr.verbs -= p
-			for(var/p in typesof(/Settings/Events/proc))
-				if(p in usr.verbs) usr.verbs -= p
 			for(var/p in typesof(/Settings/Style/proc))
 				if(p in usr.verbs) usr.verbs -= p
 			for(var/p in typesof(/Settings/Filters/proc))
@@ -96,7 +92,6 @@ SetView
 					winset(C, "style_formats.time_format", "text='[TextMan.escapeQuotes(list2text(C.time_format))]'")
 					winset(C, "style_formats.date_format", "text='[TextMan.escapeQuotes(list2text(C.date_format))]'")
 					winset(C, "style_formats.long_date_format", "text='[TextMan.escapeQuotes(list2text(C.long_date_format))]'")
-					winset(C, "style_default.output_style", "text='[TextMan.escapeQuotes(C.default_output_style)]';")
 				if("icons")
 				if("events")
 					winset(C, "events.onjoin", "text='[TextMan.escapeQuotes(C.onJoin)]'")
@@ -148,18 +143,13 @@ SetView
 					winset(C, "system.auto_afk", "text='[C.auto_away]'")
 					winset(C, "system.away_msg", "text='[TextMan.escapeQuotes(C.auto_reason)]'")
 
-
 		Initialize(mob/chatter/C)
 			if(!C || !C.client) return
 			C.verbs += /SetView/proc/ShowSet
 			C.verbs += /SetView/proc/HideSet
-			for(var/p in typesof(/Settings/General/proc)-/Settings/General/proc)
-				if(!(p:name in C.verbs)) C.verbs += p
 			for(var/p in typesof(/Settings/Style/proc)-/Settings/Style/proc)
 				if(!(p:name in C.verbs)) C.verbs += p
 			for(var/p in typesof(/Settings/Icons/proc)-/Settings/Icons/proc)
-				if(!(p:name in C.verbs)) C.verbs += p
-			for(var/p in typesof(/Settings/Events/proc)-/Settings/Events/proc)
 				if(!(p:name in C.verbs)) C.verbs += p
 			for(var/p in typesof(/Settings/Filters/proc)-/Settings/Filters/proc)
 				if(!(p:name in C.verbs)) C.verbs += p

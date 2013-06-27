@@ -6,6 +6,17 @@
 // END_INTERNALS
 // BEGIN_FILE_DIR
 #define FILE_DIR .
+#define FILE_DIR "data"
+#define FILE_DIR "data/sndfx"
+#define FILE_DIR "resources"
+#define FILE_DIR "resources/icons"
+#define FILE_DIR "resources/icons/smileys"
+#define FILE_DIR "resources/images"
+#define FILE_DIR "resources/images/interface"
+#define FILE_DIR "resources/images/interface/arrows"
+#define FILE_DIR "resources/images/interface/locks"
+#define FILE_DIR "resources/images/menu"
+#define FILE_DIR "resources/images/smileys"
 // END_FILE_DIR
 #define FILE_DIR "resources"
 
@@ -61,14 +72,11 @@
 #include "code\views\ops\privileges.dm"
 #include "code\views\ops\ranks.dm"
 #include "code\views\set\_main.dm"
-#include "code\views\set\events.dm"
 #include "code\views\set\filters.dm"
-#include "code\views\set\general.dm"
 #include "code\views\set\icons.dm"
 #include "code\views\set\style.dm"
 #include "code\views\set\system.dm"
 #include "code\views\set\style\colors.dm"
-#include "code\views\set\style\default.dm"
 #include "code\views\set\style\formats.dm"
 // END_INCLUDE
 

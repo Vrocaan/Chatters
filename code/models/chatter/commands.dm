@@ -86,10 +86,6 @@ Valid Commands:
 \\---------------------------------------------//
 "}
 
-			Cmail()
-				//ShowChattersMail()
-
-
 			Say(msg as text|null)
 				if(!msg) return
 				if(afk) ReturnAFK()
@@ -493,34 +489,6 @@ Valid Commands:
 					switch(alert("This room description exceeds the recomended room description size. (500 characters) Would you like to view it anyways?","Room Description Size Alert! [Chan.room_desc_size] characters!","Yes","No"))
 						if("No") return
 				src << output("Looking around, you see....\n\t[Chan.room_desc]", "[ckey(Chan.name)].chat.default_output")
-
-
-			LookAt(t as text|null|mob in Home.chatters)
-				if(!t || telnet) return
-				var/mob/chatter/C
-				if(ismob(t)) C = t
-				else C = ChatMan.Get(t)
-				if(!C)
-					if(src.Chan)
-						src << output("[t] is not currently online.", "[ckey(src.Chan.name)].chat.default_output")
-					else
-						alert(src, "[t] is not currently online.", "Unable to locate chatter")
-				else
-					src << output(null, "profile.output")
-					if(C.picture)
-						src << output("<img src='[C.picture]' width=64 height=64>\...", "profile.output")
-					else
-						src << browse_rsc('./resources/images/noimage.png', "noimage.png")
-						src << output("<img src='noimage.png' width=64 height=64>\...", "profile.output")
-					winset(src, "profile.key", "text=' [TextMan.escapeQuotes(C.name)]")
-					winset(src, "profile.age", "text=' [TextMan.escapeQuotes(C.age)]")
-					winset(src, "profile.gender", "text=' [C.gender]")
-					winset(src, "profile.location", "text=' [TextMan.escapeQuotes(C.location)]")
-					winset(src, "profile.description", "text=' [TextMan.escapeQuotes(C.description)]")
-					winset(src, "profile.interests", "text=' [TextMan.escapeQuotes(C.interests)]")
-					winset(src, "profile", "is-visible=true")
-					winset(src, "profile.show_button", "command='ShowCode \"[C.name]\"';")
-					winset(src, "profile.im_button", "command='IM \"[C.name]\"';")
 
 			ShowCode(t as text|null|mob in Home.chatters)
 				if(telnet) return
