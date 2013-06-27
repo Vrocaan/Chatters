@@ -124,7 +124,7 @@ Channel
 				del C
 				return
 
-			if(dd_hasprefix(C.ckey, "guest")) if("guest" in banned)
+			if(kText.hasPrefix(C.ckey, "guest")) if("guest" in banned)
 				C << output("<font color='red'>Please login with your registered key, or visit <a href=\"http://www.byond.com/?invite=Cbgames\">http://www.byond.com/</a> to create a new key now.</font>", "[ckey(name)].chat.default_output")
 				C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
 				del C
@@ -277,7 +277,7 @@ Channel
 		Say(mob/chatter/C, msg, clean, window)
 			if(ismute(C))
 				chanbot.Say("I'm sorry, but you appear to be muted.",C)
-				if(dd_hasprefix(C.ckey, "guest")) chanbot.Say("Please login with your registered key, or visit http://www.byond.com/ to create a new key now.",C)
+				if(kText.hasPrefix(C.ckey, "guest")) chanbot.Say("Please login with your registered key, or visit http://www.byond.com/ to create a new key now.",C)
 				return
 
 			if(length(msg)>512)
@@ -456,7 +456,7 @@ Channel
 				if(istext(M)) search = ckey(M)
 				else if(ismob(M)) search = M.ckey
 				else return 1
-				if(dd_hasprefix(search, "guest"))
+				if(kText.hasPrefix(search, "guest"))
 					if("guest" in mute) return 1
 				else
 					if(search in mute) return 1
