@@ -1,5 +1,4 @@
-
-Player
+mob/chatter
 	proc
 		CheckRoll(dice)
 			if(!dice) return
@@ -19,6 +18,7 @@ Player
 			else dice = "[N]d[S]"
 			return list(dice, N, S, O)
 
+	verb
 		Roll(dice as text|null)
 			var/mob/chatter/M = usr
 			if(!M || !M.Chan) return

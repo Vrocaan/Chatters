@@ -66,7 +66,7 @@ mob
 
 			Set()
 				if(telnet) return
-				call(usr, "ShowSet")()
+				ShowSet()
 
 			Help()
 

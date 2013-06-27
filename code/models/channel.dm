@@ -133,9 +133,6 @@ Channel
 
 			if(Host == C) winset(C, "default", "menu=host")
 
-			for(var/p in typesof(/Player/proc)-/Player/proc)
-				C.verbs += p
-
 			if(C.ckey in operators)
 				if(C.telnet)
 					operators -= C.ckey
