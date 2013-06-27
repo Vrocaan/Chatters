@@ -229,9 +229,6 @@ Channel
 		UpdateWho()
 
 			for(var/mob/chatter/C in chatters)
-
-				var/active = chatters.len
-
 				if(!ChatMan.istelnet(C.key))
 					for(var/i=1, i<=chatters.len, i++)
 						var/mob/chatter/c = chatters[i]
@@ -242,7 +239,6 @@ Channel
 						var/n = c.name
 						if(c==C)
 							if(c.afk)
-								active--
 								if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:gray;font-weight:bold}'")
 								c.name += " \[AFK]"
 							else if(C.ckey in C.Chan.operators)
@@ -252,7 +248,6 @@ Channel
 								if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{font-weight:bold}'")
 						else
 							if(!ChatMan.istelnet(c.key) && c.afk)
-								active--
 								if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:gray}'")
 								c.name += " \[AFK]"
 							else if(c.ckey in C.Chan.operators)
@@ -263,8 +258,6 @@ Channel
 						C << output(c, "[ckey(name)].who.grid")
 						c.name = n
 				if(C.client)
-					winset(C, "[ckey(name)].online", "text='[chatters.len] Chatter\s - [active] Active:';")
-					winset(C, "[ckey(name)].online_left", "text='[chatters.len] Chatter\s - [active] Active:';")
 					winset(C, "[ckey(name)].who.grid", "cells=1x[chatters.len]")
 
 		SortWho(list/L)

@@ -89,14 +89,6 @@ Valid Commands:
 			Say(msg as text|null)
 				if(!msg) return
 				if(afk) ReturnAFK()
-				for(var/i=1,i<=5,i++)
-					if(!client) continue
-					winset(src, "[ckey(Home.name)].tag[i]", "is-checked=false")
-				for(var/i=1,i<=7,i++)
-					if(!client) continue
-					winset(src, "[ckey(Home.name)].color[i]", "is-checked=false;text=")
-					var/C = src.Colors[i]
-					src.Colors[C] = null
 				Chan.Say(src, msg)
 
 			Me(msg as text|null)
@@ -118,14 +110,6 @@ Valid Commands:
 				var/mob/C
 				if(ismob(target)) C = target
 				else C = ChatMan.Get(target)
-				for(var/i=1,i<=3,i++)
-					if(!client) continue
-					winset(src, "cim_[C.ckey].tag[i]", "is-checked=false")
-				for(var/i=1,i<=7,i++)
-					if(!client) continue
-					winset(src, "cim_[C.ckey].color[i]", "is-checked=false;text=")
-					var/N = src.Colors[i]
-					src.Colors[N] = null
 				if(!C)
 					if(src.Chan)
 						src << output("[target] is not currently online.", "[ckey(src.Chan.name)].chat.default_output")
@@ -164,11 +148,6 @@ Valid Commands:
 						M.name_color = name_color
 						M.text_color = text_color
 						M.fade_name = fade_name
-						M.picture = picture
-						M.age = age
-						M.location = location
-						M.description = description
-						M.interests = interests
 
 						S["from"] << M
 						S["msg"] << msg

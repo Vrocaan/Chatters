@@ -20,12 +20,6 @@ mob
 			show_images = TRUE
 			forced_punctuation = FALSE
 
-			picture
-			age = "No age given."
-			location = "No location provided."
-			description = "No description available."
-			interests = "No interests supplied."
-
 			onJoin = "me(\"enters the channel.\")"
 			onQuit = "me(\"exits the channel.\")"
 
@@ -77,23 +71,16 @@ mob
 				ignoring
 				fade_colors = list("#000000")
 
-				time_format = list("<b>\[</b>","hh",":","mm",":","ss","<b>]</b>")
+				time_format = list("<font size=1>\[","hh",":","mm",":","ss","]</font>")
 				date_format = list("MMM"," ","MM",", `","YY")
 				long_date_format = list("Day",", ","Month"," ","DD",", ","YYYY")
-				say_format = list("$ts", " <b>","$name",":</b>   ","$msg")
+				say_format = list("$ts", " <b>","$name",":</b> ","$msg")
 				rpsay_format = list("$ts", " ","$name"," ","$rp",":   ","$msg")
 				me_format = list("$ts", " ", "$name", " ", "$msg")
 
 				filtered_words
 
 				tmp/msgHandlers
-				tmp/Tags = list("\[b]" = "\[/b]",
-								"\[i]" = "\[/i]",
-								"\[u]" = "\[/u]",
-								"\[s]" = "\[/s]",
-							 "\[code]" = "\[/code]")
-				tmp/Smileys = list(":)",":(",":D","<:(",">:(",">:D")
-				tmp/Colors = list("#C00","#0C0","#00C","#CC0","#C0C","#0CC","#000")
 
 
 		New()
@@ -146,12 +133,6 @@ mob
 					if(open == "false")
 						src << output(null, "cim_[msgHandler].output")
 						winset(src, "cim_[msgHandler].input", "text=")
-						for(var/i=1,i<=3,i++)
-							winset(src, "cim_[msgHandler].tag[i]", "is-checked=false")
-						for(var/i=1,i<=7,i++)
-							winset(src, "cim_[msgHandler].color[i]", "is-checked=false;text=")
-							var/C = src.Colors[i]
-							src.Colors[C] = null
 						var/Messenger/M = msgHandlers[msgHandler]
 						msgHandlers -= msgHandler
 						del(M)
