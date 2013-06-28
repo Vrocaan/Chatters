@@ -4,7 +4,7 @@ mob/chatter
 			set hidden = 1
 			set name = ".settings"
 
-			SetDisplay(src, winget(src, "set.tab1", "current-tab"))
+			SetDisplay(winget(src, "set.tab1", "current-tab"))
 
 		ShowSet()
 			set hidden = 1
