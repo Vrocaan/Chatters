@@ -76,9 +76,6 @@ Bot
 				if("topic")
 					if(value) Home.chanbot.SetTopic(value,1)
 					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> topic [Home.topic]", "console.output")
-				if("pass")
-					if(value) Home.chanbot.SetPass(value,1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> pass [Home.pass]", "console.output")
 				if("locked")
 					if(value) Home.chanbot.SetLocked(value,1)
 					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> locked [(Home.locked ? Home.locked : "0")]", "console.output")
@@ -410,11 +407,6 @@ _____________________ \[end of announcement\] _____________________
 				if(ChatMan.istelnet(C.key)) continue
 				if(!C.client) continue
 				winset(C, "[ckey(Chan.name)].topic_label", "text='[TextMan.escapeQuotes(newValue)]';")
-			if(save) ChanMan.SaveChan(src.Chan)
-
-
-		SetPass(newValue,save)
-			Chan.pass = newValue
 			if(save) ChanMan.SaveChan(src.Chan)
 
 

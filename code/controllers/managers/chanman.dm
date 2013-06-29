@@ -41,43 +41,12 @@ ChannelManager
 
 		SaveChan(Channel/Chan)
 			var/savefile/S = new("./data/saves/channels/[ckey(Chan.name)].sav")
-			S["founder"]	<< Chan.founder
-			S["name"]		<< Chan.name
-			S["publicity"]	<< Chan.publicity
-			S["desc"]		<< Chan.desc
-			S["room_desc"] << Chan.room_desc
-			S["room_desc_size"] << Chan.room_desc_size
-			S["topic"]		<< Chan.topic
-			S["pass"]		<< Chan.pass
-			S["locked"]		<< Chan.locked
-			S["telpass"]	<< Chan.telnet_pass
-			S["telatmpts"]	<< Chan.telnet_attempts
 			S["mute"]		<< Chan.mute
 			S["banned"]		<< Chan.banned
-			if(Chan.operators && Chan.operators.len)
-				var/list/ops = new()
-				for(var/cKey in Chan.operators)
-					var/Op/O = Chan.operators[cKey]
-					ops += O.name
-					ops[O.name] = O.Rank.pos
-				S["operators"]  << ops
 
-		LoadChan(chan, telpass, telatmpts)
+		LoadChan(chan)
 			var/savefile/S = new("./data/saves/channels/[ckey(chan)].sav")
 			var/Channel/Chan = new()
-			S["founder"]	>> Chan.founder
-			S["name"]		>> Chan.name
-			S["publicity"]	>> Chan.publicity
-			S["desc"]		>> Chan.desc
-			S["room_desc"]	>> Chan.room_desc
-			S["room_desc_size"] >> Chan.room_desc_size
-			S["topic"]		>> Chan.topic
-			S["pass"]		>> Chan.pass
-			S["locked"]		>> Chan.locked
-			Chan.telnet_pass = telnet_pass
-			Chan.telnet_attempts = telnet_attempts
-			if(!Chan.telnet_pass && telpass) Chan.telnet_pass = telpass
-			if(!Chan.telnet_attempts && telatmpts) Chan.telnet_attempts = telatmpts
 			S["mute"]		>> Chan.mute
 			S["banned"]		>> Chan.banned
 			return Chan
@@ -101,99 +70,72 @@ ChannelManager
 			var/list/S = params2list(config["server"])
 			if(S && S.len)
 
-				telnet_pass    = S["telnet_pass"]
-				telnet_attempts    = (text2num(S["telnet_attempts"]) || -1)
+				telnet_pass     = S["telnet_pass"]
+				telnet_attempts = (text2num(S["telnet_attempts"]) || -1)
 
-				var/AutoStart = text2num(S["auto_start"]) ? 1 : 0
-				if(AutoStart)
-					var/HomeChan = S["home_chan"]
-					if(!HomeChan)
-						return
-					else if(!fexists("./data/saves/channels/[ckey(HomeChan)].sav"))
-						var/Password  = S["password"]
-						var/Founder   = S["founder"]
-						var/ChanDesc  = S["desc"]
-						var/ChanTopic = S["topic"]
-						var/SuperNode = text2num(S["super_name"]) ? 1 : 0
-						var/MaxNodes  = text2num(S["max_nodes"])
-						var/Publicity = S["publicity"]
-						var/Locked    = S["locked"]
+				var/ChanName  = S["name"]
+				var/Founder   = S["founder"]
+				var/ChanDesc  = S["desc"]
+				var/ChanTopic = S["topic"]
+				var/Publicity = S["publicity"]
+				var/Locked    = S["locked"]
 
-						var/botName        = S["bot_name"]
-						var/botNameColor   = S["bot_name_color"]
-						var/botTextColor   = S["bot_text_color"]
+				var/botName        = S["bot_name"]
+				var/botNameColor   = S["bot_name_color"]
+				var/botTextColor   = S["bot_text_color"]
 
-						var/botSpamControls= text2num(S["bot_spam_control"]) ? 1 : 0
-						var/botSpamLimit   = text2num(S["bot_spam_limit"])
-						var/botFloodLimit  = text2num(S["bot_flood_limit"])
-						var/botSmileysLimit= text2num(S["bot_smileys_limit"])
-						var/botMaxMsgs     = text2num(S["bot_max_msgs"])
-						var/botMinDelay    = text2num(S["bot_min_delay"])
+				var/botSpamControls= text2num(S["bot_spam_control"]) ? 1 : 0
+				var/botSpamLimit   = text2num(S["bot_spam_limit"])
+				var/botFloodLimit  = text2num(S["bot_flood_limit"])
+				var/botSmileysLimit= text2num(S["bot_smileys_limit"])
+				var/botMaxMsgs     = text2num(S["bot_max_msgs"])
+				var/botMinDelay    = text2num(S["bot_min_delay"])
 
-						Home = new(list(
-							"Founder"=Founder,
-							"Name"=HomeChan,
-							"Publicity"=Publicity,
-							"Desc"=ChanDesc,
-							"Topic"=ChanTopic,
-							"Pass"=Password,
-							"Locked"=Locked,
-							"TelPass"=telnet_pass,
-							"TelAtmpts"=telnet_attempts,
-							"SuperNode"=SuperNode,
-							"MaxNodes"=MaxNodes))
-						if(Publicity != "public") world.visibility = 0
+				Home = new(list(
+					"Founder"=Founder,
+					"Name"=ChanName,
+					"Publicity"=Publicity,
+					"Desc"=ChanDesc,
+					"Topic"=ChanTopic,
+					"Locked"=Locked,
+					"TelPass"=telnet_pass,
+					"TelAtmpts"=telnet_attempts))
+				if(Publicity != "public") world.visibility = 0
 
-						Home.chanbot.SetName(botName)
-						Home.chanbot.SetNameColor("#"+botNameColor)
-						Home.chanbot.SetTextColor("#"+botTextColor)
-						Home.chanbot.SetSpamControl(botSpamControls)
-						Home.chanbot.SetSpamLimit(botSpamLimit)
-						Home.chanbot.SetFloodLimit(botFloodLimit)
-						Home.chanbot.SetSmileysLimit(botSmileysLimit)
-						Home.chanbot.SetMaxMsgs(botMaxMsgs)
-						Home.chanbot.SetMinDelay(botMinDelay)
+				Home.chanbot.SetName(botName)
+				Home.chanbot.SetNameColor("#"+botNameColor)
+				Home.chanbot.SetTextColor("#"+botTextColor)
+				Home.chanbot.SetSpamControl(botSpamControls)
+				Home.chanbot.SetSpamLimit(botSpamLimit)
+				Home.chanbot.SetFloodLimit(botFloodLimit)
+				Home.chanbot.SetSmileysLimit(botSmileysLimit)
+				Home.chanbot.SetMaxMsgs(botMaxMsgs)
+				Home.chanbot.SetMinDelay(botMinDelay)
 
-						if(muteList && muteList.len)
-							Home.mute = new
-							for(var/i in muteList)
+				if(muteList && muteList.len)
+					Home.mute = new
+					for(var/i in muteList)
+						Home.mute += ckey(i)
+				if(banList && banList.len)
+					Home.banned = new
+					for(var/i in banList)
+						Home.banned += ckey(i)
+
+				if(opList && opList.len)
+					Home.operators = new
+					for(var/Name in opList)
+						if(!findtext(Name, "_"))
+							var/opKey = ckey(opList[Name])
+							var/rankIndex = text2num(opList["[Name]_level"])
+							var/OpRank/Rank = Home.op_ranks[rankIndex]
+							Home.operators[opKey] = new/Op(opList[Name], Rank)
+				if (fexists("./data/saves/channels/[ckey(Home.name)].sav"))
+					var/Channel/Chan = LoadChan(Home.name)
+					if (length(Chan.mute))
+						for (var/i in Chan.mute)
+							if (!Home.mute.Find(ckey(i)))
 								Home.mute += ckey(i)
-
-						if(banList && banList.len)
-							Home.banned = new
-							for(var/i in banList)
+					if (length(Chan.banned))
+						for (var/i in Chan.banned)
+							if (!Home.banned.Find(ckey(i)))
 								Home.banned += ckey(i)
-
-						if(opList && opList.len)
-							Home.operators = new
-							for(var/Name in opList)
-								if(!findtext(Name, "_"))
-									var/opKey = ckey(opList[Name])
-									var/rankIndex = text2num(opList["[Name]_level"])
-									var/OpRank/Rank = Home.op_ranks[rankIndex]
-									Home.operators[opKey] = new/Op(opList[Name], Rank)
-					else
-						Home = LoadChan(HomeChan, telnet_pass, telnet_attempts)
-						Home.chanbot = BotMan.LoadBot(Home)
-						Home.LoadOps()
-						if(muteList && muteList.len)
-							Home.mute = listOpen(Home.mute)
-							for(var/i in muteList)
-								var/cval = ckey(i)
-								if(!(cval in Home.mute)) Home.mute += cval
-
-						if(banList && banList.len)
-							Home.banned = listOpen(Home.banned)
-							for(var/i in banList)
-								var/cval = ckey(i)
-								if(!(cval in Home.banned)) Home.banned += cval
-
-						if(opList && opList.len)
-							Home.operators = listOpen(Home.operators)
-							for(var/Name in opList)
-								if(!findtext(Name, "_"))
-									var/opKey = ckey(opList[Name])
-									var/rankIndex = text2num(opList["[Name]_level"])
-
-									var/OpRank/Rank = Home.op_ranks[rankIndex]
-									Home.operators[opKey] = new/Op(opList[Name], Rank)

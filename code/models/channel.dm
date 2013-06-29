@@ -5,13 +5,10 @@ Channel
 		publicity
 		desc
 		topic
-		pass
 		locked
 		telnet_pass
 		telnet_attempts
 		QOTD
-		SuperNode
-		MaxNodes
 
 		// spam controls
 		spam_control =1
@@ -63,15 +60,11 @@ Channel
 			publicity = params["Publicity"]
 			desc = params["Desc"]
 			topic = params["Topic"]
-			pass = params["Pass"]
 			locked = text2num(params["Locked"]) ? 1 : 0
 			telnet_pass = params["TelPass"]
 			telnet_attempts = (text2num(params["TelAtmpts"]) || -1)
-			SuperNode = text2num(params["SuperNode"]) ? 1 : 0
-			MaxNodes = text2num(params["MaxNodes"])
 		..()
 		chanbot = new /Bot(src)
-		if(SuperNode) nodes = new()
 
 	proc
 		LoadOps()
