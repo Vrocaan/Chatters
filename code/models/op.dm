@@ -110,6 +110,7 @@ _____________________ \[end of announcement\] _____________________
 			if(!(ckey(target) in M.Chan.mute))
 				M.Chan.chanbot.Say("[target] has been muted by \[b][M.name]\[/b].")
 				M.Chan.mute += ckey(target)
+				M.Chan.UpdateWho()
 			else
 				M.Chan.chanbot.Say("[target] is already mute.", M)
 			ChanMan.SaveChan(Home)
@@ -131,6 +132,7 @@ _____________________ \[end of announcement\] _____________________
 				M.Chan.chanbot.Say("[target] is already voiced.", M)
 			else
 				M.Chan.mute -= ckey(target)
+				M.Chan.UpdateWho()
 				M.Chan.chanbot.Say("[target] has been voiced by \[b][M.name]\[/b].")
 			ChanMan.SaveChan(Home)
 

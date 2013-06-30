@@ -245,6 +245,8 @@ Channel
 							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:gray;}'")
 						else if(c.ckey in C.Chan.operators)
 							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
+						else if(c.ckey in C.Chan.mute)
+							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
 						else
 							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];}'")
 						C << output(c, "[ckey(name)].who.grid")
