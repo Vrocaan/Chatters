@@ -8540,6 +8540,32 @@ window "settings"
 		is-checked = false
 		group = "settings_group"
 		button-type = pushbutton
+	elem "saving"
+		type = LABEL
+		pos = 4,400
+		size = 441x20
+		anchor1 = 0,100
+		anchor2 = 100,100
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #ffffff
+		background-color = #d50b0b
+		is-visible = false
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "Saving!"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
 	elem "settings_child"
 		type = CHILD
 		pos = 4,28
