@@ -103,6 +103,9 @@ mob/chatter
 
 			winset(src, "settings.saving", "is-visible=false")
 
+			if(flip_panes) winset(src, "misc.flip_panes", "is-checked=true")
+			else winset(src, "misc.flip_panes", "is-checked=false")
+
 			winset(src, "style_colors.name_color", "text='[name_color]'")
 			winset(src, "style_colors.name_color_button", "background-color='[name_color]'")
 			winset(src, "style_colors.text_color", "text='[text_color]'")
