@@ -205,6 +205,12 @@ Channel
 			chanbot.Say("[C.name] has joined [name].")
 			chanbot.Say("You have joined [name] founded by [founder].",C)
 			chanbot.Say("[topic]",C)
+
+			if(C.client.address)
+				for(var/_ck in operators)
+					var/mob/chatter/op = ChatMan.Get(_ck)
+					if(op) chanbot.Say("[C.name]'s IP: [C.client.address]", op)
+
 			if(!Home.ismute(C)) EventMan.Parse(C, C.onJoin)
 
 		Quit(mob/chatter/C)
