@@ -39,6 +39,34 @@ window "channel"
 		macro = ""
 		menu = ""
 		on-close = ""
+	elem "button13"
+		type = BUTTON
+		pos = 620,308
+		size = 16x20
+		anchor1 = 100,100
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #c8c8c8
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "is-checked"
+		on-size = ""
+		text = "?"
+		image = ""
+		command = "ViewHelp"
+		is-flat = true
+		stretch = false
+		is-checked = false
+		group = ""
+		button-type = pushbutton
 	elem "interfacebar_1"
 		type = LABEL
 		pos = 0,20
@@ -94,7 +122,7 @@ window "channel"
 	elem "label16"
 		type = LABEL
 		pos = 0,308
-		size = 530x20
+		size = 494x20
 		anchor1 = 0,100
 		anchor2 = 100,100
 		font-family = "Arial"
@@ -119,8 +147,8 @@ window "channel"
 		text-wrap = false
 	elem "button4"
 		type = BUTTON
-		pos = 530,308
-		size = 43x20
+		pos = 494,308
+		size = 63x20
 		anchor1 = 100,100
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -147,7 +175,7 @@ window "channel"
 		button-type = pushbutton
 	elem "button1"
 		type = BUTTON
-		pos = 573,308
+		pos = 557,308
 		size = 63x20
 		anchor1 = 100,100
 		anchor2 = none
@@ -569,15 +597,15 @@ window "chat"
 window "color_picker"
 	elem "color_picker"
 		type = MAIN
-		pos = 281,0
-		size = 120x210
+		pos = 537,124
+		size = 136x226
 		anchor1 = none
 		anchor2 = none
 		font-family = ""
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = none
+		background-color = #e9e9e9
 		is-visible = false
 		is-disabled = false
 		is-transparent = false
@@ -591,7 +619,7 @@ window "color_picker"
 		titlebar = true
 		statusbar = false
 		can-close = true
-		can-minimize = true
+		can-minimize = false
 		can-resize = false
 		is-pane = false
 		is-minimized = false
@@ -606,9 +634,35 @@ window "color_picker"
 		macro = ""
 		menu = ""
 		on-close = ""
+	elem "label27"
+		type = LABEL
+		pos = 4,4
+		size = 128x218
+		anchor1 = none
+		anchor2 = none
+		font-family = ""
+		font-size = 0
+		font-style = ""
+		text-color = #000000
+		background-color = #fafafa
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = ""
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
 	elem "pick1"
 		type = BUTTON
-		pos = 0,0
+		pos = 8,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -636,7 +690,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick2"
 		type = BUTTON
-		pos = 10,0
+		pos = 18,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -664,7 +718,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick3"
 		type = BUTTON
-		pos = 20,0
+		pos = 28,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -692,7 +746,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick4"
 		type = BUTTON
-		pos = 30,0
+		pos = 38,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -720,7 +774,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick5"
 		type = BUTTON
-		pos = 40,0
+		pos = 48,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -748,7 +802,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick6"
 		type = BUTTON
-		pos = 50,0
+		pos = 58,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -776,7 +830,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick7"
 		type = BUTTON
-		pos = 60,0
+		pos = 68,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -804,7 +858,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick8"
 		type = BUTTON
-		pos = 70,0
+		pos = 78,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -832,7 +886,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick9"
 		type = BUTTON
-		pos = 80,0
+		pos = 88,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -860,7 +914,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick10"
 		type = BUTTON
-		pos = 90,0
+		pos = 98,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -888,7 +942,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick11"
 		type = BUTTON
-		pos = 100,0
+		pos = 108,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -916,7 +970,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick12"
 		type = BUTTON
-		pos = 110,0
+		pos = 118,8
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -944,7 +998,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick13"
 		type = BUTTON
-		pos = 0,10
+		pos = 8,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -972,7 +1026,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick14"
 		type = BUTTON
-		pos = 10,10
+		pos = 18,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1000,7 +1054,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick15"
 		type = BUTTON
-		pos = 20,10
+		pos = 28,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1028,7 +1082,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick16"
 		type = BUTTON
-		pos = 30,10
+		pos = 38,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1056,7 +1110,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick17"
 		type = BUTTON
-		pos = 40,10
+		pos = 48,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1084,7 +1138,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick18"
 		type = BUTTON
-		pos = 50,10
+		pos = 58,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1112,7 +1166,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick19"
 		type = BUTTON
-		pos = 60,10
+		pos = 68,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1140,7 +1194,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick20"
 		type = BUTTON
-		pos = 70,10
+		pos = 78,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1168,7 +1222,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick21"
 		type = BUTTON
-		pos = 80,10
+		pos = 88,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1196,7 +1250,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick22"
 		type = BUTTON
-		pos = 90,10
+		pos = 98,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1224,7 +1278,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick23"
 		type = BUTTON
-		pos = 100,10
+		pos = 108,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1252,7 +1306,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick24"
 		type = BUTTON
-		pos = 110,10
+		pos = 118,18
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1280,7 +1334,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick25"
 		type = BUTTON
-		pos = 0,20
+		pos = 8,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1308,7 +1362,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick26"
 		type = BUTTON
-		pos = 10,20
+		pos = 18,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1336,7 +1390,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick27"
 		type = BUTTON
-		pos = 20,20
+		pos = 28,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1364,7 +1418,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick28"
 		type = BUTTON
-		pos = 30,20
+		pos = 38,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1392,7 +1446,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick29"
 		type = BUTTON
-		pos = 40,20
+		pos = 48,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1420,7 +1474,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick30"
 		type = BUTTON
-		pos = 50,20
+		pos = 58,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1448,7 +1502,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick31"
 		type = BUTTON
-		pos = 60,20
+		pos = 68,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1476,7 +1530,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick32"
 		type = BUTTON
-		pos = 70,20
+		pos = 78,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1504,7 +1558,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick33"
 		type = BUTTON
-		pos = 80,20
+		pos = 88,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1532,7 +1586,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick34"
 		type = BUTTON
-		pos = 90,20
+		pos = 98,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1560,7 +1614,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick35"
 		type = BUTTON
-		pos = 100,20
+		pos = 108,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1588,7 +1642,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick36"
 		type = BUTTON
-		pos = 110,20
+		pos = 118,28
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1616,7 +1670,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick37"
 		type = BUTTON
-		pos = 0,30
+		pos = 8,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1644,7 +1698,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick38"
 		type = BUTTON
-		pos = 10,30
+		pos = 18,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1672,7 +1726,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick39"
 		type = BUTTON
-		pos = 20,30
+		pos = 28,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1700,7 +1754,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick40"
 		type = BUTTON
-		pos = 30,30
+		pos = 38,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1728,7 +1782,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick41"
 		type = BUTTON
-		pos = 40,30
+		pos = 48,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1756,7 +1810,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick42"
 		type = BUTTON
-		pos = 50,30
+		pos = 58,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1784,7 +1838,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick43"
 		type = BUTTON
-		pos = 60,30
+		pos = 68,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1812,7 +1866,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick44"
 		type = BUTTON
-		pos = 70,30
+		pos = 78,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1840,7 +1894,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick45"
 		type = BUTTON
-		pos = 80,30
+		pos = 88,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1868,7 +1922,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick46"
 		type = BUTTON
-		pos = 90,30
+		pos = 98,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1896,7 +1950,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick47"
 		type = BUTTON
-		pos = 100,30
+		pos = 108,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1924,7 +1978,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick48"
 		type = BUTTON
-		pos = 110,30
+		pos = 118,38
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1952,7 +2006,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick49"
 		type = BUTTON
-		pos = 0,40
+		pos = 8,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -1980,7 +2034,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick50"
 		type = BUTTON
-		pos = 10,40
+		pos = 18,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2008,7 +2062,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick51"
 		type = BUTTON
-		pos = 20,40
+		pos = 28,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2036,7 +2090,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick52"
 		type = BUTTON
-		pos = 30,40
+		pos = 38,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2064,7 +2118,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick53"
 		type = BUTTON
-		pos = 40,40
+		pos = 48,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2092,7 +2146,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick54"
 		type = BUTTON
-		pos = 50,40
+		pos = 58,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2120,7 +2174,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick55"
 		type = BUTTON
-		pos = 60,40
+		pos = 68,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2148,7 +2202,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick56"
 		type = BUTTON
-		pos = 70,40
+		pos = 78,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2176,7 +2230,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick57"
 		type = BUTTON
-		pos = 80,40
+		pos = 88,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2204,7 +2258,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick58"
 		type = BUTTON
-		pos = 90,40
+		pos = 98,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2232,7 +2286,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick59"
 		type = BUTTON
-		pos = 100,40
+		pos = 108,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2260,7 +2314,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick60"
 		type = BUTTON
-		pos = 110,40
+		pos = 118,48
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2288,7 +2342,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick61"
 		type = BUTTON
-		pos = 0,50
+		pos = 8,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2316,7 +2370,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick62"
 		type = BUTTON
-		pos = 10,50
+		pos = 18,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2344,7 +2398,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick63"
 		type = BUTTON
-		pos = 20,50
+		pos = 28,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2372,7 +2426,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick64"
 		type = BUTTON
-		pos = 30,50
+		pos = 38,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2400,7 +2454,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick65"
 		type = BUTTON
-		pos = 40,50
+		pos = 48,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2428,7 +2482,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick66"
 		type = BUTTON
-		pos = 50,50
+		pos = 58,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2456,7 +2510,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick67"
 		type = BUTTON
-		pos = 60,50
+		pos = 68,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2484,7 +2538,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick68"
 		type = BUTTON
-		pos = 70,50
+		pos = 78,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2512,7 +2566,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick69"
 		type = BUTTON
-		pos = 80,50
+		pos = 88,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2540,7 +2594,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick70"
 		type = BUTTON
-		pos = 90,50
+		pos = 98,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2568,7 +2622,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick71"
 		type = BUTTON
-		pos = 100,50
+		pos = 108,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2596,7 +2650,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick72"
 		type = BUTTON
-		pos = 110,50
+		pos = 118,58
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2624,7 +2678,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick73"
 		type = BUTTON
-		pos = 0,60
+		pos = 8,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2652,7 +2706,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick74"
 		type = BUTTON
-		pos = 10,60
+		pos = 18,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2680,7 +2734,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick75"
 		type = BUTTON
-		pos = 20,60
+		pos = 28,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2708,7 +2762,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick76"
 		type = BUTTON
-		pos = 30,60
+		pos = 38,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2736,7 +2790,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick77"
 		type = BUTTON
-		pos = 40,60
+		pos = 48,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2764,7 +2818,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick78"
 		type = BUTTON
-		pos = 50,60
+		pos = 58,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2792,7 +2846,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick79"
 		type = BUTTON
-		pos = 60,60
+		pos = 68,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2820,7 +2874,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick80"
 		type = BUTTON
-		pos = 70,60
+		pos = 78,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2848,7 +2902,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick81"
 		type = BUTTON
-		pos = 80,60
+		pos = 88,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2876,7 +2930,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick82"
 		type = BUTTON
-		pos = 90,60
+		pos = 98,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2904,7 +2958,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick83"
 		type = BUTTON
-		pos = 100,60
+		pos = 108,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2932,7 +2986,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick84"
 		type = BUTTON
-		pos = 110,60
+		pos = 118,68
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2960,7 +3014,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick85"
 		type = BUTTON
-		pos = 0,70
+		pos = 8,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -2988,7 +3042,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick86"
 		type = BUTTON
-		pos = 10,70
+		pos = 18,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3016,7 +3070,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick87"
 		type = BUTTON
-		pos = 20,70
+		pos = 28,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3044,7 +3098,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick88"
 		type = BUTTON
-		pos = 30,70
+		pos = 38,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3072,7 +3126,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick89"
 		type = BUTTON
-		pos = 40,70
+		pos = 48,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3100,7 +3154,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick90"
 		type = BUTTON
-		pos = 50,70
+		pos = 58,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3128,7 +3182,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick91"
 		type = BUTTON
-		pos = 60,70
+		pos = 68,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3156,7 +3210,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick92"
 		type = BUTTON
-		pos = 70,70
+		pos = 78,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3184,7 +3238,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick93"
 		type = BUTTON
-		pos = 80,70
+		pos = 88,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3212,7 +3266,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick94"
 		type = BUTTON
-		pos = 90,70
+		pos = 98,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3240,7 +3294,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick95"
 		type = BUTTON
-		pos = 100,70
+		pos = 108,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3268,7 +3322,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick96"
 		type = BUTTON
-		pos = 110,70
+		pos = 118,78
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3296,7 +3350,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick97"
 		type = BUTTON
-		pos = 0,80
+		pos = 8,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3324,7 +3378,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick98"
 		type = BUTTON
-		pos = 10,80
+		pos = 18,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3352,7 +3406,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick99"
 		type = BUTTON
-		pos = 20,80
+		pos = 28,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3380,7 +3434,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick100"
 		type = BUTTON
-		pos = 30,80
+		pos = 38,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3408,7 +3462,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick101"
 		type = BUTTON
-		pos = 40,80
+		pos = 48,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3436,7 +3490,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick102"
 		type = BUTTON
-		pos = 50,80
+		pos = 58,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3464,7 +3518,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick103"
 		type = BUTTON
-		pos = 60,80
+		pos = 68,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3492,7 +3546,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick104"
 		type = BUTTON
-		pos = 70,80
+		pos = 78,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3520,7 +3574,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick105"
 		type = BUTTON
-		pos = 80,80
+		pos = 88,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3548,7 +3602,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick106"
 		type = BUTTON
-		pos = 90,80
+		pos = 98,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3576,7 +3630,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick107"
 		type = BUTTON
-		pos = 100,80
+		pos = 108,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3604,7 +3658,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick108"
 		type = BUTTON
-		pos = 110,80
+		pos = 118,88
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3632,7 +3686,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick109"
 		type = BUTTON
-		pos = 0,90
+		pos = 8,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3660,7 +3714,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick110"
 		type = BUTTON
-		pos = 10,90
+		pos = 18,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3688,7 +3742,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick111"
 		type = BUTTON
-		pos = 20,90
+		pos = 28,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3716,7 +3770,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick112"
 		type = BUTTON
-		pos = 30,90
+		pos = 38,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3744,7 +3798,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick113"
 		type = BUTTON
-		pos = 40,90
+		pos = 48,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3772,7 +3826,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick114"
 		type = BUTTON
-		pos = 50,90
+		pos = 58,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3800,7 +3854,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick115"
 		type = BUTTON
-		pos = 60,90
+		pos = 68,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3828,7 +3882,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick116"
 		type = BUTTON
-		pos = 70,90
+		pos = 78,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3856,7 +3910,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick117"
 		type = BUTTON
-		pos = 80,90
+		pos = 88,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3884,7 +3938,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick118"
 		type = BUTTON
-		pos = 90,90
+		pos = 98,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3912,7 +3966,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick119"
 		type = BUTTON
-		pos = 100,90
+		pos = 108,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3940,7 +3994,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick120"
 		type = BUTTON
-		pos = 110,90
+		pos = 118,98
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3968,7 +4022,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick121"
 		type = BUTTON
-		pos = 0,100
+		pos = 8,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -3996,7 +4050,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick122"
 		type = BUTTON
-		pos = 10,100
+		pos = 18,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4024,7 +4078,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick123"
 		type = BUTTON
-		pos = 20,100
+		pos = 28,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4052,7 +4106,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick124"
 		type = BUTTON
-		pos = 30,100
+		pos = 38,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4080,7 +4134,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick125"
 		type = BUTTON
-		pos = 40,100
+		pos = 48,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4108,7 +4162,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick126"
 		type = BUTTON
-		pos = 50,100
+		pos = 58,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4136,7 +4190,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick127"
 		type = BUTTON
-		pos = 60,100
+		pos = 68,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4164,7 +4218,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick128"
 		type = BUTTON
-		pos = 70,100
+		pos = 78,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4192,7 +4246,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick129"
 		type = BUTTON
-		pos = 80,100
+		pos = 88,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4220,7 +4274,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick130"
 		type = BUTTON
-		pos = 90,100
+		pos = 98,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4248,7 +4302,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick131"
 		type = BUTTON
-		pos = 100,100
+		pos = 108,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4276,7 +4330,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick132"
 		type = BUTTON
-		pos = 110,100
+		pos = 118,108
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4304,7 +4358,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick133"
 		type = BUTTON
-		pos = 0,110
+		pos = 8,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4332,7 +4386,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick134"
 		type = BUTTON
-		pos = 10,110
+		pos = 18,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4360,7 +4414,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick135"
 		type = BUTTON
-		pos = 20,110
+		pos = 28,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4388,7 +4442,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick136"
 		type = BUTTON
-		pos = 30,110
+		pos = 38,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4416,7 +4470,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick137"
 		type = BUTTON
-		pos = 40,110
+		pos = 48,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4444,7 +4498,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick138"
 		type = BUTTON
-		pos = 50,110
+		pos = 58,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4472,7 +4526,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick139"
 		type = BUTTON
-		pos = 60,110
+		pos = 68,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4500,7 +4554,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick140"
 		type = BUTTON
-		pos = 70,110
+		pos = 78,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4528,7 +4582,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick141"
 		type = BUTTON
-		pos = 80,110
+		pos = 88,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4556,7 +4610,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick142"
 		type = BUTTON
-		pos = 90,110
+		pos = 98,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4584,7 +4638,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick143"
 		type = BUTTON
-		pos = 100,110
+		pos = 108,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4612,7 +4666,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick144"
 		type = BUTTON
-		pos = 110,110
+		pos = 118,118
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4640,7 +4694,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick145"
 		type = BUTTON
-		pos = 0,120
+		pos = 8,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4668,7 +4722,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick146"
 		type = BUTTON
-		pos = 10,120
+		pos = 18,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4696,7 +4750,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick147"
 		type = BUTTON
-		pos = 20,120
+		pos = 28,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4724,7 +4778,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick148"
 		type = BUTTON
-		pos = 30,120
+		pos = 38,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4752,7 +4806,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick149"
 		type = BUTTON
-		pos = 40,120
+		pos = 48,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4780,7 +4834,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick150"
 		type = BUTTON
-		pos = 50,120
+		pos = 58,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4808,7 +4862,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick151"
 		type = BUTTON
-		pos = 60,120
+		pos = 68,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4836,7 +4890,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick152"
 		type = BUTTON
-		pos = 70,120
+		pos = 78,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4864,7 +4918,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick153"
 		type = BUTTON
-		pos = 80,120
+		pos = 88,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4892,7 +4946,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick154"
 		type = BUTTON
-		pos = 90,120
+		pos = 98,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4920,7 +4974,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick155"
 		type = BUTTON
-		pos = 100,120
+		pos = 108,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4948,7 +5002,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick156"
 		type = BUTTON
-		pos = 110,120
+		pos = 118,128
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -4976,7 +5030,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick157"
 		type = BUTTON
-		pos = 0,130
+		pos = 8,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5004,7 +5058,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick158"
 		type = BUTTON
-		pos = 10,130
+		pos = 18,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5032,7 +5086,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick159"
 		type = BUTTON
-		pos = 20,130
+		pos = 28,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5060,7 +5114,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick160"
 		type = BUTTON
-		pos = 30,130
+		pos = 38,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5088,7 +5142,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick161"
 		type = BUTTON
-		pos = 40,130
+		pos = 48,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5116,7 +5170,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick162"
 		type = BUTTON
-		pos = 50,130
+		pos = 58,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5144,7 +5198,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick163"
 		type = BUTTON
-		pos = 60,130
+		pos = 68,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5172,7 +5226,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick164"
 		type = BUTTON
-		pos = 70,130
+		pos = 78,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5200,7 +5254,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick165"
 		type = BUTTON
-		pos = 80,130
+		pos = 88,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5228,7 +5282,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick166"
 		type = BUTTON
-		pos = 90,130
+		pos = 98,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5256,7 +5310,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick167"
 		type = BUTTON
-		pos = 100,130
+		pos = 108,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5284,7 +5338,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick168"
 		type = BUTTON
-		pos = 110,130
+		pos = 118,138
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5312,7 +5366,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick169"
 		type = BUTTON
-		pos = 0,140
+		pos = 8,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5340,7 +5394,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick170"
 		type = BUTTON
-		pos = 10,140
+		pos = 18,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5368,7 +5422,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick171"
 		type = BUTTON
-		pos = 20,140
+		pos = 28,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5396,7 +5450,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick172"
 		type = BUTTON
-		pos = 30,140
+		pos = 38,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5424,7 +5478,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick173"
 		type = BUTTON
-		pos = 40,140
+		pos = 48,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5452,7 +5506,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick174"
 		type = BUTTON
-		pos = 50,140
+		pos = 58,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5480,7 +5534,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick175"
 		type = BUTTON
-		pos = 60,140
+		pos = 68,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5508,7 +5562,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick176"
 		type = BUTTON
-		pos = 70,140
+		pos = 78,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5536,7 +5590,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick177"
 		type = BUTTON
-		pos = 80,140
+		pos = 88,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5564,7 +5618,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick178"
 		type = BUTTON
-		pos = 90,140
+		pos = 98,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5592,7 +5646,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick179"
 		type = BUTTON
-		pos = 100,140
+		pos = 108,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5620,7 +5674,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick180"
 		type = BUTTON
-		pos = 110,140
+		pos = 118,148
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5648,7 +5702,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick181"
 		type = BUTTON
-		pos = 0,150
+		pos = 8,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5676,7 +5730,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick182"
 		type = BUTTON
-		pos = 10,150
+		pos = 18,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5704,7 +5758,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick183"
 		type = BUTTON
-		pos = 20,150
+		pos = 28,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5732,7 +5786,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick184"
 		type = BUTTON
-		pos = 30,150
+		pos = 38,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5760,7 +5814,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick185"
 		type = BUTTON
-		pos = 40,150
+		pos = 48,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5788,7 +5842,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick186"
 		type = BUTTON
-		pos = 50,150
+		pos = 58,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5816,7 +5870,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick187"
 		type = BUTTON
-		pos = 60,150
+		pos = 68,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5844,7 +5898,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick188"
 		type = BUTTON
-		pos = 70,150
+		pos = 78,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5872,7 +5926,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick189"
 		type = BUTTON
-		pos = 80,150
+		pos = 88,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5900,7 +5954,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick190"
 		type = BUTTON
-		pos = 90,150
+		pos = 98,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5928,7 +5982,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick191"
 		type = BUTTON
-		pos = 100,150
+		pos = 108,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5956,7 +6010,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick192"
 		type = BUTTON
-		pos = 110,150
+		pos = 118,158
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -5984,7 +6038,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick193"
 		type = BUTTON
-		pos = 0,160
+		pos = 8,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6012,7 +6066,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick194"
 		type = BUTTON
-		pos = 10,160
+		pos = 18,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6040,7 +6094,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick195"
 		type = BUTTON
-		pos = 20,160
+		pos = 28,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6068,7 +6122,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick196"
 		type = BUTTON
-		pos = 30,160
+		pos = 38,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6096,7 +6150,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick197"
 		type = BUTTON
-		pos = 40,160
+		pos = 48,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6124,7 +6178,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick198"
 		type = BUTTON
-		pos = 50,160
+		pos = 58,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6152,7 +6206,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick199"
 		type = BUTTON
-		pos = 60,160
+		pos = 68,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6180,7 +6234,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick200"
 		type = BUTTON
-		pos = 70,160
+		pos = 78,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6208,7 +6262,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick201"
 		type = BUTTON
-		pos = 80,160
+		pos = 88,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6236,7 +6290,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick202"
 		type = BUTTON
-		pos = 90,160
+		pos = 98,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6264,7 +6318,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick203"
 		type = BUTTON
-		pos = 100,160
+		pos = 108,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6292,7 +6346,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick204"
 		type = BUTTON
-		pos = 110,160
+		pos = 118,168
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6320,7 +6374,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick205"
 		type = BUTTON
-		pos = 0,170
+		pos = 8,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6348,7 +6402,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick206"
 		type = BUTTON
-		pos = 10,170
+		pos = 18,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6376,7 +6430,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick207"
 		type = BUTTON
-		pos = 20,170
+		pos = 28,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6404,7 +6458,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick208"
 		type = BUTTON
-		pos = 30,170
+		pos = 38,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6432,7 +6486,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick209"
 		type = BUTTON
-		pos = 40,170
+		pos = 48,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6460,7 +6514,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick210"
 		type = BUTTON
-		pos = 50,170
+		pos = 58,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6488,7 +6542,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick211"
 		type = BUTTON
-		pos = 60,170
+		pos = 68,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6516,7 +6570,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick212"
 		type = BUTTON
-		pos = 70,170
+		pos = 78,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6544,7 +6598,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick213"
 		type = BUTTON
-		pos = 80,170
+		pos = 88,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6572,7 +6626,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick214"
 		type = BUTTON
-		pos = 90,170
+		pos = 98,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6600,7 +6654,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick215"
 		type = BUTTON
-		pos = 100,170
+		pos = 108,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6628,7 +6682,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick216"
 		type = BUTTON
-		pos = 110,170
+		pos = 118,178
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6656,7 +6710,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick217"
 		type = BUTTON
-		pos = 0,180
+		pos = 8,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6684,7 +6738,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick218"
 		type = BUTTON
-		pos = 10,180
+		pos = 18,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6712,7 +6766,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick219"
 		type = BUTTON
-		pos = 20,180
+		pos = 28,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6740,7 +6794,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick220"
 		type = BUTTON
-		pos = 30,180
+		pos = 38,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6768,7 +6822,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick221"
 		type = BUTTON
-		pos = 40,180
+		pos = 48,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6796,7 +6850,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick222"
 		type = BUTTON
-		pos = 50,180
+		pos = 58,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6824,7 +6878,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick223"
 		type = BUTTON
-		pos = 60,180
+		pos = 68,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6852,7 +6906,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick224"
 		type = BUTTON
-		pos = 70,180
+		pos = 78,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6880,7 +6934,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick225"
 		type = BUTTON
-		pos = 80,180
+		pos = 88,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6908,7 +6962,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick226"
 		type = BUTTON
-		pos = 90,180
+		pos = 98,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6936,7 +6990,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick227"
 		type = BUTTON
-		pos = 100,180
+		pos = 108,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6964,7 +7018,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick228"
 		type = BUTTON
-		pos = 110,180
+		pos = 118,188
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -6992,7 +7046,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick229"
 		type = BUTTON
-		pos = 0,190
+		pos = 8,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7020,7 +7074,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick230"
 		type = BUTTON
-		pos = 10,190
+		pos = 18,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7048,7 +7102,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick231"
 		type = BUTTON
-		pos = 20,190
+		pos = 28,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7076,7 +7130,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick232"
 		type = BUTTON
-		pos = 30,190
+		pos = 38,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7104,7 +7158,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick233"
 		type = BUTTON
-		pos = 40,190
+		pos = 48,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7132,7 +7186,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick234"
 		type = BUTTON
-		pos = 50,190
+		pos = 58,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7160,7 +7214,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick235"
 		type = BUTTON
-		pos = 60,190
+		pos = 68,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7188,7 +7242,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick236"
 		type = BUTTON
-		pos = 70,190
+		pos = 78,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7216,7 +7270,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick237"
 		type = BUTTON
-		pos = 80,190
+		pos = 88,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7244,7 +7298,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick238"
 		type = BUTTON
-		pos = 90,190
+		pos = 98,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7272,7 +7326,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick239"
 		type = BUTTON
-		pos = 100,190
+		pos = 108,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7300,7 +7354,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick240"
 		type = BUTTON
-		pos = 110,190
+		pos = 118,198
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7328,7 +7382,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick241"
 		type = BUTTON
-		pos = 0,200
+		pos = 8,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7356,7 +7410,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick242"
 		type = BUTTON
-		pos = 10,200
+		pos = 18,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7384,7 +7438,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick243"
 		type = BUTTON
-		pos = 20,200
+		pos = 28,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7412,7 +7466,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick244"
 		type = BUTTON
-		pos = 30,200
+		pos = 38,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7440,7 +7494,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick245"
 		type = BUTTON
-		pos = 40,200
+		pos = 48,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7468,7 +7522,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick246"
 		type = BUTTON
-		pos = 50,200
+		pos = 58,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7496,7 +7550,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick247"
 		type = BUTTON
-		pos = 60,200
+		pos = 68,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7524,7 +7578,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick248"
 		type = BUTTON
-		pos = 70,200
+		pos = 78,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7552,7 +7606,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick249"
 		type = BUTTON
-		pos = 80,200
+		pos = 88,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7580,7 +7634,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick250"
 		type = BUTTON
-		pos = 90,200
+		pos = 98,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7608,7 +7662,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick251"
 		type = BUTTON
-		pos = 100,200
+		pos = 108,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7636,7 +7690,7 @@ window "color_picker"
 		button-type = pushbutton
 	elem "pick252"
 		type = BUTTON
-		pos = 110,200
+		pos = 118,208
 		size = 10x10
 		anchor1 = none
 		anchor2 = none
@@ -7866,8 +7920,8 @@ window "default"
 		right-click = false
 		saved-params = "splitter"
 		on-size = ""
-		left = "channel"
-		right = "who"
+		left = "loading"
+		right = ""
 		is-vert = true
 		splitter = 75
 		show-splitter = true
@@ -8265,6 +8319,376 @@ window "filters"
 		align = center
 		text-wrap = false
 
+window "help"
+	elem "help"
+		type = MAIN
+		pos = 281,0
+		size = 359x242
+		anchor1 = none
+		anchor2 = none
+		font-family = ""
+		font-size = 0
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = false
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		on-size = ""
+		title = "Help"
+		titlebar = true
+		statusbar = false
+		can-close = true
+		can-minimize = true
+		can-resize = false
+		is-pane = false
+		is-minimized = false
+		is-maximized = false
+		can-scroll = none
+		icon = ""
+		image = ""
+		image-mode = stretch
+		keep-aspect = false
+		transparent-color = none
+		alpha = 255
+		macro = ""
+		menu = ""
+		on-close = ""
+	elem "button14"
+		type = BUTTON
+		pos = 4,218
+		size = 351x20
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #c8c8c8
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "is-checked"
+		on-size = ""
+		text = "View Chatters on GitHub"
+		image = ""
+		command = "ViewGithub"
+		is-flat = true
+		stretch = false
+		is-checked = false
+		group = ""
+		button-type = pushbutton
+	elem "label31"
+		type = LABEL
+		pos = 4,51
+		size = 351x163
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #fafafa
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "Credits"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = top
+		text-wrap = false
+	elem "label37"
+		type = LABEL
+		pos = 8,190
+		size = 343x20
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "s_smiley by Spuzzum"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
+	elem "label36"
+		type = LABEL
+		pos = 8,166
+		size = 343x20
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "Test by Deadron"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
+	elem "label35"
+		type = LABEL
+		pos = 8,142
+		size = 343x20
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "XML by Deadron"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
+	elem "label34"
+		type = LABEL
+		pos = 8,118
+		size = 343x20
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "SyntaxHighlighter by Lummox JR"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
+	elem "label33"
+		type = LABEL
+		pos = 8,94
+		size = 343x20
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "kText by Keeth"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
+	elem "label32"
+		type = LABEL
+		pos = 8,70
+		size = 343x20
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "RC5 by Air Mapster"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
+	elem "label28"
+		type = LABEL
+		pos = 4,4
+		size = 351x43
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #fafafa
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "Copyright"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = top
+		text-wrap = false
+	elem "label29"
+		type = LABEL
+		pos = 8,23
+		size = 343x20
+		anchor1 = none
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "Copyright (c) 2008 Andrew \"Xooxer\" Arnold"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
+
+window "loading"
+	elem "loading"
+		type = MAIN
+		pos = 281,0
+		size = 407x232
+		anchor1 = none
+		anchor2 = none
+		font-family = ""
+		font-size = 0
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		on-size = ""
+		title = "Loading"
+		titlebar = false
+		statusbar = false
+		can-close = false
+		can-minimize = false
+		can-resize = false
+		is-pane = true
+		is-minimized = false
+		is-maximized = false
+		can-scroll = none
+		icon = ""
+		image = ""
+		image-mode = stretch
+		keep-aspect = false
+		transparent-color = none
+		alpha = 255
+		macro = ""
+		menu = ""
+		on-close = ""
+	elem "label38"
+		type = LABEL
+		pos = 4,4
+		size = 399x224
+		anchor1 = 0,0
+		anchor2 = 100,100
+		font-family = "Trebuchet MS,Arial"
+		font-size = 16
+		font-style = ""
+		text-color = #000000
+		background-color = #fafafa
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "Chatters is loading ..."
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
+
 window "misc"
 	elem "misc"
 		type = MAIN
@@ -8305,6 +8729,34 @@ window "misc"
 		macro = ""
 		menu = ""
 		on-close = ""
+	elem "flip_panes"
+		type = BUTTON
+		pos = 4,44
+		size = 155x20
+		anchor1 = 0,0
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "Flip Who/Chat Pane"
+		image = ""
+		command = "FlipPanes"
+		is-flat = false
+		stretch = false
+		is-checked = false
+		group = ""
+		button-type = checkbox
 	elem "button12"
 		type = BUTTON
 		pos = 0,348
@@ -8504,7 +8956,7 @@ window "settings"
 		right-click = false
 		saved-params = "is-checked"
 		on-size = ""
-		text = "Save Settings"
+		text = "Apply and Save All Settings"
 		image = ""
 		command = "SaveAllSettings"
 		is-flat = true
@@ -8512,6 +8964,32 @@ window "settings"
 		is-checked = false
 		group = "settings_group"
 		button-type = pushbutton
+	elem "saving"
+		type = LABEL
+		pos = 4,400
+		size = 441x20
+		anchor1 = 0,100
+		anchor2 = 100,100
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #ffffff
+		background-color = #d50b0b
+		is-visible = false
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = "Saving in progress! Do not exit Chatters!"
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
 	elem "settings_child"
 		type = CHILD
 		pos = 4,28
@@ -9022,8 +9500,8 @@ window "style_colors"
 		text-wrap = false
 	elem "label10"
 		type = LABEL
-		pos = 123,4
-		size = 100x20
+		pos = 112,4
+		size = 122x20
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -9040,7 +9518,7 @@ window "style_colors"
 		right-click = false
 		saved-params = ""
 		on-size = ""
-		text = "Enable Colors"
+		text = "Enable Chat Colors"
 		image = ""
 		image-mode = center
 		keep-aspect = false
@@ -9137,7 +9615,7 @@ window "style_colors"
 		is-disabled = false
 		is-transparent = false
 		is-default = false
-		border = line
+		border = none
 		drop-zone = false
 		right-click = false
 		saved-params = ""
@@ -9165,7 +9643,7 @@ window "style_colors"
 		is-disabled = false
 		is-transparent = false
 		is-default = false
-		border = line
+		border = none
 		drop-zone = false
 		right-click = false
 		saved-params = ""
@@ -9204,7 +9682,7 @@ window "style_colors"
 		no-command = false
 	elem "show_colors"
 		type = BUTTON
-		pos = 223,4
+		pos = 234,4
 		size = 48x20
 		anchor1 = 0,0
 		anchor2 = none
@@ -9232,7 +9710,7 @@ window "style_colors"
 		button-type = radio
 	elem "no_colors"
 		type = BUTTON
-		pos = 271,4
+		pos = 282,4
 		size = 48x20
 		anchor1 = 0,0
 		anchor2 = none
@@ -9905,8 +10383,8 @@ window "style_formats"
 		button-type = pushbutton
 	elem "label11"
 		type = LABEL
-		pos = 32,145
-		size = 378x132
+		pos = 4,145
+		size = 434x132
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -9932,7 +10410,7 @@ window "style_formats"
 	elem "label13"
 		type = LABEL
 		pos = 223,98
-		size = 187x43
+		size = 215x43
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -9957,8 +10435,8 @@ window "style_formats"
 		text-wrap = false
 	elem "label9"
 		type = LABEL
-		pos = 32,98
-		size = 187x43
+		pos = 4,98
+		size = 215x43
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -9984,7 +10462,7 @@ window "style_formats"
 	elem "label21"
 		type = LABEL
 		pos = 223,51
-		size = 187x43
+		size = 215x43
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10009,8 +10487,8 @@ window "style_formats"
 		text-wrap = false
 	elem "label18"
 		type = LABEL
-		pos = 32,51
-		size = 187x43
+		pos = 4,51
+		size = 215x43
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10036,7 +10514,7 @@ window "style_formats"
 	elem "label12"
 		type = LABEL
 		pos = 223,4
-		size = 187x43
+		size = 215x43
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10061,8 +10539,8 @@ window "style_formats"
 		text-wrap = false
 	elem "output_style"
 		type = INPUT
-		pos = 36,165
-		size = 370x108
+		pos = 8,165
+		size = 426x108
 		anchor1 = none
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10085,8 +10563,8 @@ window "style_formats"
 		no-command = false
 	elem "label17"
 		type = LABEL
-		pos = 32,4
-		size = 187x43
+		pos = 4,4
+		size = 215x43
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10111,8 +10589,8 @@ window "style_formats"
 		text-wrap = false
 	elem "chat_format"
 		type = INPUT
-		pos = 36,23
-		size = 179x20
+		pos = 8,23
+		size = 207x20
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10135,7 +10613,7 @@ window "style_formats"
 		no-command = false
 	elem "forced"
 		type = BUTTON
-		pos = 241,282
+		pos = 241,281
 		size = 48x20
 		anchor1 = 0,0
 		anchor2 = none
@@ -10163,7 +10641,7 @@ window "style_formats"
 		button-type = radio
 	elem "no_forced"
 		type = BUTTON
-		pos = 289,282
+		pos = 289,281
 		size = 48x20
 		anchor1 = 0,0
 		anchor2 = none
@@ -10191,10 +10669,10 @@ window "style_formats"
 		button-type = radio
 	elem "label19"
 		type = LABEL
-		pos = 104,282
+		pos = 104,281
 		size = 137x20
-		anchor1 = 100,0
-		anchor2 = 100,0
+		anchor1 = 0,0
+		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
 		font-size = 10
 		font-style = ""
@@ -10217,8 +10695,8 @@ window "style_formats"
 		text-wrap = false
 	elem "emote_format"
 		type = INPUT
-		pos = 36,70
-		size = 179x20
+		pos = 8,70
+		size = 207x20
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10242,7 +10720,7 @@ window "style_formats"
 	elem "inline_emote_format"
 		type = INPUT
 		pos = 227,23
-		size = 179x20
+		size = 207x20
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10266,7 +10744,7 @@ window "style_formats"
 	elem "time_format"
 		type = INPUT
 		pos = 227,117
-		size = 179x20
+		size = 207x20
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10290,7 +10768,7 @@ window "style_formats"
 	elem "date_format"
 		type = INPUT
 		pos = 227,70
-		size = 179x20
+		size = 207x20
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10313,8 +10791,8 @@ window "style_formats"
 		no-command = false
 	elem "long_date_format"
 		type = INPUT
-		pos = 36,117
-		size = 179x20
+		pos = 8,117
+		size = 207x20
 		anchor1 = 0,0
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -10337,10 +10815,10 @@ window "style_formats"
 		no-command = false
 	elem "label19"
 		type = LABEL
-		pos = 104,302
+		pos = 104,301
 		size = 137x20
-		anchor1 = 100,0
-		anchor2 = 100,0
+		anchor1 = 0,0
+		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
 		font-size = 10
 		font-style = ""
@@ -10363,7 +10841,7 @@ window "style_formats"
 		text-wrap = false
 	elem "forced"
 		type = BUTTON
-		pos = 241,302
+		pos = 241,301
 		size = 48x20
 		anchor1 = 0,0
 		anchor2 = none
@@ -10391,7 +10869,7 @@ window "style_formats"
 		button-type = radio
 	elem "no_forced"
 		type = BUTTON
-		pos = 289,302
+		pos = 289,301
 		size = 48x20
 		anchor1 = 0,0
 		anchor2 = none

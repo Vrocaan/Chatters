@@ -16,8 +16,7 @@ mob
 			auto_away = 15
 			auto_reason = "I have gone auto-AFK."
 
-			default_output_style = ".code{color:#000000}.ident {color:#606}.comment {color:#666}.preproc {color:#008000}.keyword {color:#00f}.string {color:#0096b4}.number {color:#800000}body {text-indent: -8px;}"
-			ticker = 0
+			default_output_style = ".code {color: #000000} .ident {color: #606} .comment {color: #666} .preproc {color: #008000} .keyword {color: #00f} .string {color: #0096b4} .number {color: #800000} body { -indent: -8px; background-color: #ffffff; }"
 
 			show_smileys = TRUE
 			show_images = TRUE
@@ -35,6 +34,7 @@ mob
 			show_motd = TRUE
 			show_qotd = TRUE
 			show_highlight = TRUE
+			flip_panes = FALSE
 
 			clear_on_reboot = FALSE
 			max_output = 1000
@@ -99,15 +99,17 @@ mob
 				src << output("<span style='background-color:#333;color:#ccc;font-weight:bold;text-align:center;'>Description:</span>", "pub_chans.grid:3,1")
 				src << output("<span style='background-color:#333;color:#ccc;font-weight:bold;text-align:center;'>Chatters:</span>", "pub_chans.grid:4,1")
 				if(winget(src, "default", "is-maximized")=="true")
-					winset(src, "default", "is-maximized=false;size='484x244'")
+					winset(src, "default", "is-maximized=false;size='640x640'")
 				else
-					winset(src, "default", "size='484x244';")
+					winset(src, "default", "size='640x640';")
+
 
 				if(!gender) gender = client.gender
 				ChanMan.Join(src, Home)
 
 				winshow(src, "showcontent", 0)
 				winshow(src, "settings", 0)
+
 				RefreshAllSettings()
 
 				//spawn() Ticker()
@@ -128,7 +130,7 @@ mob
 		Stat()
 			..()
 			if(src.telnet) return
-			if(auto_away && (auto_away < client.inactivity/600) && !afk) afk(auto_reason)
+			if(auto_away && (auto_away < client.inactivity/600) && !afk) AFK(auto_reason)
 			if(src.msgHandlers && src.msgHandlers.len)
 				for(var/msgHandler in msgHandlers)
 					var/open = winget(src, "cim_[msgHandler]", "is-visible")

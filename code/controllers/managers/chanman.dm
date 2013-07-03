@@ -120,7 +120,6 @@ ChannelManager
 					Home.banned = new
 					for(var/i in banList)
 						Home.banned += ckey(i)
-
 				if(opList && opList.len)
 					Home.operators = new
 					for(var/Name in opList)

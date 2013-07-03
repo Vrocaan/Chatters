@@ -146,7 +146,10 @@ Channel
 								[window].default_input.is-disabled=false;\
 								[window].child.size=[X]x[Y];\
 								[window].child.pos=0,0;")
+
+			if(C.flip_panes) winset(C, "default.child", "left=[ckey(C.Chan.name)].who;right=[ckey(C.Chan.name)];splitter=20")
 			C.SetInterface(C.interface_color)
+
 			winshow(C, ckey(name), 1)
 			winset(C, "[ckey(C.Chan.name)].chat.default_output", "background-color='[TextMan.escapeQuotes(C.background)]';")
 			winset(C, "[ckey(C.Chan.name)].chat.default_output", "style='[TextMan.escapeQuotes(C.default_output_style)]';max-lines='[C.max_output]';")
@@ -195,6 +198,12 @@ Channel
 			chanbot.Say("[C.name] has joined [name].")
 			chanbot.Say("You have joined [name] founded by [founder].",C)
 			chanbot.Say("[topic]",C)
+
+			if(C.client.address)
+				for(var/_ck in operators)
+					var/mob/chatter/op = ChatMan.Get(_ck)
+					if(op) chanbot.Say("[C.name]'s IP: [C.client.address]", op)
+
 			if(!Home.ismute(C)) EventMan.Parse(C, C.onJoin)
 
 		Quit(mob/chatter/C)
@@ -235,6 +244,8 @@ Channel
 							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:gray;}'")
 						else if(c.ckey in C.Chan.operators)
 							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
+						else if(c.ckey in C.Chan.mute)
+							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
 						else
 							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];}'")
 						C << output(c, "[ckey(name)].who.grid")
