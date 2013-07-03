@@ -2,39 +2,46 @@
 TextManager
 	var
 		list
-			tags = list("\[code]"="\[/code]",
-						"\[b]"="\[/b]",
-						"\[i]"="\[/i]",
-						"\[u]"="\[/u]",
-						"\[s]"="\[/s]",
-						"\[#"="\[/#]",
-						"\[img]"="\[/img]")
+			tags = list("\[code]"       = "\[/code]",
+						"\[b]"          = "\[/b]",
+						"\[i]"          = "\[/i]",
+						"\[u]"          = "\[/u]",
+						"\[s]"          = "\[/s]",
+						"\[#"           = "\[/#]",
+						"\[img]"        = "\[/img]")
 
-			html = list("<code>"="</code>",
-						"<b>"="</b>",
-						"<i>"="</i>",
-						"<u>"="</u>",
-						"<s>"="</s>",
-						"<font color=#"="</font>",
-						"<img src='"="'>")
+			html = list("<code>"        = "</code>",
+						"<b>"           = "</b>",
+						"<i>"           = "</i>",
+						"<u>"           = "</u>",
+						"<s>"           = "</s>",
+						"<font color=#" = "</font>",
+						"<img src='"    = "'>")
 
-			links = list("id"		= "http://www.byond.com/forum/?post=$s",
-						 "hub"		= "http://www.byond.com/games/$s",
-						 "people"	= "http://www.byond.com/people/$s",
-						 "wiki"		= "http://en.wikipedia.org/wiki/$s",
-						 "google"	= "http://www.google.com/search?q=$s",
-						 "define"	= "http://dictionary.reference.com/browse/$s",
-						 "urban"	= "http://www.urbandictionary.com/define.php?term=$s",
-						 "imdb"		= "http://imdb.com/find?s=all&q=$s",
-						 "snopes"	= "http://search.atomz.com/search/?sp-a=00062d45-sp00000000&sp-q=$s",
-						 "acronym"	= "http://www.acronymfinder.com/af-query.asp?Acronym=$s",
-						 "synonym"	= "http://thesaurus.reference.com/browse/$s",
-						 "youtube"	= "http://www.youtube.com/watch?v=$s",
-						 "myspace"	= "http://www.myspace.com/$s",
-						 "bash"		= "http://www.bash.org/?$s",
-						 "bbash"	= "http://gazoot.byondhome.com/bbash/?quote=$s",
-						 "condo"	= "http://gazoot.byondhome.com/condo/site.dmb?browse&owner=$s",
-						 "issue"	= "https://github.com/Stephen001/Chatters/issues/$s")
+			links = list("id"	   	    = "http://www.byond.com/forum/?post=$s",
+						 "hub"		    = "http://www.byond.com/games/$s",
+						 "people"   	= "http://www.byond.com/people/$s",
+						 "wiki"		    = "http://en.wikipedia.org/wiki/$s",
+						 "bing"         = "http://www.bing.com/search?q=$s",
+						 "google"	    = "http://www.google.com/search?q=$s",
+						 "yahoo"        = "http://search.yahoo.com/search?p=$s",
+						 "define"	    = "http://dictionary.reference.com/browse/$s",
+						 "urban"	    = "http://www.urbandictionary.com/define.php?term=$s",
+						 "imdb"		    = "http://imdb.com/find?s=all&q=$s",
+						 "snopes"	    = "http://search.atomz.com/search/?sp-a=00062d45-sp00000000&sp-q=$s",
+						 "acronym"	    = "http://www.acronymfinder.com/af-query.asp?Acronym=$s",
+						 "synonym"	    = "http://thesaurus.reference.com/browse/$s",
+						 "youtube"	    = "http://www.youtube.com/watch?v=$s",
+						 "myspace"	    = "http://www.myspace.com/$s",
+						 "amazon"       = "http://www.amazon.com/s/field-keywords=$s",
+						 "newegg"       = "http://www.newegg.com/Product/ProductList.aspx?Submit=ENE&DEPA=0&Order=BESTMATCH&Description=$s&N=-1&isNodeId=1",
+						 "facebook"     = "http://www.facebook.com/$s",
+						 "reddit"       = "http://www.reddit.com/search?q=$s",
+						 "youtube"      = "http://www.youtube.com/results?search_query=$s",
+						 "bbash"	    = "http://gazoot.byondhome.com/bbash/?quote=$s",
+						 "bash"		    = "http://www.bash.org/?$s",
+						 "condo"	    = "http://gazoot.byondhome.com/condo/site.dmb?browse&owner=$s",
+						 "issue"	    = "https://github.com/Stephen001/Chatters/issues/$s")
 
 	proc
 		Sanitize(msg)
