@@ -16,8 +16,7 @@ mob
 			auto_away = 15
 			auto_reason = "I have gone auto-AFK."
 
-			default_output_style = ".code{color:#000000}.ident {color:#606}.comment {color:#666}.preproc {color:#008000}.keyword {color:#00f}.string {color:#0096b4}.number {color:#800000}body {text-indent: -8px;}"
-			ticker = 0
+			default_output_style = ".code {color: #000000} .ident {color: #606} .comment {color: #666} .preproc {color: #008000} .keyword {color: #00f} .string {color: #0096b4} .number {color: #800000} body { -indent: -8px; background-color: #ffffff; }"
 
 			show_smileys = TRUE
 			show_images = TRUE
@@ -131,7 +130,7 @@ mob
 		Stat()
 			..()
 			if(src.telnet) return
-			if(auto_away && (auto_away < client.inactivity/600) && !afk) afk(auto_reason)
+			if(auto_away && (auto_away < client.inactivity/600) && !afk) AFK(auto_reason)
 			if(src.msgHandlers && src.msgHandlers.len)
 				for(var/msgHandler in msgHandlers)
 					var/open = winget(src, "cim_[msgHandler]", "is-visible")

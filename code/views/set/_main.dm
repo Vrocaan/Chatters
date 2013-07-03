@@ -191,6 +191,7 @@ mob/chatter
 			winset(src, "system.away_msg", "text='[TextMan.escapeQuotes(auto_reason)]'")
 
 		SetDisplay(page as text)
+			set hidden = 1
 			RefreshAllSettings()
 
 			switch(page)
