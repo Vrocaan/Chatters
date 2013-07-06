@@ -575,21 +575,28 @@ mob
 			login(telnet_key as text|null)
 				set hidden = 1
 				if(!telnet_key || !telnet) return
-				for(var/mob/chatter/C in Home.chatters) if((C.key && C.key==telnet_key) || C.name==telnet_key) return
+				for(var/mob/chatter/C in Home.chatters)
+					if((C.key && C.key==telnet_key) || C.name==telnet_key)
+						src << "<b>Error:</b> That key is already logged in!"
+						return
 				var/savefile/S = new("./data/saves/tel.net")
-				if(!S || !length(S)) return
+				if(!S || !length(S))
+					src << "<b>Error:</b> There is no password saved for that key!"
+					return
 				var/list/L = new
 				S["telnet"] >> L
-				if(!L || !L.len) return
+				if(!L || !L.len)
+					src << "<b>Error:</b> There is no password saved for that key!"
+					return
 				var/key_hash = md5(telnet_key)
 				if(key_hash in L)
 					var/telnet_pass = input("Please enter your telnet password:", "Telnet Key Login") as password|null
 					if(!telnet_pass)
-						del(L)
 						return
 					if(L[key_hash] != md5(telnet_pass))
-						del(L)
+						src << "<b>Error:</b> Incorrect password!"
 						return
-					del(L)
+					src << "You have successfully logged in as <b>telnet_key</b>!"
 					name = telnet_key
 					Home.UpdateWho()
+				else src << "<b>Error:</b> There is no password saved for that key!"
