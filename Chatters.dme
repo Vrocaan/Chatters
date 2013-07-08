@@ -25,7 +25,6 @@
 #include "code\controllers\managers\logman.dm"
 #include "code\controllers\managers\msghand.dm"
 #include "code\controllers\managers\msgman.dm"
-#include "code\controllers\managers\opman.dm"
 #include "code\controllers\managers\quoteman.dm"
 #include "code\controllers\managers\Server.dm"
 #include "code\controllers\managers\textman.dm"

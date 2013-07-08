@@ -33,7 +33,6 @@ ChannelManager
 			C.Chan.Say(C, msg)
 
 		ProcessChan()
-			Home.LoadOps()
 			SaveChan(Home)
 			BotMan.SaveBot(Home.chanbot)
 			world.status = "[Home.name] founded by [Home.founder] - [(Home.chatters ? Home.chatters.len : 0)] chatter\s"
@@ -43,12 +42,15 @@ ChannelManager
 			var/savefile/S = new("./data/saves/channels/[ckey(Chan.name)].sav")
 			S["mute"]		<< Chan.mute
 			S["banned"]		<< Chan.banned
+			S["operators"]  << Chan.operators
 
 		LoadChan(chan)
 			var/savefile/S = new("./data/saves/channels/[ckey(chan)].sav")
 			var/Channel/Chan = new()
 			S["mute"]		>> Chan.mute
 			S["banned"]		>> Chan.banned
+			S["operators"]  >> Chan.operators
+
 			return Chan
 
 		LoadServerCfg()
@@ -121,13 +123,10 @@ ChannelManager
 					for(var/i in banList)
 						Home.banned += ckey(i)
 				if(opList && opList.len)
-					Home.operators = new
+					Home.operators = list()
 					for(var/Name in opList)
-						if(!findtext(Name, "_"))
-							var/opKey = ckey(opList[Name])
-							var/rankIndex = text2num(opList["[Name]_level"])
-							var/OpRank/Rank = Home.op_ranks[rankIndex]
-							Home.operators[opKey] = new/Op(opList[Name], Rank)
+						var/opKey = ckey(opList[Name])
+						Home.operators += opKey
 				if (fexists("./data/saves/channels/[ckey(Home.name)].sav"))
 					var/Channel/Chan = LoadChan(Home.name)
 					if (length(Chan.mute))
