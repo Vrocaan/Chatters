@@ -18,7 +18,7 @@ mob/chatter
 				Home.operators += ckey(target)
 
 			Home.UpdateWho()
-			ChanMan.SaveChan(Home)
+			ChanMan.SaveHome()
 
 		Demote(target as text)
 			set hidden = 1
@@ -36,7 +36,7 @@ mob/chatter
 				Home.operators -= ckey(target)
 
 			Home.UpdateWho()
-			ChanMan.SaveChan(Home)
+			ChanMan.SaveHome()
 
 		Mute(target as text)
 			set hidden = 1
@@ -59,7 +59,7 @@ mob/chatter
 
 			else Home.chanbot.Say("You cannot mute an operator.", src)
 
-			ChanMan.SaveChan(Home)
+			ChanMan.SaveHome()
 
 		Voice(target as text)
 			set hidden = 1
@@ -79,7 +79,7 @@ mob/chatter
 
 				else Home.chanbot.Say("[target] is not muted.", src)
 
-			ChanMan.SaveChan(Home)
+			ChanMan.SaveHome()
 
 		Kick(target as text)
 			set hidden = 1
@@ -170,7 +170,7 @@ mob/chatter
 
 				C.Logout()
 
-			ChanMan.SaveChan(Home)
+			ChanMan.SaveHome()
 
 		Unban(target as text)
 			set hidden = 1
@@ -185,7 +185,7 @@ mob/chatter
 				Home.chanbot.Say("[target] has been unbanned by \[b][name]\[/b].")
 				Home.banned -= ckey(target)
 
-			ChanMan.SaveChan(Home)
+			ChanMan.SaveHome()
 
 		ListBanned()
 			if(length(Home.banned))
