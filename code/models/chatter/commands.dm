@@ -17,35 +17,15 @@ mob
 					ops = ""
 					i = 0
 
-				for(var/op in Chan.operators)
+				for(var/op in Home.operators)
 					i ++
 
-					if(i < length(Chan.operators)) ops += "[op], "
+					if(i < length(Home.operators)) ops += "[op], "
 					else
-						if(length(Chan.operators) > 1) ops += "and [op]."
+						if(length(Home.operators) > 1) ops += "and [op]."
 						else ops += "[op]."
 
-				Chan.chanbot.Say(ops, src)
-
-			Vote(ballot as text|null)
-				var/OpRank/Rank = ChatMan.Rank(name)
-				if(!ballot)
-					usr << output("Voting Failed. usage: /Vote Privilege Name", "[ckey(Chan.name)].chat.default_output")
-					usr << output("Available privileges: Promote Demote Mute Voice Kick Ban Unban", "[ckey(Chan.name)].chat.default_output")
-					return
-				var/space = findtext(ballot, " ")
-				var/privilege = lowertext(copytext(ballot, 1, space))
-				var/target
-				if(space && (length(ballot) > space))
-					target = copytext(ballot, space+1)
-				switch(privilege)
-					if("promote") votePromote(privilege, Rank, target)
-					if("demote")  voteDemote (privilege, Rank, target)
-					if("mute")    voteMute   (privilege, Rank, target)
-					if("voice")   voteVoice  (privilege, Rank, target)
-					if("kick")    voteKick   (privilege, Rank, target)
-					if("ban")     voteBan    (privilege, Rank, target)
-					if("unban")   voteUnban  (privilege, Rank, target)
+				if(ops) Home.chanbot.Say(ops, src)
 
 			Send(target as text|null|mob in Home.chatters, file as file|null)
 				if(telnet) return
