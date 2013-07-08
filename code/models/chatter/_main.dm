@@ -6,7 +6,6 @@ mob
 		var
 			name_color = "#000000"
 			text_color = "#000000"
-			background
 			interface_color = "#555555"
 			fade_name
 			show_colors = TRUE

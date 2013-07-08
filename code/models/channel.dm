@@ -130,8 +130,7 @@ Channel
 			C.SetInterface(C.interface_color)
 
 			winshow(C, ckey(name), 1)
-			winset(C, "[ckey(C.Chan.name)].chat.default_output", "background-color='[TextMan.escapeQuotes(C.background)]';")
-			winset(C, "[ckey(C.Chan.name)].chat.default_output", "style='[TextMan.escapeQuotes(C.default_output_style)]';max-lines='[C.max_output]';")
+			winset(C, "[ckey(Home.name)].chat.default_output", "style='[TextMan.escapeQuotes(C.default_output_style)]';max-lines='[C.max_output]';")
 
 			C << output("<center>- - - - - - - - - - - - - - -", "[ckey(name)].chat.default_output")
 
