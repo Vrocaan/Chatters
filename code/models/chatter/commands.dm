@@ -405,16 +405,6 @@ mob
 					else
 						alert("You are fully ignoring [target].", "Ignoring chatter")
 
-			Look()
-				if(!Chan) return
-				if(!Chan.room_desc)
-					src << output("Looking around, you see....\n\tAn average looking room.", "[ckey(Chan.name)].chat.default_output")
-					return
-				if(Chan.room_desc_size >= 500)
-					switch(alert("This room description exceeds the recomended room description size. (500 characters) Would you like to view it anyways?","Room Description Size Alert! [Chan.room_desc_size] characters!","Yes","No"))
-						if("No") return
-				src << output("Looking around, you see....\n\t[Chan.room_desc]", "[ckey(Chan.name)].chat.default_output")
-
 			Share()
 				if(winget(src, "showcontent", "is-visible") == "false")
 					winset(src, "showcontent.content_input", "text=")
