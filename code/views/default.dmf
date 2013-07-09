@@ -7729,7 +7729,7 @@ window "console"
 		font-style = ""
 		text-color = #000000
 		background-color = none
-		is-visible = true
+		is-visible = false
 		is-disabled = false
 		is-transparent = false
 		is-default = false
@@ -8595,8 +8595,8 @@ window "misc"
 		font-style = ""
 		text-color = #000000
 		background-color = #e9e9e9
-		is-visible = false
-		is-disabled = true
+		is-visible = true
+		is-disabled = false
 		is-transparent = false
 		is-default = false
 		border = none
