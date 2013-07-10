@@ -210,8 +210,8 @@ Channel
 			if(!C)
 				for(var/i=1 to chatters.len)
 					if(!chatters[i]) chatters -= chatters[i]
-				return
 				UpdateWho()
+				return
 
 			if(C.ckey in operators)
 				var/Op/O = operators[C.ckey]
