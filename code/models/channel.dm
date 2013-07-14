@@ -32,23 +32,6 @@ Channel
 			ballots
 			showcodes = list()
 
-			filtered_words = list(	"fuck"	  =  "fudge",
-									"shit"	  =  "dung",
-									" ass"	  =  "donkey",
-									" asshole"=  "donkeyhole",
-									"penis"	  =  "pencil",
-									"vagina"  =  "kitty",
-									"pussy"	  =  "kitty",
-									" cunt"	  =  "kitty",
-									"bitch"	  =  "female dog",
-									"faggot"  =  "bundle of sticks",
-									" fag"	  =  "cigarette",
-									"nigger"  =  "ignorant person",
-									"nigga"   =  "homeslice",
-									" dick"	  =  "private eye",
-									" cock"	  =  "rooster",
-									"cocksuck"=  "milkdrink")
-
 	New(params[])
 		if(params)
 			founder = params["Founder"]
@@ -248,7 +231,6 @@ Channel
 				chanbot.SpamTimer(C, msg)
 
 			var/raw_msg = msg
-			msg = TextMan.FilterChat(msg)
 
 			var/smsg = TextMan.ParseSmileys(msg)
 			smsg = TextMan.ParseLinks(smsg)
@@ -259,29 +241,12 @@ Channel
 
 			for(var/mob/chatter/c in chatters)
 				if(c.ignoring(C) & CHAT_IGNORE) continue
-				var/message
-				if(!c.filter)
-					message = raw_msg
-					if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(raw_msg)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					var/Parsedmsg = c.ParseMsg(C,message,c.say_format)
-					if(Parsedmsg) c << output(Parsedmsg, "[window]")
-				else if(c.filter==1)
-					message = TextMan.FilterChat(raw_msg,c)
-					if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(message)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					var/Parsedmsg = c.ParseMsg(C,message,c.say_format)
-					if(Parsedmsg) c << output(Parsedmsg, "[window]")
-				else
-					message = msg
-					if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE))
-						message = smsg
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					var/Parsedmsg = c.ParseMsg(C,message,c.say_format)
-					if(Parsedmsg)
-						c << output(Parsedmsg, "[window]")
+				var/message = raw_msg
+				if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(raw_msg)
+				message = TextMan.ParseLinks(message)
+				message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
+				var/Parsedmsg = c.ParseMsg(C,message,c.say_format)
+				if(Parsedmsg) c << output(Parsedmsg, "[window]")
 
 
 		Me(mob/chatter/C, msg, clean, window)
@@ -292,7 +257,6 @@ Channel
 			if(!clean) msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
-			msg = TextMan.FilterChat(msg)
 
 			var/smsg = TextMan.ParseSmileys(msg)
 			smsg = TextMan.ParseLinks(smsg)
@@ -305,27 +269,11 @@ Channel
 			for(var/mob/chatter/c in chatters)
 				if(!c.ignoring(C))
 					var/message
-					if(!c.filter)
-						if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(raw_msg)
-						message = TextMan.ParseLinks(message)
-						message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-						var/Parsedmsg = c.ParseMsg(C,message,c.me_format, 1)
-						if(Parsedmsg) c << output(Parsedmsg, "[window]")
-					else if(c.filter==1)
-						message = TextMan.FilterChat(raw_msg,c)
-						if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(message)
-						message = TextMan.ParseLinks(message)
-						message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-						var/Parsedmsg = c.ParseMsg(C,message,c.me_format, 1)
-						if(Parsedmsg) c << output(Parsedmsg, "[window]")
-					else
-						message = msg
-						if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE))
-							message = smsg
-						message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-						var/Parsedmsg = c.ParseMsg(C,message, c.me_format, 1)
-						if(Parsedmsg)
-							c << output(Parsedmsg, "[window]")
+					if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(raw_msg)
+					message = TextMan.ParseLinks(message)
+					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
+					var/Parsedmsg = c.ParseMsg(C,message,c.me_format, 1)
+					if(Parsedmsg) c << output(Parsedmsg, "[window]")
 
 		My(mob/chatter/C, msg, clean, window)
 			if(ismute(C))
@@ -335,7 +283,6 @@ Channel
 			if(!clean) msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
-			msg = TextMan.FilterChat(msg)
 
 			var/smsg = TextMan.ParseSmileys(msg)
 			smsg = TextMan.ParseLinks(smsg)
@@ -348,27 +295,11 @@ Channel
 			for(var/mob/chatter/c in chatters)
 				if(!c.ignoring(C))
 					var/message
-					if(!c.filter)
-						if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(raw_msg)
-						message = TextMan.ParseLinks(message)
-						message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-						var/Parsedmsg = c.ParseMsg(C,message,c.me_format, 2)
-						if(Parsedmsg) c << output(Parsedmsg, "[window]")
-					else if(c.filter==1)
-						message = TextMan.FilterChat(raw_msg,c)
-						if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(message)
-						message = TextMan.ParseLinks(message)
-						message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-						var/Parsedmsg = c.ParseMsg(C,message,c.me_format, 2)
-						if(Parsedmsg) c << output(Parsedmsg, "[window]")
-					else
-						message = msg
-						if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE))
-							msg = smsg
-						msg = TextMan.ParseTags(msg, c.show_colors, c.show_highlight,0)
-						var/Parsedmsg = c.ParseMsg(C,msg, c.me_format, 2)
-						if(Parsedmsg)
-							c << output(Parsedmsg, "[window]")
+					if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(raw_msg)
+					message = TextMan.ParseLinks(message)
+					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
+					var/Parsedmsg = c.ParseMsg(C,message,c.me_format, 2)
+					if(Parsedmsg) c << output(Parsedmsg, "[window]")
 
 		GoAFK(mob/chatter/C, msg)
 			if(ChatMan.istelnet(C.key)) return
@@ -378,7 +309,6 @@ Channel
 			C.away_reason = msg
 
 			var/raw_msg = msg
-			msg = TextMan.FilterChat(msg)
 
 			chatters = SortWho(chatters)
 			C.icon_state = "away"
@@ -386,12 +316,7 @@ Channel
 			if(!ismute(C))
 				for(var/mob/chatter/c in chatters)
 					if(!(c.ignoring(C) & CHAT_IGNORE))
-						if(!c.filter)
-							c << output("[c.ParseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now <b>AFK</b>. (Reason: [raw_msg])", "[ckey(name)].chat.default_output")
-						else if(c.filter == 1)
-							c << output("[c.ParseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now <b>AFK</b>. (Reason: [TextMan.FilterChat(raw_msg,c)])", "[ckey(name)].chat.default_output")
-						else
-							c << output("[c.ParseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now <b>AFK</b>. (Reason: [msg])", "[ckey(name)].chat.default_output")
+						c << output("[c.ParseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now <b>AFK</b>. (Reason: [raw_msg])", "[ckey(name)].chat.default_output")
 			C << output("Your activity status is now set to Away From Keyboard.", "[ckey(name)].chat.default_output")
 
 		ReturnAFK(mob/chatter/C)

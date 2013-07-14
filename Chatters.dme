@@ -48,7 +48,6 @@
 #include "code\views\default.dmf"
 #include "code\views\color\_main.dm"
 #include "code\views\set\_main.dm"
-#include "code\views\set\filters.dm"
 #include "code\views\set\misc.dm"
 #include "code\views\set\style.dm"
 #include "code\views\set\system.dm"

@@ -91,8 +91,6 @@ mob/chatter
 			SetLongDateFormat(LongDateFormat)
 			SetOutputStyle(OutputStyle)
 
-			ShowFilterList()
-
 			winsize = winget(src, "default", "size")
 			ChatMan.Save(src)
 
@@ -141,9 +139,6 @@ mob/chatter
 			winset(src, "style_formats.date_format", "text='[TextMan.escapeQuotes(list2text(date_format))]'")
 			winset(src, "style_formats.long_date_format", "text='[TextMan.escapeQuotes(list2text(long_date_format))]'")
 			winset(src, "style_formats.output_style", "text='[TextMan.escapeQuotes(default_output_style)]'")
-
-			ShowFilterList()
-			SetFilter("[filter]")
 
 			if(show_title) winset(src, "system.show_title", "is-checked=true")
 			else winset(src, "system.show_title", "is-checked=false")
@@ -198,5 +193,4 @@ mob/chatter
 				if("colors") winset(src, "settings.settings_child", "left=style_colors")
 				if("formats") winset(src, "settings.settings_child", "left=style_formats")
 				if("misc") winset(src, "settings.settings_child", "left=misc")
-				if("filters") winset(src, "settings.settings_child", "left=filters")
 				if("system") winset(src, "settings.settings_child", "left=system")

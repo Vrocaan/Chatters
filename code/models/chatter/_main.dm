@@ -24,9 +24,6 @@ mob
 			onJoin = "me(\"enters the channel.\")"
 			onQuit = "me(\"exits the channel.\")"
 
-			filter = 2
-			replacement_word = ""
-
 			showwho = TRUE
 			show_title = TRUE
 			show_welcome = FALSE
@@ -51,11 +48,6 @@ mob
 			//
 			name_notify = FALSE
 
-			tmp/OpRank/RankSelect
-			tmp/OpPrivilege/PrivSelectLeft
-			tmp/OpPrivilege/PrivSelectRight
-
-			tmp/obj/OpNameSelect/NameSelect
 			tmp/game_color
 			tmp/afk = FALSE
 			tmp/telnet = FALSE
@@ -79,8 +71,6 @@ mob
 				say_format = list("$ts", " <b>","$name",":</b> ","$msg")
 				rpsay_format = list("$ts", " ","$name"," ","$rp",":   ","$msg")
 				me_format = list("$ts", " ", "$name", " ", "$msg")
-
-				filtered_words
 
 				tmp/msgHandlers
 

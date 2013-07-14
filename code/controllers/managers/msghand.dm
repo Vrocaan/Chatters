@@ -19,8 +19,6 @@ MessageHandler
 				im.Display(owner)
 
 			winset(owner, "cim_[ckey(From.name)]", "is-visible=true;")
-			if(owner.filter) omsg = TextMan.FilterChat(omsg, owner)
-			if(owner.filter) fmsg = TextMan.FilterChat(fmsg, From)
 
 			if(owner.show_smileys) omsg = TextMan.ParseSmileys(omsg)
 			if(From.show_smileys) fmsg = TextMan.ParseSmileys(fmsg)

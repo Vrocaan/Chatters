@@ -174,7 +174,6 @@ _____________________ \[end of announcement\] _____________________
 			msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
-			msg = TextMan.FilterChat(msg)
 
 			var/smsg = TextMan.ParseSmileys(msg)
 			smsg = TextMan.ParseLinks(smsg)
@@ -182,46 +181,18 @@ _____________________ \[end of announcement\] _____________________
 			msg = TextMan.ParseLinks(msg)
 
 			if(C)
-				var/message
-				if(!C.filter)
-					message = msg
-					if(C.show_smileys) message = TextMan.ParseSmileys(raw_msg)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, C.show_colors, C.show_highlight,0)
-					C << output(C.ParseMsg(src, msg, C.say_format),"[ckey(Chan.name)].chat.default_output")
-				else if(C.filter==1)
-					message = TextMan.FilterChat(raw_msg,C)
-					if(C.show_smileys) message = TextMan.ParseSmileys(message)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, C.show_colors, C.show_highlight,0)
-					var/Parsedmsg = C.ParseMsg(src,message,C.say_format)
-					if(Parsedmsg) C << output(Parsedmsg, "[ckey(Chan.name)].chat.default_output")
-				else
-					message = msg
-					if(C.show_smileys) message = smsg
-					message = TextMan.ParseTags(message, C.show_colors, C.show_highlight,0)
-					var/Parsedmsg = C.ParseMsg(src,message,C.say_format)
-					if(Parsedmsg) C << output(Parsedmsg, "[ckey(Chan.name)].chat.default_output")
+				var/message = msg
+				if(C.show_smileys) message = TextMan.ParseSmileys(raw_msg)
+				message = TextMan.ParseLinks(message)
+				message = TextMan.ParseTags(message, C.show_colors, C.show_highlight,0)
+				C << output(C.ParseMsg(src, msg, C.say_format),"[ckey(Chan.name)].chat.default_output")
 			else
 				for(var/mob/chatter/c in Chan.chatters)
-					var/message
-					if(!c.filter)
-						message = msg
-						if(c.show_smileys)  message = TextMan.ParseSmileys(raw_msg)
-						message = TextMan.ParseLinks(message)
-						message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-						c << output(c.ParseMsg(src, message, c.say_format),"[ckey(Chan.name)].chat.default_output")
-					else if(c.filter==1)
-						message = TextMan.FilterChat(raw_msg,c)
-						if(c.show_smileys)  message = TextMan.ParseSmileys(message)
-						message = TextMan.ParseLinks(message)
-						message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-						c << output(c.ParseMsg(src, message, c.say_format),"[ckey(Chan.name)].chat.default_output")
-					else
-						message = msg
-						if(c.show_smileys)  message = smsg
-						message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-						c << output(c.ParseMsg(src, message, c.say_format),"[ckey(Chan.name)].chat.default_output")
+					var/message = msg
+					if(c.show_smileys)  message = TextMan.ParseSmileys(raw_msg)
+					message = TextMan.ParseLinks(message)
+					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
+					c << output(c.ParseMsg(src, message, c.say_format),"[ckey(Chan.name)].chat.default_output")
 
 		RawSay(msg, mob/chatter/receiver, echoed)
 			if(receiver)
@@ -255,7 +226,6 @@ _____________________ \[end of announcement\] _____________________
 			msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
-			msg = TextMan.FilterChat(msg)
 
 			var/smsg = TextMan.ParseSmileys(msg)
 			smsg = TextMan.ParseLinks(smsg)
@@ -264,29 +234,16 @@ _____________________ \[end of announcement\] _____________________
 			if(echoed) name = ">[copytext(name, 2)]"
 			for(var/mob/chatter/c in Chan.chatters)
 				var/message
-				if(!c.filter)
-					if(c.show_smileys) message = TextMan.ParseSmileys(raw_msg)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					c << output(c.ParseMsg(src, message, c.me_format,1),"[ckey(Chan.name)].chat.default_output")
-				else if(c.filter == 1)
-					message = TextMan.FilterChat(raw_msg,c)
-					if(c.show_smileys) message = TextMan.ParseSmileys(message)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					c << output(c.ParseMsg(src, message, c.me_format,1),"[ckey(Chan.name)].chat.default_output")
-				else
-					message = msg
-					if(c.show_smileys) message = smsg
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					c << output(c.ParseMsg(src, message, c.me_format,1),"[ckey(Chan.name)].chat.default_output")
+				if(c.show_smileys) message = TextMan.ParseSmileys(raw_msg)
+				message = TextMan.ParseLinks(message)
+				message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
+				c << output(c.ParseMsg(src, message, c.me_format,1),"[ckey(Chan.name)].chat.default_output")
 			if(echoed) name = "@[copytext(name, 2)]"
 
 		My(msg, echoed)
 			msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
-			msg = TextMan.FilterChat(msg)
 
 			var/smsg = TextMan.ParseSmileys(msg)
 			smsg = TextMan.ParseLinks(smsg)
@@ -295,22 +252,10 @@ _____________________ \[end of announcement\] _____________________
 			if(echoed) name = ">[copytext(name, 2)]"
 			for(var/mob/chatter/c in Chan.chatters)
 				var/message
-				if(!c.filter)
-					if(c.show_smileys) message = TextMan.ParseSmileys(raw_msg)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					c << output(c.ParseMsg(src, message, c.me_format,2),"[ckey(Chan.name)].chat.default_output")
-				else if(c.filter == 1)
-					message = TextMan.FilterChat(raw_msg,c)
-					if(c.show_smileys) message = TextMan.ParseSmileys(message)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					c << output(c.ParseMsg(src, message, c.me_format,2),"[ckey(Chan.name)].chat.default_output")
-				else
-					message = msg
-					if(c.show_smileys) message = smsg
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					c << output(c.ParseMsg(src, message, c.me_format,2),"[ckey(Chan.name)].chat.default_output")
+				if(c.show_smileys) message = TextMan.ParseSmileys(raw_msg)
+				message = TextMan.ParseLinks(message)
+				message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
+				c << output(c.ParseMsg(src, message, c.me_format,2),"[ckey(Chan.name)].chat.default_output")
 			if(echoed) name = "@[copytext(name, 2)]"
 
 
