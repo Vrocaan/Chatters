@@ -31,10 +31,18 @@ ChannelManager
 			S["operators"]  << Home.operators
 
 		LoadHome(chan)
-			var/savefile/S = new("./data/saves/Home.sav")
-			S["mute"]		>> Home.mute
-			S["banned"]		>> Home.banned
-			S["operators"]  >> Home.operators
+			if (fexists("./data/saves/Home.sav"))
+				var/savefile/S = new("./data/saves/Home.sav")
+				var/list/temp = null
+				S["mute"]	>> temp
+				if (length(temp))
+					Home.mute.Add(temp)
+				S["banned"]	>> temp
+				if (length(temp))
+					Home.banned.Add(temp)
+				S["operators"] >> temp
+				if (length(temp))
+					Home.operators.Add(temp)
 
 		LoadServerCfg()
 			var/list/config = Console.LoadCFG("./data/saves/server.cfg")
@@ -110,4 +118,5 @@ ChannelManager
 					for(var/Name in opList)
 						var/opKey = ckey(opList[Name])
 						Home.operators += opKey
+
 

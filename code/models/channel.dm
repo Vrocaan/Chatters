@@ -26,9 +26,6 @@ Channel
 		list
 			chatters
 			operators
-			op_ranks
-			op_privileges
-			op_actions
 			mute
 			banned
 			nodes
@@ -90,15 +87,6 @@ Channel
 							default.title='[name] - Chatters';\
 							default.menu=menu;\
 							default.child.left=[ckey(name)];")
-							//default.child.pos=4,4;\
-							//default.child.size=[C.winsize];
-/*			winset(C, "[ckey(name)].default_input", "is-default=true;")
-			winset(C, "[ckey(name)].chat.default_output", "is-default=true;is-disabled=false.")
-			winset(C, "[ckey(name)].topic_label", "text='[TextMan.escapeQuotes(topic)]';")
-			winset(C, "[ckey(name)].child", "left=[ckey(name)].chat; right=[ckey(name)].who")
-			winset(C, "default", "size=[C.winsize];can-resize=true;title='[name] - Chatters';menu=menu;")
-			winset(C, "default.child", "pos=0,0;size=[C.winsize];left=[ckey(name)];")
-*/
 
 			if(C.ckey in banned)
 				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "[ckey(name)].chat.default_output")
