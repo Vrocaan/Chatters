@@ -36,13 +36,13 @@ ChannelManager
 				var/list/temp = null
 				S["mute"]	>> temp
 				if (length(temp))
-					Home.mute.Add(temp)
+					Home.mute |= temp
 				S["banned"]	>> temp
 				if (length(temp))
-					Home.banned.Add(temp)
+					Home.banned |= temp
 				S["operators"] >> temp
 				if (length(temp))
-					Home.operators.Add(temp)
+					Home.operators |= temp
 
 		LoadServerCfg()
 			var/list/config = Console.LoadCFG("./data/saves/server.cfg")
