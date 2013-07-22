@@ -153,8 +153,6 @@ Channel
 					var/mob/chatter/op = ChatMan.Get(_ck)
 					if(op) chanbot.Say("[C.name]'s IP: [C.client.address]", op)
 
-			if(!Home.ismute(C)) EventMan.Parse(C, C.onJoin)
-
 		Quit(mob/chatter/C)
 			if(!C)
 				for(var/i=1 to chatters.len)
@@ -162,7 +160,6 @@ Channel
 				UpdateWho()
 				return
 
-			if(!Home.ismute(C)) EventMan.Parse(C, C.onQuit)
 			C.Chan = null
 
 			if(chatters) chatters -= C

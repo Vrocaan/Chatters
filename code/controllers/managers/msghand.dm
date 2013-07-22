@@ -35,6 +35,4 @@ MessageHandler
 
 			if(From != owner)
 				From << output(From.ParseMsg(From, fmsg, From.say_format), "cim_[ckey(owner.name)].output")
-				if(From.im_sounds) From << sound(From.snt_msg_snd,,,,From.im_volume)
 			owner << output(owner.ParseMsg(From, omsg, owner.say_format), "cim_[ckey(From.name)].output")
-			if(owner.im_sounds) owner << sound(owner.got_msg_snd,,,,owner.im_volume)

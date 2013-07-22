@@ -21,9 +21,6 @@ mob
 			show_images = TRUE
 			forced_punctuation = FALSE
 
-			onJoin = "me(\"enters the channel.\")"
-			onQuit = "me(\"exits the channel.\")"
-
 			showwho = TRUE
 			show_title = TRUE
 			show_welcome = FALSE
@@ -38,11 +35,6 @@ mob
 			telnet_pass
 
 			winsize = "640x480"
-
-			im_sounds = FALSE
-			im_volume = 100
-			got_msg_snd = "./data/sndfx/mallert 010.wav"
-			snt_msg_snd = "./data/sndfx/mallert 009.wav"
 
 			// Added to notify a user if his name has been said in conversation.
 			//
@@ -110,8 +102,6 @@ mob
 				show_colors = FALSE
 				show_smileys = FALSE
 				show_highlight = FALSE
-				onJoin = ""
-				onQuit = ""
 
 				if(!gender) gender = client.gender
 				ChanMan.Join(src, Home)
