@@ -167,7 +167,7 @@ Channel
 
 			UpdateWho()
 
-			chanbot.Say("[C.name] has quit [name]")
+			chanbot.Say("[C.name] has quit [name].")
 
 			if(C && ChatMan.istelnet(C.key))
 				C.Logout()
