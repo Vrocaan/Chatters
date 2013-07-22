@@ -38,7 +38,7 @@ mob/chatter
 			Home.UpdateWho()
 			ChanMan.SaveHome()
 
-		BotSetTopic(ntopic as text)
+		SetTopic(ntopic as text)
 			set hidden = 1
 
 			if(!ntopic) return
@@ -49,7 +49,7 @@ mob/chatter
 
 			Home.chanbot.SetTopic(ntopic, 1)
 
-		BotSetDesc(ndesc as text)
+		SetDesc(ndesc as text)
 			set hidden = 1
 
 			if(!ndesc) return
@@ -113,7 +113,7 @@ mob/chatter
 				Home.chanbot.Say("You do not have access to this command.", src)
 				return
 
-			Home.chanbot.Say(n)
+			Home.chanbot.Me(n)
 
 		BotMy(n as text)
 			set hidden = 1
@@ -124,7 +124,7 @@ mob/chatter
 				Home.chanbot.Say("You do not have access to this command.", src)
 				return
 
-			Home.chanbot.Say(n)
+			Home.chanbot.My(n)
 
 		CheckIP(target as text)
 			set hidden = 1
