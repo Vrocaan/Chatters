@@ -201,14 +201,11 @@ Channel
 
 		Say(mob/chatter/C, msg, clean, window)
 			if(ismute(C))
-				chanbot.Say("I'm sorry, but you appear to be muted.",C)
+				chanbot.Say("I'm sorry, but you appear to be muted.", C)
 				if(kText.hasPrefix(C.ckey, "guest")) chanbot.Say("Please login with your registered key, or visit http://www.byond.com/ to create a new key now.",C)
 				return
 
-			if(length(msg)>512)
-				var/part2 = copytext(msg, 513)
-				msg = copytext(msg, 1, 513)
-				spawn(20) C.Say(part2)
+			msg = copytext(msg, 1, 1024)
 
 			if(!clean)
 				msg = TextMan.Sanitize(msg)
@@ -238,6 +235,8 @@ Channel
 				chanbot.Say("I'm sorry, but you appear to be muted.",C)
 				return
 
+			msg = copytext(msg, 1, 1024)
+
 			if(!clean) msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
@@ -264,6 +263,7 @@ Channel
 				chanbot.Say("I'm sorry, but you appear to be muted.",C)
 				return
 
+			msg = copytext(msg, 1, 1024)
 			if(!clean) msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
@@ -289,6 +289,7 @@ Channel
 			if(ChatMan.istelnet(C.key)) return
 			C.afk = TRUE
 			C.away_at = world.realtime
+			msg = copytext(msg, 1, 1024)
 			msg = TextMan.Sanitize(msg)
 			C.away_reason = msg
 
