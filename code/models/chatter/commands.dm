@@ -52,14 +52,11 @@ mob
 					var/Messenger/im = new(src)
 					im.Display(src)
 					return
+
 				var/mob/C
 				if(ismob(target)) C = target
 				else C = ChatMan.Get(target)
-				if(!C)
-					if(src.Chan)
-						src << output("[target] is not currently online.", "[ckey(src.Chan.name)].chat.default_output")
-					else
-						alert(src, "[target] is not currently online.", "Unable to locate chatter")
+				if(!C) Home.chanbot.Say("[target] is not currently online.", src)
 				else
 					if(ismob(C))
 						if(!msg)
@@ -74,6 +71,7 @@ mob
 						var/Messenger/im = new(src, C.name)
 						im.Display(src)
 						MsgMan.RouteMsg(src, C, msg)
+
 					else
 						if(!msg)
 							var/Messenger/im = new(src, C)
@@ -104,20 +102,16 @@ mob
 
 			Ignore(mob/target as text|null|mob in Home.chatters, scope as text|null|anything in list("im", "chat", "fade", "colors", "smileys", "images", "files", "full"))
 				if(!target)
-					if(src.Chan)
-						src << output("Please provide a name. Proper usage: /Ignore \"Chatter\" \"scope\" Available Scopes: im, chat, fade, colors, smileys, images, files, full", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("Please provide a name. Proper usage: /Ignore \"Chatter\" \"scope\" Available Scopes: im, chat, fade, colors, smileys, images, files, full", "Ignore")
+					Home.chanbot.Say("Please provide a name. Proper usage: /Ignore \"Chatter\" \"scope\" Available Scopes: im, chat, fade, colors, smileys, images, files, full", src)
 					return
+
 				if(!ignoring) ignoring = new
 				if(ismob(target)) target = target.name
 				var/is_ignored = ignoring(target)
 				if(is_ignored == FULL_IGNORE)
-					if(src.Chan)
-						src << output("You are already ignoring [target].", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are already ignoring [target].", "Unable to ignore chatter")
+					Home.chanbot.Say("You are already ignoring [target].", src)
 					return
+
 				if(!scope) scope = "[FULL_IGNORE]"
 				var/ignore_type = "this scope"
 				switch(scope)
@@ -146,11 +140,9 @@ mob
 				var/num = text2num(scope)
 				if(num && isnum(num))
 					if(num & is_ignored)
-						if(src.Chan)
-							src << output("You are already ignoring [ignore_type] from [target].", "[ckey(Home.name)].chat.default_output")
-						else
-							alert("You are already ignoring [ignore_type] from [target].","Unable to ignore chatter")
+						Home.chanbot.Say("You are already ignoring [ignore_type] from [target].", src)
 						return
+
 					num += is_ignored
 					ignore_type = ""
 					if(num == 31) num = FULL_IGNORE
@@ -181,53 +173,33 @@ mob
 							scope |= FILES_IGNORE
 							ignore_type += "\n	- files"
 						if(!scope)
-							if(src.Chan)
-								src << output("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files, full", "[ckey(Home.name)].chat.default_output")
-							else
-								alert("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files full","Unable to ignore chatter")
+							Home.chanbot.Say("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files, full", src)
 							return
+
 				else
-					if(src.Chan)
-						src << output("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files full", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files full","Unable to ignore chatter")
+					Home.chanbot.Say("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files full", src)
 					return
+
 				if(!is_ignored) ignoring += ckey(target)
 				ignoring[ckey(target)] = scope
-				if(length(ignore_type))
-					if(src.Chan)
-						src << output("You are now ignoring the following from [target]: [ignore_type]", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are now ignoring the following from [target]: [ignore_type]", "Ignoring chatter")
-				else
-					if(src.Chan)
-						src << output("You are now fully ignoring [target].", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are now fully ignoring [target].", "Ignoring chatter")
+				if(length(ignore_type)) Home.chanbot.Say("You are now ignoring the following from [target]: [ignore_type].", src)
+				else Home.chanbot.Say("You are now fully ignoring [target].", src)
+
 				ChatMan.Save(src)
 
-
 			Unignore(mob/target as text|null|anything in ignoring, scope as text|null|anything in list("im", "chat", "fade", "colors", "smileys", "images", "files", "full"))
-				if(!target)
-					if(src.Chan)
-						src << output("Please provide a name. Proper usage: /Unignore \"Chatter\" \"scope\" Available Scopes: im, chat, fade, colors, smileys, images, files, full", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("Please provide a name. Proper usage: /Unignore \"Chatter\" \"scope\" Available Scopes: im, chat, fade, colors, smileys, images, files, full", "Unignore")
-					return
+				if(!target) Home.chanbot.Say("Please provide a name. Proper usage: /Unignore \"Chatter\" \"scope\" Available Scopes: im, chat, fade, colors, smileys, images, files, full", src)
+
 				if(!ignoring || !ignoring.len)
-					if(src.Chan)
-						src << output("You are not currently ignoring any chatters.", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are not currently ignoring any chatters.", "Unable to unignore chatter")
+					Home.chanbot.Say("You are not currently ignoring any chatters.", src)
 					return
+
 				if(ismob(target)) target = target.name
 				var/ign = ignoring(target)
 				if(!ign)
-					if(src.Chan)
-						src << output("You are not currently ignoring [target]", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are not currently ignoring [target]", "Unable to unignore chatter")
+					Home.chanbot.Say("You are not currently ignoring [target]", src)
 					return
+
 				if(!scope) scope = "[FULL_IGNORE]"
 				var/ignore_type = "this scope"
 				switch(scope)
@@ -256,11 +228,9 @@ mob
 				var/num = text2num(scope)
 				if(num && isnum(num))
 					if((num != FULL_IGNORE) && !(num & ign))
-						if(src.Chan)
-							src << output("You are not currently ignoring [ignore_type] from [target].", "[ckey(Home.name)].chat.default_output")
-						else
-							alert("You are not currently ignoring [ignore_type] from [target].","Unable to unignore chatter")
+						Home.chanbot.Say("You are not currently ignoring [ignore_type] from [target].", src)
 						return
+
 					ignore_type = ""
 					if(num == 31) num = FULL_IGNORE
 					if(num & FULL_IGNORE) scope = FULL_IGNORE
@@ -295,32 +265,21 @@ mob
 							if(ign - FILES_IGNORE)
 								ignore_type += "\n	- files"
 						if(!scope)
-							if(src.Chan)
-								src << output("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files, full", "[ckey(Home.name)].chat.default_output")
-							else
-								alert("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files, full","Unable to unignore chatter")
+							Home.chanbot.Say("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files, full", src)
 							return
 				else
-					if(src.Chan)
-						src << output("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files, full", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files, full","Unable to unignore chatter")
+					Home.chanbot.Say("The scope you provided did not match a known ignore scope. Available Scopes: im, chat, fade, colors, smileys, images, files, full", src)
 					return
+
 				if(scope == FULL_IGNORE) ignoring -= ckey(target)
 				else ignoring[ckey(target)] &= ~scope
 				if(!ignoring[ckey(target)])
 					ignoring -= ckey(target)
 					ignore_type = ""
-				if(length(ignore_type))
-					if(src.Chan)
-						src << output("You are no longer ignoring the following from [target]: [ignore_type]", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are no longer ignoring the following from [target]: [ignore_type]", "Unignoring chatter")
-				else
-					if(src.Chan)
-						src << output("You are no longer ignoring [target].", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are no longer ignoring [target].", "Unignoring chatter")
+
+				if(length(ignore_type)) Home.chanbot.Say("You are no longer ignoring the following from [target]: [ignore_type]", src)
+				else Home.chanbot.Say("You are no longer ignoring [target].", src)
+
 				ChatMan.Save(src)
 
 			ListIgnored(mob/target as text|null|anything in ignoring)
@@ -430,7 +389,7 @@ mob
 				var chatter_array[] = list()
 				for(var/mob/chatter/C in Home.chatters)
 					chatter_array += "[C.name][C.afk ? "\[AFK\]" : ""]"
-				src << "<b>Chatters:</b> [kText.list2text(chatter_array, ", ")]"
+				Home.chanbot.Say("<b>Chatters:</b> [kText.list2text(chatter_array, ", ")]", src)
 
 			login(telnet_key as text|null)
 				set hidden = 1

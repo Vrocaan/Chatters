@@ -75,25 +75,12 @@ mob
 			..()
 
 			if(!ChatMan.istelnet(key))
-				src << output("<span style='background-color:#333;color:#ccc;font-weight:bold;text-align:center;'>Name:</span>", "pub_chans.grid:1,1")
-				src << output("<span style='background-color:#333;color:#ccc;font-weight:bold;text-align:center;'>Founder:</span>", "pub_chans.grid:2,1")
-				src << output("<span style='background-color:#333;color:#ccc;font-weight:bold;text-align:center;'>Description:</span>", "pub_chans.grid:3,1")
-				src << output("<span style='background-color:#333;color:#ccc;font-weight:bold;text-align:center;'>Chatters:</span>", "pub_chans.grid:4,1")
-				if(winget(src, "default", "is-maximized")=="true")
-					winset(src, "default", "is-maximized=false;size='640x640'")
-				else
-					winset(src, "default", "size='640x640';")
-
-
-				if(!gender) gender = client.gender
 				ChanMan.Join(src, Home)
 
 				winshow(src, "showcontent", 0)
 				winshow(src, "settings", 0)
 
 				RefreshAllSettings()
-
-				//spawn() Ticker()
 
 			// Telnet users login differently
 			else
@@ -102,13 +89,12 @@ mob
 				show_colors = FALSE
 				show_smileys = FALSE
 				show_highlight = FALSE
-
-				if(!gender) gender = client.gender
 				ChanMan.Join(src, Home)
 
 		Stat()
 			..()
-			if(src.telnet) return
+
+			if(telnet) return
 			if(auto_away && (auto_away < client.inactivity/600) && !afk) AFK(auto_reason)
 			if(src.msgHandlers && src.msgHandlers.len)
 				for(var/msgHandler in msgHandlers)
