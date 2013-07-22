@@ -167,7 +167,10 @@ Channel
 						if(C.client) winset(C, "[ckey(name)].who.grid", "current-cell=1,[i]")
 						var/n = c.name
 						if(!ChatMan.istelnet(c.key) && c.afk)
-							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:gray;}'")
+							if(C.client)
+								if(!(c.ckey in C.Chan.operators)) winset(C, "[ckey(name)].who.grid", "style='body{color: gray;}'")
+								else winset(C, "[ckey(name)].who.grid", "style='body{color:gray;font-weight:bold}'")
+
 						else if(c.ckey in C.Chan.operators)
 							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
 						else if(c.ckey in C.Chan.mute)
