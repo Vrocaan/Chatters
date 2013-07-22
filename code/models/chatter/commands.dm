@@ -368,32 +368,16 @@ mob
 					winset(src, "showcontent.content_input", "text=")
 					winshow(src, "showcontent", 0)
 
-			ShowCode(t as text|null|mob in Home.chatters)
+			ShowCode()
 				set hidden = 1
 
 				if(telnet) return
 				if(afk) ReturnAFK()
 				var/showcode_snippet/S = new
-				if(t)
-					var/mob/chatter/C
-					if(ismob(t)) C = t
-					else C = ChatMan.Get(t)
-					if(!C)
-						if(Chan)
-							src << output("[t] is not currently online.", "[ckey(src.Chan.name)].chat.default_output")
-						else
-							alert(src, "[t] is not currently online.", "Unable to locate chatter")
-					else
-						var/ign = C.ignoring(src)
-						if(ign && CHAT_IGNORE)
-							src << "<b>Unable to show code!</b>"
-							src << "[C.name] is ignoring you."
-							return
-					S.target = C.ckey
-				else
-					if(!Chan || Chan.ismute(src))
-						if(src.Chan) src.Chan.chanbot.Say("I'm sorry, but you appear to be muted.", src)
-						return
+
+				if(Home.ismute(src))
+					Home.chanbot.Say("I'm sorry, but you appear to be muted.", src)
+					return
 
 				var/iCode = winget(src, "showcontent.content_input", "text")
 
@@ -414,26 +398,10 @@ mob
 				if(telnet) return
 				if(afk) ReturnAFK()
 				var/showcode_snippet/S = new
-				if(t)
-					var/mob/chatter/C
-					if(ismob(t)) C = t
-					else C = ChatMan.Get(t)
-					if(!C)
-						if(src.Chan)
-							src << output("[t] is not currently online.", "[ckey(src.Chan.name)].chat.default_output")
-						else
-							alert(src, "[t] is not currently online.", "Unable to locate chatter")
-					else
-						var/ign = C.ignoring(src)
-						if(ign && CHAT_IGNORE)
-							src << "<b>Unable to show code!</b>"
-							src << "[C.name] is ignoring you."
-							return
-					S.target = C.ckey
-				else
-					if(!src.Chan || Chan.ismute(src))
-						if(src.Chan) src.Chan.chanbot.Say("I'm sorry, but you appear to be muted.", src)
-						return
+
+				if(Home.ismute(src))
+					Home.chanbot.Say("I'm sorry, but you appear to be muted.", src)
+					return
 
 				var/iCode = winget(src, "showcontent.content_input", "text")
 
