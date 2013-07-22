@@ -200,25 +200,6 @@ _____________________ \[end of announcement\] _____________________
 				for(var/mob/chatter/a in Chan.chatters)
 					a << output(a.ParseMsg(src, msg, a.say_format),"[ckey(Chan.name)].chat.default_output")
 
-		GameSay(msg, window)
-			if(!window) return
-			if(length(msg)>512)
-				var/part2 = copytext(msg, 513)
-				msg = copytext(msg, 1, 513)
-				spawn(20) GameSay(part2, window)
-
-			msg = TextMan.Sanitize(msg)
-
-			var/smsg = TextMan.ParseSmileys(msg)
-			smsg = TextMan.ParseLinks(smsg)
-
-			msg = TextMan.ParseLinks(msg)
-			for(var/mob/chatter/c in Chan.chatters)
-				var/message = msg
-				if(c.show_smileys) message = smsg
-				message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-				c << output(c.ParseMsg(src, message, c.say_format),"[window].output")
-
 		Me(msg, echoed)
 			msg = TextMan.Sanitize(msg)
 
