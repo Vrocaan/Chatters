@@ -65,7 +65,6 @@ Channel
 							[window].child.left=[window].chat;\
 							[window].child.right=;\
 							default.child.right=[window].who;\
-							default.size=[C.winsize];\
 							default.can-resize=true;\
 							default.title='[name] - Chatters';\
 							default.menu=menu;\
@@ -101,7 +100,7 @@ Channel
 			C.SetInterface(C.interface_color)
 
 			winshow(C, ckey(name), 1)
-			winset(C, "[ckey(Home.name)].chat.default_output", "style='[TextMan.escapeQuotes(C.default_output_style)]';max-lines='[C.max_output]';")
+			winset(C, "[ckey(Home.name)].chat.default_output", "style='[TextMan.escapeQuotes(C.default_output_style)]';")
 
 			C << output("<center>- - - - - - - - - - - - - - -", "[ckey(name)].chat.default_output")
 

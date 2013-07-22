@@ -50,20 +50,7 @@ mob/chatter
 			SetShowMotD()
 			SetShowQotD()
 			SetClearOnReboot()
-
-			var
-				maxout = winget(src, "system.max_output", "text")
-				tnpswd = winget(src, "system.telnet_pass", "text")
-				X = winget(src, "system.win_size_x", "text")
-				Y = winget(src, "system.win_size_y", "text")
-
-			SetMaxOutput(maxout)
 			SetHighlightCode()
-			SetTelnetPassword(tnpswd)
-			SetWinSizeX(X)
-			SetWinSizeY(Y)
-
-			if(Chan) winset(src, "default", "size=[winsize]")
 
 			var
 				TimeOffset = winget(src, "system.offset", "text")
@@ -91,7 +78,6 @@ mob/chatter
 			SetLongDateFormat(LongDateFormat)
 			SetOutputStyle(OutputStyle)
 
-			winsize = winget(src, "default", "size")
 			ChatMan.Save(src)
 
 			winset(src, "settings.saving", "is-visible=false")
@@ -155,23 +141,8 @@ mob/chatter
 			if(clear_on_reboot) winset(src, "system.clear_reboot", "is-checked=true")
 			else winset(src, "system.clear_reboot", "is-checked=false")
 
-			winset(src, "system.max_output", "text='[max_output]'")
-
 			if(show_highlight) winset(src, "system.show_highlight", "is-checked=true")
 			else winset(src, "system.show_highlight", "is-checked=false")
-
-			winset(src, "system.telnet_pass", "text='[TextMan.escapeQuotes(telnet_pass)]';")
-
-			var
-				X
-				Y
-
-			if(winsize)
-				X = copytext(winsize, 1, findtext(winsize, "x"))
-				Y = copytext(winsize, findtext(winsize, "x")+1)
-
-			SetWinSizeX(X)
-			SetWinSizeY(Y)
 
 			if(!_24hr_time)
 				winset(src, "system.24Hour", "is-checked=false")

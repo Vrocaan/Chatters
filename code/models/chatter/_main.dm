@@ -30,11 +30,6 @@ mob
 			flip_panes = FALSE
 
 			clear_on_reboot = FALSE
-			max_output = 1000
-
-			telnet_pass
-
-			winsize = "640x480"
 
 			// Added to notify a user if his name has been said in conversation.
 			//

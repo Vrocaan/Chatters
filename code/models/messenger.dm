@@ -29,7 +29,7 @@ Messenger
 		winset(C, "[winname].input", "command='IM \"[name]\" \"'")
 		winset(C, "[winname].input", "focus=true")
 
-		winset(C, "[winname].output", "style='[TextMan.escapeQuotes(C.default_output_style)]';max-lines='[C.max_output]';")
+		winset(C, "[winname].output", "style='[TextMan.escapeQuotes(C.default_output_style)]';")
 
 		winset(C, "[winname].interfacebar_3", "background-color='[TextMan.escapeQuotes(C.interface_color)]';")
 		winset(C, "[winname].interfacebar_4", "background-color='[TextMan.escapeQuotes(C.interface_color)]';")
