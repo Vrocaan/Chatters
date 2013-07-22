@@ -4,7 +4,7 @@ Bot
 		name = "@ChanBot"
 		name_color = "#f00"
 		text_color = "#000"
-		fade_name = "<font color=#f00>@ChanBot</font>"
+		fade_name = ""
 		Channel/Chan
 
 	New(Channel/chan)
@@ -26,58 +26,6 @@ Bot
 			set hidden = 1
 			if(!msg) return
 			Home.chanbot.My(msg, 1)
-
-		edit(cmd as text|null)
-			set hidden = 1
-			var/space, variable, end, value
-
-			do
-				space = findtext(cmd, " ")
-				variable = lowertext(copytext(cmd, 1, space))
-				if(!space) break
-				end = findtext(cmd, ";")
-				value = copytext(cmd, space+1, end)
-			while(end)
-
-			switch(variable)
-				if("name")
-					if(value) Home.chanbot.SetName(value,1)
-					usr << output("<font color=#090>@edit:</font> <font color=#900>Bot</font> name [Home.chanbot.name]", "console.output")
-				if("name-color")
-					if(value) Home.chanbot.SetNameColor(value,1)
-					usr << output("<font color=#090>@edit:</font> <font color=#900>Bot</font> name-color [(Home.chanbot.name_color | "#000")]", "console.output")
-				if("text-color")
-					if(value) Home.chanbot.SetTextColor(value,1)
-					usr << output("<font color=#090>@edit:</font> <font color=#900>Bot</font> text-color [(Home.chanbot.text_color | "#000")]", "console.output")
-				if("publicity")
-					if(value) Home.chanbot.SetPublicity(value,1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> publicity [Home.publicity]", "console.output")
-				if("desc")
-					if(value) Home.chanbot.SetDesc(value,1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> desc [Home.desc]", "console.output")
-				if("topic")
-					if(value) Home.chanbot.SetTopic(value,1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> topic [Home.topic]", "console.output")
-				if("locked")
-					if(value) Home.chanbot.SetLocked(value,1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> locked [(Home.locked ? Home.locked : "0")]", "console.output")
-				else usr << output({"<font color=#090>@edit:</font>
-	name - <font color=#900>Bot name</font>
-	name-color - <font color=#900>Bot name color hex</font>
-	text-color - <font color=#900>Bot text color hex</font>
-	spam-control - <font color=#009>Chan spam controls active 0 | 1</font>
-	spam-limit - <font color=#009>Chan spam limit number</font>
-	flood-limit - <font color=#009>Chan flood limit number</font>
-	smileys-limit - <font color=#009>Chan smileys limit number</font>
-	max-msgs - <font color=#009>Chan max messages number</font>
-	min-delay - <font color=#009>Chan minimum delay number</font>
-	publicity - <font color=#009>Chan publicity public | private | invisible</font>
-	desc - <font color=#009>Chan decription</font>
-	topic - <font color=#009>Chan topic</font>
-	pass - <font color=#009>Chan password</font>
-	locked - <font color=#009>Chan locked 0 | 1</font>"}, "console.output")
-			winshow(usr, "console", 1)
-
 
 		ViewLog()
 			set hidden = 1
@@ -144,12 +92,7 @@ _____________________ \[end of announcement\] _____________________
 
 	proc
 		Say(msg, mob/chatter/C, echoed)
-
-			if(length(msg)>512)
-				var/part2 = copytext(msg, 513)
-				msg = copytext(msg, 1, 513)
-				spawn(20) Say(part2, C)
-
+			msg = copytext(msg, 1, 1024)
 			msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
@@ -183,6 +126,7 @@ _____________________ \[end of announcement\] _____________________
 					a << output(a.ParseMsg(src, msg, a.say_format),"[ckey(Chan.name)].chat.default_output")
 
 		Me(msg, echoed)
+			msg = copytext(msg, 1, 1024)
 			msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
@@ -201,6 +145,7 @@ _____________________ \[end of announcement\] _____________________
 			if(echoed) name = "@[copytext(name, 2)]"
 
 		My(msg, echoed)
+			msg = copytext(msg, 1, 1024)
 			msg = TextMan.Sanitize(msg)
 
 			var/raw_msg = msg
@@ -262,7 +207,6 @@ _____________________ \[end of announcement\] _____________________
 				if(!C.client) continue
 				winset(C, "[ckey(Chan.name)].topic_label", "text='[TextMan.escapeQuotes(newValue)]';")
 			if(save) ChanMan.SaveHome()
-
 
 		SetLocked(newValue,save)
 			Chan.locked = newValue

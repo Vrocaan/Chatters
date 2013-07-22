@@ -38,6 +38,94 @@ mob/chatter
 			Home.UpdateWho()
 			ChanMan.SaveHome()
 
+		BotSetTopic(ntopic as text)
+			set hidden = 1
+
+			if(!ntopic) return
+			if(!Home.chanbot) return
+			if(!(ckey in Home.operators))
+				Home.chanbot.Say("You do not have access to this command.", src)
+				return
+
+			Home.chanbot.SetTopic(ntopic, 1)
+
+		BotSetDesc(ndesc as text)
+			set hidden = 1
+
+			if(!ndesc) return
+			if(!Home.chanbot) return
+			if(!(ckey in Home.operators))
+				Home.chanbot.Say("You do not have access to this command.", src)
+				return
+
+			Home.chanbot.SetDesc(ndesc, 1)
+
+		BotSetTextColor(n as text)
+			set hidden = 1
+
+			if(!n) return
+			if(!Home.chanbot) return
+			if(!(ckey in Home.operators))
+				Home.chanbot.Say("You do not have access to this command.", src)
+				return
+
+			Home.chanbot.SetTextColor(n, 1)
+
+		BotSetNameColor(n as text)
+			set hidden = 1
+
+			if(!n) return
+			if(!Home.chanbot) return
+			if(!(ckey in Home.operators))
+				Home.chanbot.Say("You do not have access to this command.", src)
+				return
+
+			Home.chanbot.SetNameColor(n, 1)
+
+		BotSetName(n as text)
+			set hidden = 1
+
+			if(!n) return
+			if(!Home.chanbot) return
+			if(!(ckey in Home.operators))
+				Home.chanbot.Say("You do not have access to this command.", src)
+				return
+
+			Home.chanbot.SetName(n, 1)
+
+		BotSay(n as text)
+			set hidden = 1
+
+			if(!n) return
+			if(!Home.chanbot) return
+			if(!(ckey in Home.operators))
+				Home.chanbot.Say("You do not have access to this command.", src)
+				return
+
+			Home.chanbot.Say(n)
+
+		BotMe(n as text)
+			set hidden = 1
+
+			if(!n) return
+			if(!Home.chanbot) return
+			if(!(ckey in Home.operators))
+				Home.chanbot.Say("You do not have access to this command.", src)
+				return
+
+			Home.chanbot.Say(n)
+
+		BotMy(n as text)
+			set hidden = 1
+
+			if(!n) return
+			if(!Home.chanbot) return
+			if(!(ckey in Home.operators))
+				Home.chanbot.Say("You do not have access to this command.", src)
+				return
+
+			Home.chanbot.Say(n)
+
 		CheckIP(target as text)
 			set hidden = 1
 
