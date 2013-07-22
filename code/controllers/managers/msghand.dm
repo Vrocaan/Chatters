@@ -25,14 +25,8 @@ MessageHandler
 			omsg = TextMan.ParseLinks(omsg)
 			fmsg = TextMan.ParseLinks(fmsg)
 
-			var/show_oimages = owner.show_images
-			if(show_oimages) show_oimages = !(owner.ignoring(From) & IMAGES_IGNORE)
-			var/show_fimages = From.show_images
-			if(show_fimages) show_fimages = !(From.ignoring(owner) & IMAGES_IGNORE)
+			omsg = TextMan.ParseTags(omsg, owner.show_colors, owner.show_highlight)
+			fmsg = TextMan.ParseTags(fmsg, From.show_colors, From.show_highlight)
 
-			omsg = TextMan.ParseTags(omsg, owner.show_colors, owner.show_highlight,show_oimages)
-			fmsg = TextMan.ParseTags(fmsg, From.show_colors, From.show_highlight,show_fimages)
-
-			if(From != owner)
-				From << output(From.ParseMsg(From, fmsg, From.say_format), "cim_[ckey(owner.name)].output")
+			if(From != owner) From << output(From.ParseMsg(From, fmsg, From.say_format), "cim_[ckey(owner.name)].output")
 			owner << output(owner.ParseMsg(From, omsg, owner.say_format), "cim_[ckey(From.name)].output")

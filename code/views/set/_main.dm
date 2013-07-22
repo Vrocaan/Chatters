@@ -42,8 +42,6 @@ mob/chatter
 
 			if(winget(src, "misc.show_smileys", "is-checked")=="true") SetShowSmileys(1)
 			else SetShowSmileys()
-			if(winget(src, "misc.show_images", "is-checked")=="true") SetShowImages(1)
-			else SetShowImages()
 
 			SetShowTitle()
 			SetShowWelcome()
@@ -109,14 +107,6 @@ mob/chatter
 			else
 				winset(src, "style_colors.show_colors", "is-checked=false")
 				winset(src, "style_colors.no_colors", "is-checked=true")
-
-			if(forced_punctuation)
-				winset(src, "style_formats.forced", "is-checked=true")
-				winset(src, "style_formats.no_forced", "is-checked=false")
-
-			else
-				winset(src, "style_formats.forced", "is-checked=false")
-				winset(src, "style_formats.no_forced", "is-checked=true")
 
 			winset(src, "style_formats.chat_format", "text='[TextMan.escapeQuotes(list2text(say_format))]'")
 			winset(src, "style_formats.emote_format", "text='[TextMan.escapeQuotes(list2text(me_format))]'")

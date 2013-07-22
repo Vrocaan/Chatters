@@ -150,7 +150,7 @@ TextManager
 			return L
 
 
-		ParseTags(msg, Color, Highlight, Images)
+		ParseTags(msg, Color, Highlight)
 			if(!msg) return
 			var/i=1
 			for(var/T in tags)
@@ -187,9 +187,6 @@ TextManager
 							msg = copytext(msg, 1, pos) + copytext(msg, end + length(tags[T]))
 
 					else if(pos+length(T) < end)
-						if((T == "\[img]") && !Images)
-							pos = findtext(msg, T, pos+1)
-							continue
 						var/temp = copytext(msg, 1, pos)
 						temp += html[i]
 						temp += copytext(msg, pos+length(T), end)

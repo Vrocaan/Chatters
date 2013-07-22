@@ -18,10 +18,6 @@ mob
 			default_output_style = "body { background-color: #ffffff; }"
 
 			show_smileys = TRUE
-			show_images = TRUE
-			forced_punctuation = FALSE
-
-			showwho = TRUE
 			show_title = TRUE
 			show_welcome = FALSE
 			show_motd = TRUE
@@ -35,7 +31,6 @@ mob
 			//
 			name_notify = FALSE
 
-			tmp/game_color
 			tmp/afk = FALSE
 			tmp/telnet = FALSE
 			tmp/away_at = 0
