@@ -7812,7 +7812,7 @@ window "default"
 	elem "default"
 		type = MAIN
 		pos = 281,0
-		size = 484x244
+		size = 800x600
 		anchor1 = none
 		anchor2 = none
 		font-family = ""
@@ -7850,7 +7850,7 @@ window "default"
 		on-close = ""
 	elem "label20"
 		type = LABEL
-		pos = 462,226
+		pos = 778,582
 		size = 28x20
 		anchor1 = 100,100
 		anchor2 = none
@@ -7903,7 +7903,7 @@ window "default"
 	elem "child"
 		type = CHILD
 		pos = 4,4
-		size = 476x236
+		size = 792x592
 		anchor1 = 0,0
 		anchor2 = 100,100
 		font-family = ""

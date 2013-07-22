@@ -6,8 +6,6 @@ Channel
 		desc
 		topic
 		locked
-		telnet_pass
-		telnet_attempts
 		QOTD
 
 		// spam controls
@@ -41,8 +39,6 @@ Channel
 			desc = params["Desc"]
 			topic = params["Topic"]
 			locked = text2num(params["Locked"]) ? 1 : 0
-			telnet_pass = params["TelPass"]
-			telnet_attempts = (text2num(params["TelAtmpts"]) || -1)
 		..()
 		chanbot = new /Bot(src)
 
@@ -84,17 +80,6 @@ Channel
 
 
 			if(Host == C) winset(C, "default", "menu=host")
-
-			if(!C.telnet && winget(C, "[ckey(name)].default_input", "is-disabled") == "true")
-						// Returning from a kick/ban
-				var/size = winget(C, "[ckey(name)].child", "size")
-				var/X = copytext(size, 1, findtext(size,"x"))
-				var/Y = text2num(copytext(size, findtext(size, "x")+1)) - 44
-				winset(C, null, "[window].set.is-visible=true;\
-								[window].help.is-visible=true;\
-								[window].default_input.is-disabled=false;\
-								[window].child.size=[X]x[Y];\
-								[window].child.pos=0,0;")
 
 			if(C.flip_panes) winset(C, "default.child", "left=[ckey(C.Chan.name)].who;right=[ckey(C.Chan.name)];splitter=20")
 			C.SetInterface(C.interface_color)

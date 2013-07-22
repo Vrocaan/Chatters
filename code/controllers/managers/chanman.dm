@@ -62,10 +62,6 @@ ChannelManager
 
 			var/list/S = params2list(config["server"])
 			if(S && S.len)
-
-				telnet_pass     = S["telnet_pass"]
-				telnet_attempts = (text2num(S["telnet_attempts"]) || -1)
-
 				var/ChanName  = S["name"]
 				var/Founder   = S["founder"]
 				var/ChanDesc  = S["desc"]
@@ -90,9 +86,7 @@ ChannelManager
 					"Publicity"=Publicity,
 					"Desc"=ChanDesc,
 					"Topic"=ChanTopic,
-					"Locked"=Locked,
-					"TelPass"=telnet_pass,
-					"TelAtmpts"=telnet_attempts))
+					"Locked"=Locked))
 				if(Publicity != "public") world.visibility = 0
 
 				Home.chanbot.SetName(botName)
