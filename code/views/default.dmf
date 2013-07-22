@@ -11040,6 +11040,32 @@ window "who"
 		macro = ""
 		menu = ""
 		on-close = ""
+	elem "label5"
+		type = LABEL
+		pos = 4,24
+		size = 116x6
+		anchor1 = 0,0
+		anchor2 = 100,0
+		font-family = ""
+		font-size = 0
+		font-style = ""
+		text-color = #000000
+		background-color = #ffffff
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = ""
+		on-size = ""
+		text = ""
+		image = ""
+		image-mode = center
+		keep-aspect = false
+		align = center
+		text-wrap = false
 	elem "interfacebar_7"
 		type = LABEL
 		pos = 4,20
@@ -11094,8 +11120,8 @@ window "who"
 		text-wrap = false
 	elem "grid"
 		type = GRID
-		pos = 4,24
-		size = 116x216
+		pos = 4,30
+		size = 116x210
 		anchor1 = 0,0
 		anchor2 = 100,100
 		font-family = "Trebuchet MS,Arial"
