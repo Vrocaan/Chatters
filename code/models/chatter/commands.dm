@@ -323,87 +323,41 @@ mob
 						alert("You are no longer ignoring [target].", "Unignoring chatter")
 				ChatMan.Save(src)
 
-			Ignoring(mob/target as text|null|anything in ignoring)
+			ListIgnored(mob/target as text|null|anything in ignoring)
 				if(!ignoring || !ignoring.len)
-					if(src.Chan)
-						src << output("You are not currently ignoring any chatters.", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are not currently ignoring any chatters.", "No chatters ignored")
+					Home.chanbot.Say("You are not currently ignoring any chatters.", src)
 					return
-				if(!target)
-					var/ignored
-					for(var/i in ignoring)
-						var/scoped
-						if((ignoring[i] & FULL_IGNORE)) scoped = "Full ignore"
-						else
-							if((ignoring[i] & IM_IGNORE))
-								if(!scoped) scoped = "IMs"
-								else scoped += ", IMs"
-							if((ignoring[i] & CHAT_IGNORE))
-								if(!scoped) scoped = "chat"
-								else scoped += ", chat"
-							if((ignoring[i] & FADE_IGNORE))
-								if(!scoped) scoped = "fade name"
-								else scoped += ", fade name"
-							if((ignoring[i] & COLOR_IGNORE))
-								if(!scoped) scoped = "colors"
-								else scoped += ", colors"
-							if((ignoring[i] & SMILEY_IGNORE))
-								if(!scoped) scoped = "smileys"
-								else scoped += ", smileys"
-							if((ignoring[i] & IMAGES_IGNORE))
-								if(!scoped) scoped = "images"
-								else scoped += ", images"
-							if((ignoring[i] & FILES_IGNORE))
-								if(!scoped) scoped = "files"
-								else scoped += ", files"
-						ignored += "\n[i] - [scoped]"
-					if(src.Chan)
-						src << output("You are currently ignoring the following chatters.[ignored]", "[ckey(Home.name)].chat.default_output")
+
+				var/ignored
+				for(var/i in ignoring)
+					var/scoped
+					if((ignoring[i] & FULL_IGNORE)) scoped = "full ignore"
 					else
-						alert("You are currently ignoring the following chatters.[ignored]", "Not Ignoring chatter")
-					return
-				if(ismob(target)) target = target.name
-				var/ign = ignoring(target)
-				if(!ign)
-					if(src.Chan)
-						src << output("You are not currently ignoring [target]", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are not currently ignoring [target]", "Not Ignoring chatter")
-					return
-				var/ignore_type = ""
-				if(!(ign & FULL_IGNORE))
-					if(ign & IM_IGNORE)
-						if(ign - IM_IGNORE)
-							ignore_type += "\n	- instant messages"
-					if(ign & CHAT_IGNORE)
-						if(ign - CHAT_IGNORE)
-							ignore_type += "\n	- chat messages"
-					if(ign & FADE_IGNORE)
-						if(ign - FADE_IGNORE)
-							ignore_type += "\n	- fade name"
-					if(ign & COLOR_IGNORE)
-						if(ign - COLOR_IGNORE)
-							ignore_type += "\n	- colors"
-					if(ign & SMILEY_IGNORE)
-						if(ign - SMILEY_IGNORE)
-							ignore_type += "\n	- smileys"
-					if(ign & IMAGES_IGNORE)
-						if(ign - IMAGES_IGNORE)
-							ignore_type += "\n	- images"
-					if(ign & FILES_IGNORE)
-						if(ign - FILES_IGNORE)
-							ignore_type += "\n	- files"
-				if(length(ignore_type))
-					if(src.Chan)
-						src << output("You are ignoring the following from [target]: [ignore_type]", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are ignoring the following from [target]: [ignore_type]", "Ignoring chatter")
-				else
-					if(src.Chan)
-						src << output("You are fully ignoring [target].", "[ckey(Home.name)].chat.default_output")
-					else
-						alert("You are fully ignoring [target].", "Ignoring chatter")
+						if((ignoring[i] & IM_IGNORE))
+							if(!scoped) scoped = "IMs"
+							else scoped += ", IMs"
+						if((ignoring[i] & CHAT_IGNORE))
+							if(!scoped) scoped = "chat"
+							else scoped += ", chat"
+						if((ignoring[i] & FADE_IGNORE))
+							if(!scoped) scoped = "fade name"
+							else scoped += ", fade name"
+						if((ignoring[i] & COLOR_IGNORE))
+							if(!scoped) scoped = "colors"
+							else scoped += ", colors"
+						if((ignoring[i] & SMILEY_IGNORE))
+							if(!scoped) scoped = "smileys"
+							else scoped += ", smileys"
+						if((ignoring[i] & IMAGES_IGNORE))
+							if(!scoped) scoped = "images"
+							else scoped += ", images"
+						if((ignoring[i] & FILES_IGNORE))
+							if(!scoped) scoped = "files"
+							else scoped += ", files"
+					ignored += "<b>[i]</b> ([scoped]) "
+
+				Home.chanbot.Say("You are currently ignoring the following chatters: [ignored]", src)
+				return
 
 			Share()
 				if(winget(src, "showcontent", "is-visible") == "false")
@@ -415,6 +369,8 @@ mob
 					winshow(src, "showcontent", 0)
 
 			ShowCode(t as text|null|mob in Home.chatters)
+				set hidden = 1
+
 				if(telnet) return
 				if(afk) ReturnAFK()
 				var/showcode_snippet/S = new
@@ -453,6 +409,8 @@ mob
 				winset(src, "showcontent.content_input", "text=")
 
 			ShowText(t as text|null|mob in Home.chatters)
+				set hidden = 1
+
 				if(telnet) return
 				if(afk) ReturnAFK()
 				var/showcode_snippet/S = new
