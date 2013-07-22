@@ -8023,7 +8023,7 @@ window "help"
 		text-wrap = false
 	elem "label37"
 		type = LABEL
-		pos = 8,118
+		pos = 8,93
 		size = 343x20
 		anchor1 = none
 		anchor2 = none
@@ -8049,7 +8049,7 @@ window "help"
 		text-wrap = false
 	elem "label33"
 		type = LABEL
-		pos = 8,94
+		pos = 8,69
 		size = 343x20
 		anchor1 = none
 		anchor2 = none
@@ -8068,32 +8068,6 @@ window "help"
 		saved-params = ""
 		on-size = ""
 		text = "kText by Keeth"
-		image = ""
-		image-mode = center
-		keep-aspect = false
-		align = center
-		text-wrap = false
-	elem "label32"
-		type = LABEL
-		pos = 8,70
-		size = 343x20
-		anchor1 = none
-		anchor2 = none
-		font-family = "Trebuchet MS,Arial"
-		font-size = 10
-		font-style = ""
-		text-color = #000000
-		background-color = #e9e9e9
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = ""
-		on-size = ""
-		text = "RC5 by Air Mapster"
 		image = ""
 		image-mode = center
 		keep-aspect = false
