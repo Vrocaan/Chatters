@@ -310,11 +310,14 @@ Channel
 			chatters = SortWho(chatters)
 			C.icon_state = "away"
 			UpdateWho()
+			Home.chanbot.Say("You are now AFK.", C)
 			if(!ismute(C))
 				for(var/mob/chatter/c in chatters)
 					if(!(c.ignoring(C) & CHAT_IGNORE))
-						c << output("[c.ParseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now <b>AFK</b>. (Reason: [raw_msg])", "[ckey(name)].chat.default_output")
-			C << output("Your activity status is now set to Away From Keyboard.", "[ckey(name)].chat.default_output")
+						var/rsn = ""
+						if(ckey(raw_msg)) rsn = "([raw_msg])"
+
+						c << output("[c.ParseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now AFK. [rsn]", "[ckey(name)].chat.default_output")
 
 		ReturnAFK(mob/chatter/C)
 			if(!C) return
@@ -323,12 +326,12 @@ Channel
 			chatters = SortWho(chatters)
 			C.icon_state = "active"
 			UpdateWho()
+			Home.chanbot.Say("You are no longer AFK.", C)
 			if(!ismute(C))
 				for(var/mob/chatter/c in chatters)
 					if(!(c.ignoring(C) & CHAT_IGNORE))
 						c << output("[c.ParseTime()] <font color=[C.name_color]>[C.name]</font> is back from <b>AFK</b> after [round(((world.realtime - C.away_at)/600),1)] minute\s of inactivity.", "[ckey(name)].chat.default_output")
 			C.away_at = null
-			C << output("Your activity status is now set to Active Chatter.", "[ckey(name)].chat.default_output")
 
 		ismute(mob/M)
 			if(mute && mute.len)
