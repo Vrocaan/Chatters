@@ -79,9 +79,6 @@ Bot
 				if("locked")
 					if(value) Home.chanbot.SetLocked(value,1)
 					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> locked [(Home.locked ? Home.locked : "0")]", "console.output")
-				if("room-desc")
-					if(value) Home.chanbot.SetRoomDesc(value, 1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> room-desc [Home.room_desc]", "console.output")
 				else usr << output({"<font color=#090>@edit:</font>
 	name - <font color=#900>Bot name</font>
 	name-color - <font color=#900>Bot name color hex</font>

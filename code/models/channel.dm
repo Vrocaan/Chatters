@@ -16,9 +16,6 @@ Channel
 		max_msgs = 3
 		min_delay = 20
 
-		room_desc = "An average looking room."
-		room_desc_size
-
 		Bot
 			chanbot
 		list
