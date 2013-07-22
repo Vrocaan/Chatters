@@ -8,14 +8,6 @@ Channel
 		locked
 		QOTD
 
-		// spam controls
-		spam_control =1
-		spam_limit = 3
-		flood_limit = 3
-		smileys_limit = 10
-		max_msgs = 3
-		min_delay = 20
-
 		Bot
 			chanbot
 		list
@@ -206,7 +198,6 @@ Channel
 
 			if(!clean)
 				msg = TextMan.Sanitize(msg)
-				chanbot.SpamTimer(C, msg)
 
 			var/raw_msg = msg
 
@@ -242,7 +233,6 @@ Channel
 			smsg = TextMan.ParseLinks(smsg)
 
 			msg = TextMan.ParseLinks(msg)
-			chanbot.SpamTimer(C, msg)
 
 			if(!window) window = "[ckey(name)].chat.default_output"
 
@@ -269,7 +259,6 @@ Channel
 			smsg = TextMan.ParseLinks(smsg)
 
 			msg = TextMan.ParseLinks(msg)
-			chanbot.SpamTimer(C, msg)
 
 			if(!window) window = "[ckey(name)].chat.default_output"
 

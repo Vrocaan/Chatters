@@ -73,13 +73,6 @@ ChannelManager
 				var/botNameColor   = S["bot_name_color"]
 				var/botTextColor   = S["bot_text_color"]
 
-				var/botSpamControls= text2num(S["bot_spam_control"]) ? 1 : 0
-				var/botSpamLimit   = text2num(S["bot_spam_limit"])
-				var/botFloodLimit  = text2num(S["bot_flood_limit"])
-				var/botSmileysLimit= text2num(S["bot_smileys_limit"])
-				var/botMaxMsgs     = text2num(S["bot_max_msgs"])
-				var/botMinDelay    = text2num(S["bot_min_delay"])
-
 				Home = new(list(
 					"Founder"=Founder,
 					"Name"=ChanName,
@@ -92,12 +85,6 @@ ChannelManager
 				Home.chanbot.SetName(botName)
 				Home.chanbot.SetNameColor("#"+botNameColor)
 				Home.chanbot.SetTextColor("#"+botTextColor)
-				Home.chanbot.SetSpamControl(botSpamControls)
-				Home.chanbot.SetSpamLimit(botSpamLimit)
-				Home.chanbot.SetFloodLimit(botFloodLimit)
-				Home.chanbot.SetSmileysLimit(botSmileysLimit)
-				Home.chanbot.SetMaxMsgs(botMaxMsgs)
-				Home.chanbot.SetMinDelay(botMinDelay)
 
 				if(muteList && muteList.len)
 					Home.mute = new

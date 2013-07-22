@@ -35,9 +35,6 @@ mob
 			tmp/telnet = FALSE
 			tmp/away_at = 0
 			tmp/away_reason
-			tmp/spam_num
-			tmp/flood_flag
-			tmp/flood_num
 			tmp/list/msgs
 			tmp/Channel/Chan
 			tmp/ColorView/CV

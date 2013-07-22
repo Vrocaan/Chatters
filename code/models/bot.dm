@@ -49,24 +49,6 @@ Bot
 				if("text-color")
 					if(value) Home.chanbot.SetTextColor(value,1)
 					usr << output("<font color=#090>@edit:</font> <font color=#900>Bot</font> text-color [(Home.chanbot.text_color | "#000")]", "console.output")
-				if("spam-control")
-					if(value) Home.chanbot.SetSpamControl(text2num(value),1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> spam-control [(Home.spam_control ? Home.spam_control : "0")]", "console.output")
-				if("spam-limit")
-					if(value) Home.chanbot.SetSpamLimit(text2num(value),1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> spam-limit [(Home.spam_limit ? Home.spam_limit : "0")]", "console.output")
-				if("flood-limit")
-					if(value) Home.chanbot.SetFloodLimit(text2num(value),1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> flood-limit [(Home.flood_limit ? Home.flood_limit : "0")]", "console.output")
-				if("smileys-limit")
-					if(value) Home.chanbot.SetSmileysLimit(text2num(value),1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> smileys-limit [(Home.smileys_limit ? Home.smileys_limit : "0")]", "console.output")
-				if("max-msgs")
-					if(value) Home.chanbot.SetMaxMsgs(text2num(value),1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> max-msgs [(Home.max_msgs ? Home.max_msgs : "0")]", "console.output")
-				if("min-delay")
-					if(value) Home.chanbot.SetMinDelay(text2num(value),1)
-					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> min-delay [(Home.min_delay ? Home.min_delay : "0")]", "console.output")
 				if("publicity")
 					if(value) Home.chanbot.SetPublicity(value,1)
 					usr << output("<font color=#090>@edit:</font> <font color=#009>Chan</font> publicity [Home.publicity]", "console.output")
@@ -253,36 +235,6 @@ _____________________ \[end of announcement\] _____________________
 			text_color = newColor
 			if(save) BotMan.SaveBot(src)
 
-		SetSpamControl(newValue,save)
-			Chan.spam_control = newValue
-			if(save) ChanMan.SaveHome()
-
-
-		SetSpamLimit(newValue,save)
-			Chan.spam_limit = newValue
-			if(save) ChanMan.SaveHome()
-
-
-		SetFloodLimit(newValue,save)
-			Chan.flood_limit = newValue
-			if(save) ChanMan.SaveHome()
-
-
-		SetSmileysLimit(newValue,save)
-			Chan.smileys_limit = newValue
-			if(save) ChanMan.SaveHome()
-
-
-		SetMaxMsgs(newValue,save)
-			Chan.max_msgs = newValue
-			if(save) ChanMan.SaveHome()
-
-
-		SetMinDelay(newValue,save)
-			Chan.min_delay = newValue
-			if(save) ChanMan.SaveHome()
-
-
 		SetPublicity(newValue,save)
 			world << "Setting publicity to [newValue]"
 			switch(newValue)
@@ -319,56 +271,3 @@ _____________________ \[end of announcement\] _____________________
 		SetRoomDesc(newValue,save)
 			call(usr, "RoomDesc")(newValue)
 			if(save) ChanMan.SaveHome()
-
-		SpamTimer(mob/chatter/C, msg)
-			if(!C || !C.Chan || !Chan.spam_control || (C==Host)) return
-			if((++C.flood_num) > Chan.max_msgs) C.flood_flag++
-			if(msg)
-				if((s_smileys(msg,1)) > Chan.smileys_limit) C.flood_flag++
-				if(msg in C.msgs)
-					if((++C.spam_num) >= Chan.spam_limit)
-						C.spam_num = 0
-						C.msgs.len = 0
-						kick_troll(C,"No spamming!")
-						return
-					C.msgs = stack(C.msgs, msg, 5)
-				else
-					if(C.spam_num) C.spam_num--
-					C.msgs = stack(C.msgs, msg, 5)
-			if(C.flood_flag > Chan.flood_limit)
-				C.flood_flag = 0
-				C.flood_num = 0
-				kick_troll(C,"No flooding!")
-				return
-			spawn(Chan.min_delay)
-				if(C.flood_num) C.flood_num--
-				if((!C.flood_num) && (C.flood_flag)) C.flood_flag--
-
-
-		kick_troll(mob/chatter/C, kick_msg)
-			if(!C || !C.Chan) return
-			if(!kick_msg) kick_msg = "Spam guard triggered."
-			Say("[C.name] has been kicked from [Chan.name].")
-			if(!ChatMan.istelnet(C.key))
-				// clear the chat window of everything but the output
-				// to reinforce that they are really out of the program
-				winset(C, "default", "menu=")
-				C << output(null, "[ckey(Chan.name)].chat.default_output")
-				winset(C, "[ckey(Chan.name)].child", "right=")
-				winset(C, "[ckey(Chan.name)].set", "is-visible=false")
-				winset(C, "[ckey(Chan.name)].help", "is-visible=false")
-				winset(C, "[ckey(Chan.name)].default_input", "is-disabled=true")
-
-				var/size = winget(C, "[ckey(Chan.name)].child", "size")
-				var/X = copytext(size, 1, findtext(size,"x"))
-				var/Y = text2num(copytext(size, findtext(size, "x")+1))+44
-				winset(C, "[ckey(Chan.name)].child", "size=[X]x[Y];pos=0,0")
-
-				C << output("You have been kicked from [Chan.name]", "[ckey(Chan.name)].chat.default_output")
-				C << output("Reason: [kick_msg]", "[ckey(Chan.name)].chat.default_output")
-				C << output("<font color=red>Connection closed.", "[ckey(Chan.name)].chat.default_output")
-
-			Chan.chatters -= C
-			Chan.UpdateWho()
-
-			C.Logout() // omgwtfpwnt
