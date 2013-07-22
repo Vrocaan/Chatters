@@ -13,10 +13,10 @@ Messenger
 			if(!Name) return
 			var/mob/chatter/N = ChatMan.Get(Name)
 			if(!N)
-				alert(C, "[Name] is not currently online.", "Unable to Locate Chatter.")
+				Home.chanbot.Say("[Name] is not currently online.", C)
 				return
 			if(N.ignoring(C) & IM_IGNORE)
-				alert(C, "[Name] is ignoring instant messages from you.", "Unable to IM chatter.")
+				Home.chanbot.Say("[Name] is ignoring instant messages from you.", C)
 				return
 			Name = N.name
 		name = Name
