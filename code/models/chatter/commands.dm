@@ -313,7 +313,7 @@ mob
 						if((ignoring[i] & FILES_IGNORE))
 							if(!scoped) scoped = "files"
 							else scoped += ", files"
-					ignored += "<b>[i]</b> ([scoped]) "
+					ignored += "[i] ([scoped]) "
 
 				Home.chanbot.Say("You are currently ignoring the following chatters: [ignored]", src)
 				return
