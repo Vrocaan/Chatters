@@ -180,21 +180,6 @@ _____________________ \[end of announcement\] _____________________
 			text_color = newColor
 			if(save) BotMan.SaveBot(src)
 
-		SetPublicity(newValue,save)
-			world << "Setting publicity to [newValue]"
-			switch(newValue)
-				if("public")
-					Chan.publicity = newValue
-					world.visibility = 1
-				if("private")
-					Chan.publicity = newValue
-					world.visibility = 0
-				if("invisible")
-					Chan.publicity = newValue
-					world.visibility = 0
-			if(save) ChanMan.SaveHome()
-
-
 		SetDesc(newValue,save)
 			Chan.desc = newValue
 			if(save) ChanMan.SaveHome()
@@ -206,10 +191,6 @@ _____________________ \[end of announcement\] _____________________
 				if(ChatMan.istelnet(C.key)) continue
 				if(!C.client) continue
 				winset(C, "[ckey(Chan.name)].topic_label", "text='[TextMan.escapeQuotes(newValue)]';")
-			if(save) ChanMan.SaveHome()
-
-		SetLocked(newValue,save)
-			Chan.locked = newValue
 			if(save) ChanMan.SaveHome()
 
 		SetRoomDesc(newValue,save)

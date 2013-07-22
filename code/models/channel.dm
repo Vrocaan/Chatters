@@ -2,10 +2,8 @@ Channel
 	var
 		founder
 		name
-		publicity
 		desc
 		topic
-		locked
 		QOTD
 
 		Bot
@@ -24,10 +22,8 @@ Channel
 			founder = params["Founder"]
 			if(!founder) founder = Host.name
 			name = params["Name"]
-			publicity = params["Publicity"]
 			desc = params["Desc"]
 			topic = params["Topic"]
-			locked = text2num(params["Locked"]) ? 1 : 0
 		..()
 		chanbot = new /Bot(src)
 

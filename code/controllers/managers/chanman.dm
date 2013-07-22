@@ -66,8 +66,6 @@ ChannelManager
 				var/Founder   = S["founder"]
 				var/ChanDesc  = S["desc"]
 				var/ChanTopic = S["topic"]
-				var/Publicity = S["publicity"]
-				var/Locked    = S["locked"]
 
 				var/botName        = S["bot_name"]
 				var/botNameColor   = S["bot_name_color"]
@@ -76,11 +74,8 @@ ChannelManager
 				Home = new(list(
 					"Founder"=Founder,
 					"Name"=ChanName,
-					"Publicity"=Publicity,
 					"Desc"=ChanDesc,
-					"Topic"=ChanTopic,
-					"Locked"=Locked))
-				if(Publicity != "public") world.visibility = 0
+					"Topic"=ChanTopic))
 
 				Home.chanbot.SetName(botName)
 				Home.chanbot.SetNameColor("#"+botNameColor)
