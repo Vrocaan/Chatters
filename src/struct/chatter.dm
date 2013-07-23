@@ -1,6 +1,6 @@
 mob
 	chatter
-		icon = 'resources/icons/who.dmi'
+		icon = 'rsc/icons/who.dmi'
 		icon_state = "active"
 
 		var

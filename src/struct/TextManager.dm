@@ -92,7 +92,7 @@ TextManager
 
 					continue
 
-				R += s_smileys(c, 0, './resources/icons/smileys.dmi')
+				R += s_smileys(c, 0, './rsc/icons/smileys.dmi')
 
 			msg = textutil.list2text(R, "")
 
