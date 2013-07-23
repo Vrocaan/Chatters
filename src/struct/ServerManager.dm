@@ -65,7 +65,7 @@ ServerManager
 		loadServerCfg()
 			if(!fexists("./data/server.cfg")) CRASH("You must have a server.cfg file in /data!")
 
-			var/list/config = loadCFG("./data/server.cfg")
+			var/list/config = parseCFGFile("./data/server.cfg")
 			if(!config || !length(config)) return
 
 			var/list/main = params2list(config["main"])
@@ -104,7 +104,7 @@ ServerManager
 						var/op_key = ckey(op_list[name])
 						home.operators += op_key
 
-		loadCFG(cfg)
+		parseCFGFile(cfg)
 			if(!cfg || !fexists(cfg)) return
 
 			var
