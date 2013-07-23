@@ -64,6 +64,8 @@ mob
 
 				refreshAllSettings()
 
+				spawn() inactivityLoop()
+
 			// Telnet users login differently
 			else
 				//Set options suited for telnet.
@@ -73,22 +75,6 @@ mob
 				show_highlight = FALSE
 
 				server_manager.home.join(src)
-
-		Stat()
-			..()
-
-			if(telnet) return
-			if(auto_away && (auto_away < client.inactivity/600) && !afk) afk(auto_reason)
-			if(msg_handlers && length(msg_handlers))
-				for(var/msg_handler in msg_handlers)
-					var/open = winget(src, "cim_[msg_handler]", "is-visible")
-					if(open == "false")
-						src << output(null, "cim_[msg_handler].output")
-						winset(src, "cim_[msg_handler].input", "text=")
-						var/Messenger/M = msg_handlers[msg_handler]
-
-						msg_handlers -= msg_handler
-						del(M)
 
 		Click()
 			var/Messenger/im = new(usr, key)
@@ -104,6 +90,11 @@ mob
 			if(!client) del(src)
 
 		proc
+			inactivityLoop()
+				while(src)
+					if(auto_away && (auto_away < client.inactivity/600) && !afk) afk(auto_reason)
+					sleep(100)
+
 			colorDisplay(scope)
 				if(!scope) return
 				color_scope = scope
