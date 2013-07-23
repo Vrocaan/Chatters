@@ -1,12 +1,9 @@
 Channel
 	var
-		founder
 		name
 		desc
 		topic
 		qotd
-
-		Bot/chanbot
 
 		list
 			chatters
@@ -17,26 +14,17 @@ Channel
 
 	New(params[])
 		if(params)
-			founder = params["founder"]
-			if(!founder) founder = host_ckey
-
 			name = params["name"]
 			desc = params["desc"]
 			topic = params["topic"]
 
 		..()
 
-		if(fexists("./data/saves/channels/[ckey(name)].sav")) chanbot = bot_manager.loadBot(src)
-		else chanbot = new/Bot(src)
-
 	proc
 		join(mob/chatter/C)
 			if(!C || !C.client)
 				del(C)
 				return
-
-			if(C.Chan == src) return
-			C.Chan = src
 
 			winclone(C, "channel", ckey(name))
 			winclone(C, "who", "[ckey(name)].who")
@@ -70,11 +58,11 @@ Channel
 
 					return
 
-			if(C.flip_panes) winset(C, "default.child", "left=[ckey(C.Chan.name)].who;right=[ckey(C.Chan.name)];splitter=20")
+			if(C.flip_panes) winset(C, "default.child", "left=[ckey(server_manager.home.name)].who;right=[ckey(server_manager.home.name)];splitter=20")
 			C.setInterfaceColor(C.interface_color)
 
 			winshow(C, ckey(name), 1)
-			winset(C, "[ckey(home_channel.name)].chat.default_output", "style='[C.default_output_style]';")
+			winset(C, "[ckey(server_manager.home.name)].chat.default_output", "style='[C.default_output_style]';")
 
 			C << output("<center>- - - - - - - - - - - - - - -", "[ckey(name)].chat.default_output")
 
@@ -111,18 +99,17 @@ Channel
 			C.icon_state = "active"
 			updateWho()
 
-			world.status = "[home_channel.name] founded by [home_channel.founder] ([length(home_channel.chatters)] chatter\s)"
+			world.status = "[server_manager.home.name] ([length(server_manager.home.chatters)] chatter\s)"
 
-			winset(C, "[ckey(home_channel.name)].default_input", "text='> ';focus=true;")
+			winset(C, "[ckey(server_manager.home.name)].default_input", "text='> ';focus=true;")
 
-			chanbot.say("[C.name] has joined [name].")
-			chanbot.say("You have joined [name] founded by [founder].", C)
-			chanbot.say("[topic]", C)
+			server_manager.bot.say("[C.name] has joined [name].")
+			server_manager.bot.say("[topic]", C)
 
 			if(C.client.address)
 				for(var/_ck in operators)
-					var/mob/chatter/op = chat_manager.getByKey(_ck)
-					if(op) chanbot.say("[C.name]'s IP: [C.client.address]", op)
+					var/mob/chatter/op = chatter_manager.getByKey(_ck)
+					if(op) server_manager.bot.say("[C.name]'s IP: [C.client.address]", op)
 
 		quit(mob/chatter/C)
 			if(!C)
@@ -133,21 +120,19 @@ Channel
 
 				return
 
-			C.Chan = null
-
 			if(chatters) chatters -= C
 			if(!length(chatters)) chatters = null
 
 			updateWho()
 
-			chanbot.say("[C.name] has quit [name].")
+			server_manager.bot.say("[C.name] has quit [name].")
 
-			if(C && chat_manager.isTelnet(C.key))
+			if(C && chatter_manager.isTelnet(C.key))
 				C.Logout()
 
 		updateWho()
 			for(var/mob/chatter/C in chatters)
-				if(!chat_manager.isTelnet(C.key))
+				if(!chatter_manager.isTelnet(C.key))
 					for(var/i = 1, i <= length(chatters), i ++)
 						var/mob/chatter/c = chatters[i]
 						if(isnull(c))
@@ -158,13 +143,13 @@ Channel
 						if(C.client) winset(C, "[ckey(name)].who.grid", "current-cell=1,[i]")
 						var/n = c.name
 
-						if(!chat_manager.isTelnet(c.key) && c.afk)
+						if(!chatter_manager.isTelnet(c.key) && c.afk)
 							if(C.client)
-								if(!(c.ckey in C.Chan.operators)) winset(C, "[ckey(name)].who.grid", "style='body{color: gray;}'")
+								if(!(c.ckey in server_manager.home.operators)) winset(C, "[ckey(name)].who.grid", "style='body{color: gray;}'")
 								else winset(C, "[ckey(name)].who.grid", "style='body{color:gray;font-weight:bold}'")
 
-						else if(c.ckey in C.Chan.operators) if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
-						else if(c.ckey in C.Chan.mute) if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
+						else if(c.ckey in server_manager.home.operators) if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
+						else if(c.ckey in server_manager.home.mute) if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
 						else if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];}'")
 
 						C << output(c, "[ckey(name)].who.grid")
@@ -215,9 +200,9 @@ Channel
 
 		say(mob/chatter/C, msg, clean, window)
 			if(isMute(C))
-				chanbot.say("I'm sorry, but you appear to be muted.", C)
+				server_manager.bot.say("I'm sorry, but you appear to be muted.", C)
 				if(textutil.hasPrefix(C.ckey, "guest"))
-					chanbot.say("Please login with your registered key, or visit http://www.byond.com/ to create a new key now.",C)
+					server_manager.bot.say("Please login with your registered key, or visit http://www.byond.com/ to create a new key now.",C)
 
 				return
 
@@ -250,7 +235,7 @@ Channel
 
 		me(mob/chatter/C, msg, clean, window)
 			if(isMute(C))
-				chanbot.say("I'm sorry, but you appear to be muted.", C)
+				server_manager.bot.say("I'm sorry, but you appear to be muted.", C)
 				return
 
 			msg = copytext(msg, 1, 1024)
@@ -279,7 +264,7 @@ Channel
 
 		my(mob/chatter/C, msg, clean, window)
 			if(isMute(C))
-				chanbot.say("I'm sorry, but you appear to be muted.",C)
+				server_manager.bot.say("I'm sorry, but you appear to be muted.",C)
 				return
 
 			msg = copytext(msg, 1, 1024)
@@ -306,7 +291,7 @@ Channel
 					if(parsed_msg) c << output(parsed_msg, "[window]")
 
 		goAFK(mob/chatter/C, msg)
-			if(chat_manager.isTelnet(C.key))
+			if(chatter_manager.isTelnet(C.key))
 				return
 
 			C.afk = TRUE
@@ -320,7 +305,7 @@ Channel
 			chatters = sortWho(chatters)
 			C.icon_state = "away"
 			updateWho()
-			home_channel.chanbot.say("You are now AFK.", C)
+			server_manager.bot.say("You are now AFK.", C)
 
 			if(!isMute(C))
 				for(var/mob/chatter/c in chatters)
@@ -340,7 +325,7 @@ Channel
 
 			updateWho()
 
-			home_channel.chanbot.say("You are no longer AFK.", C)
+			server_manager.bot.say("You are no longer AFK.", C)
 
 			if(!isMute(C))
 				for(var/mob/chatter/c in chatters)

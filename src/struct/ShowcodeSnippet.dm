@@ -1,4 +1,4 @@
-showcode_snippet
+ShowcodeSnippet
 	var
 		id
 		owner = ""
@@ -10,11 +10,11 @@ showcode_snippet
 	New()
 		..()
 		// Generates a unique ID for the code snippet based off the global array showcodes.
-		if(!home_channel.showcodes)
-			home_channel.showcodes = list()
+		if(!server_manager.home.showcodes)
+			server_manager.home.showcodes = list()
 
-		id = length(home_channel.showcodes) + 1
-		home_channel.showcodes += src
+		id = length(server_manager.home.showcodes) + 1
+		server_manager.home.showcodes += src
 
 	proc
 		returnHTML(mob/chatter/C, code = 0)
@@ -60,10 +60,12 @@ showcode_snippet
 		send(code = 0)
 			if(!target)
 				// This is shown to the channel.
-				home_channel.chanbot.rawSay("Click <a href='byond://?src=\ref[chat_manager]&target=\ref[chat_manager.getByKey(owner)]&action=show[code ? "code" : "text"]&index=[id]'>here</a> to view [owner]'s [code ? "code" : "text"] snippet.")
+				server_manager.bot.rawSay("Click <a href='byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(owner)]&action=show[code ? "code" : "text"]&index=[id]'>here</a> to view [owner]'s [code ? "code" : "text"] snippet.")
 
 			else
-				var/messenger/im = new(chat_manager.getByKey(owner), target)
-				im.display(chat_manager.getByKey(owner))
+				var
+					Messenger/im = new(chatter_manager.getByKey(owner), target)
+					mob/chatter/o = chatter_manager.getByKey(owner)
 
-				routeMsg(chat_manager.getByKey(owner), chat_manager.getByKey(target), "[owner] has sent a private [code ? "code" : "text"] snippet.  <a href='byond://?src=\ref[chat_manager]&target=\ref[chat_manager.getByKey(owner)]&action=show[code ? "code" : "text"]&index=[id]'>Show [code ? "Code" : "Text"]</a>", 1)
+				im.display(o)
+				o.msg_hand.routeMsg(o, chatter_manager.getByKey(target), "[owner] has sent a private [code ? "code" : "text"] snippet.  <a href='byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(owner)]&action=show[code ? "code" : "text"]&index=[id]'>Show [code ? "Code" : "Text"]</a>", 1)

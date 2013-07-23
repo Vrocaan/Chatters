@@ -271,13 +271,13 @@ TextManager
 
 			var/qotd = quote_manager.getQOTD()
 
-			home_channel.qotd = text_manager.parseTags(qotd, trg.show_colors, trg.show_highlight)
+			server_manager.home.qotd = text_manager.parseTags(qotd, trg.show_colors, trg.show_highlight)
 
-			if(home_channel.qotd)
-				if(trg.show_colors) trg << output("<center><b>[fadeText("Developer Quote of the Day", list("255000000","000000000"))]</b>", "[ckey(trg.Chan.name)].chat.default_output")
-				else trg << output("<center><b>Developer Quote of the Day</b>", "[ckey(trg.Chan.name)].chat.default_output")
+			if(server_manager.home.qotd)
+				if(trg.show_colors) trg << output("<center><b>[fadeText("Developer Quote of the Day", list("255000000","000000000"))]</b>", "[ckey(server_manager.home.name)].chat.default_output")
+				else trg << output("<center><b>Developer Quote of the Day</b>", "[ckey(server_manager.home.name)].chat.default_output")
 
-				trg << output("<center><i style='font-family: Arial'>[home_channel.qotd]</i></center>", "[ckey(trg.Chan.name)].chat.default_output")
+				trg << output("<center><i style='font-family: Arial'>[server_manager.home.qotd]</i></center>", "[ckey(server_manager.home.name)].chat.default_output")
 
 		// Simple string matching procedure.
 		// Crashed, C*a*h*d will match.

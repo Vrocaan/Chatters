@@ -1,8 +1,8 @@
 /*
-textutil by Keeth
+kText by Keeth
 */
 
-textutil
+kText
 	var
 		const
 			// padText() sides

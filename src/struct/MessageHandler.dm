@@ -1,4 +1,4 @@
-messageHandler
+MessageHandler
 	var/mob/chatter/owner
 
 	New(mob/chatter/C)
@@ -15,7 +15,7 @@ messageHandler
 				omsg = msg
 
 			if(!(ckey(from.name) in owner.msg_handlers))
-				var/messenger/im = new(owner, from.name)
+				var/Messenger/im = new(owner, from.name)
 				im.display(owner)
 
 			winset(owner, "cim_[ckey(from.name)]", "is-visible=true;")
@@ -32,13 +32,12 @@ messageHandler
 			if(from != owner) from << output(from.parseMsg(from, fmsg, from.say_format), "cim_[ckey(owner.name)].output")
 			owner << output(owner.parseMsg(from, omsg, owner.say_format), "cim_[ckey(from.name)].output")
 
-proc
-	routeMsg(mob/chatter/from, mob/chatter/trg, msg, clean)
-		if(!msg) return
+		routeMsg(mob/chatter/from, mob/chatter/trg, msg, clean)
+			if(!msg) return
 
-		if(trg.ignoring(from) & IM_IGNORE)
-			home_channel.chanbot.say("[trg.name] is ignoring instant messages from you.", from)
+			if(trg.ignoring(from) & IM_IGNORE)
+				server_manager.bot.say("[trg.name] is ignoring instant messages from you.", from)
 
-			return
+				return
 
-		trg.msg_hand.getMsg(from, msg, clean)
+			trg.msg_hand.getMsg(from, msg, clean)
