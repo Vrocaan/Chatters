@@ -82,11 +82,9 @@ ServerManager
 			if(server && length(server))
 				var
 					chan_name  = server["name"]
-					founder    = server["founder"]
-					chan_desc  = server["desc"]
 					chan_topic = server["topic"]
 
-				home = new(list("founder" = founder, "name" = chan_name, "desc" = chan_desc, "topic" = chan_topic))
+				home = new(list("name" = chan_name, "topic" = chan_topic))
 
 				if(mute_list && length(mute_list))
 					home.mute = new
