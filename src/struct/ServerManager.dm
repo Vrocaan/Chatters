@@ -41,12 +41,12 @@ ServerManager
 				S["operators"] >> temp
 				if(length(temp)) home.operators |= temp
 
-		saveBot(Bot/chanBot)
+		saveBot()
 			var/savefile/S = new("./data/server_bot.sav")
 
-			S["name"]		<< chanBot.name
-			S["name_color"]	<< chanBot.name_color
-			S["text_color"]	<< chanBot.text_color
+			S["name"]		<< bot.name
+			S["name_color"]	<< bot.name_color
+			S["text_color"]	<< bot.text_color
 
 		loadBot(Channel/Chan)
 			bot = new

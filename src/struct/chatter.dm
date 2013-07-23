@@ -81,13 +81,10 @@ mob
 			im.display(usr)
 
 		Logout()
-			if(server_manager.home) server_manager.home.quit(src)
+			if(server_manager)
+				server_manager.home.quit(src)
 
 			..()
-
-			sleep(50)
-
-			if(!client) del(src)
 
 		proc
 			inactivityLoop()
