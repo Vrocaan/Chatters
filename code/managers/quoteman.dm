@@ -12,12 +12,12 @@ QuoteManager
 			quotes = list()
 
 			var
-				f = kText.replaceText(file2text("data/quotes.txt"), "\n", "")
-				list/split = kText.text2list(f, ";;")
+				f = textutil.replaceText(file2text("data/quotes.txt"), "\n", "")
+				list/split = textutil.text2list(f, ";;")
 
 			for(var/q in split)
 				if(q)
-					var/list/qsplit = kText.text2list(q, "##")
+					var/list/qsplit = textutil.text2list(q, "##")
 
 					if(length(qsplit) >= 2)
 						var/Quote/quote = new

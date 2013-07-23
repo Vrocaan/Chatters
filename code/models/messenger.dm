@@ -1,27 +1,34 @@
-
-Messenger
+messenger
 	var
 		name
 		winname
-		MessageView
-			MsgView
+		messageView/MsgView
 
-	New(mob/chatter/C, Name)
+	New(mob/chatter/C, _name)
 		..()
-		if(!Name)
-			Name = input("Who would you like to send an instant message to?", "New IM") as text | null
-			if(!Name) return
-			var/mob/chatter/N = ChatMan.Get(Name)
+
+		if(!_name)
+			_name = input("Who would you like to send an instant message to?", "New IM") as text | null
+
+			if(!_name) return
+
+			var/mob/chatter/N = chat_manager.getByKey(_name)
+
 			if(!N)
-				Home.chanbot.Say("[Name] is not currently online.", C)
+				home_channel.chanbot.say("[_name] is not currently online.", C)
 				return
+
 			if(N.ignoring(C) & IM_IGNORE)
-				Home.chanbot.Say("[Name] is ignoring instant messages from you.", C)
+				home_channel.chanbot.say("[_name] is ignoring instant messages from you.", C)
 				return
-			Name = N.name
-		name = Name
+
+			_name = N.name
+
+		name = _name
+
 		winname = "cim_[ckey(name)]"
 		winclone(C,"cim",winname)
+
 		winset(C, "[winname]",			"title='[name] - CIM';")
 		winset(C, "[winname].name_label","text='[name]';")
 		winset(C, "[winname].ignore",	"command='Ignore \"[name]\" \"1\"'")
@@ -29,19 +36,20 @@ Messenger
 		winset(C, "[winname].input", "command='IM \"[name]\" \"'")
 		winset(C, "[winname].input", "focus=true")
 
-		winset(C, "[winname].output", "style='[TextMan.escapeQuotes(C.default_output_style)]';")
+		winset(C, "[winname].output", "style='[C.default_output_style]';")
 
-		winset(C, "[winname].interfacebar_3", "background-color='[TextMan.escapeQuotes(C.interface_color)]';")
-		winset(C, "[winname].interfacebar_4", "background-color='[TextMan.escapeQuotes(C.interface_color)]';")
+		winset(C, "[winname].interfacebar_3", "background-color='[C.interface_color]';")
+		winset(C, "[winname].interfacebar_4", "background-color='[C.interface_color]';")
 
-		if(!C.msgHandlers)
-			C.msgHandlers=new
-		C.msgHandlers += ckey(name)
-		C.msgHandlers[ckey(name)] = src
+		if(!C.msg_handlers)
+			C.msg_handlers = new
+
+		C.msg_handlers += ckey(name)
+		C.msg_handlers[ckey(name)] = src
 
 	Topic()
 		..()
 
 	proc
-		Display(mob/chatter/C)
+		display(mob/chatter/C)
 			winshow(C, winname, 1)

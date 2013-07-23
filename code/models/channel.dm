@@ -4,45 +4,49 @@ Channel
 		name
 		desc
 		topic
-		QOTD
+		qotd
 
-		Bot
-			chanbot
+		Bot/chanbot
+
 		list
 			chatters
 			operators
 			mute
 			banned
-			nodes
-			ballots
 			showcodes = list()
 
 	New(params[])
 		if(params)
-			founder = params["Founder"]
-			if(!founder) founder = Host.name
-			name = params["Name"]
-			desc = params["Desc"]
-			topic = params["Topic"]
+			founder = params["founder"]
+			if(!founder) founder = host_ckey
+
+			name = params["name"]
+			desc = params["desc"]
+			topic = params["topic"]
+
 		..()
-		chanbot = new /Bot(src)
+
+		if(fexists("./data/saves/channels/[ckey(name)].sav")) chanbot = bot_manager.loadBot(src)
+		else chanbot = new/Bot(src)
 
 	proc
-		Join(mob/chatter/C)
+		join(mob/chatter/C)
 			if(!C || !C.client)
-				del C
+				del(C)
 				return
 
 			if(C.Chan == src) return
 			C.Chan = src
+
 			winclone(C, "channel", ckey(name))
 			winclone(C, "who", "[ckey(name)].who")
 			winclone(C, "chat", "[ckey(name)].chat")
+
 			var/window = ckey(name)
 			winset(C, null, "[window].default_input.is-default=true;\
 							[window].chat.default_output.is-default=true;\
 							[window].chat.default_output.is-disabled=false;\
-							[window].topic_label.text='[TextMan.escapeQuotes(topic)]';\
+							[window].topic_label.text='[topic]';\
 							[window].child.left=[window].chat;\
 							[window].child.right=;\
 							default.child.right=[window].who;\
@@ -54,23 +58,23 @@ Channel
 			if(C.ckey in banned)
 				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "[ckey(name)].chat.default_output")
 				C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
-				del C
+				del(C)
+
 				return
 
-			if(kText.hasPrefix(C.ckey, "guest")) if("guest" in banned)
-				C << output("<font color='red'>Please login with your registered key, or visit <a href=\"http://www.byond.com/?invite=Cbgames\">http://www.byond.com/</a> to create a new key now.</font>", "[ckey(name)].chat.default_output")
-				C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
-				del C
-				return
+			if(textutil.hasPrefix(C.ckey, "guest"))
+				if("guest" in banned)
+					C << output("<font color='red'>Please login with your registered key, or visit <a href=\"http://www.byond.com/?invite=Cbgames\">http://www.byond.com/</a> to create a new key now.</font>", "[ckey(name)].chat.default_output")
+					C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
+					del(C)
 
-
-			if(Host == C) winset(C, "default", "menu=host")
+					return
 
 			if(C.flip_panes) winset(C, "default.child", "left=[ckey(C.Chan.name)].who;right=[ckey(C.Chan.name)];splitter=20")
-			C.SetInterface(C.interface_color)
+			C.setInterfaceColor(C.interface_color)
 
 			winshow(C, ckey(name), 1)
-			winset(C, "[ckey(Home.name)].chat.default_output", "style='[TextMan.escapeQuotes(C.default_output_style)]';")
+			winset(C, "[ckey(home_channel.name)].chat.default_output", "style='[C.default_output_style]';")
 
 			C << output("<center>- - - - - - - - - - - - - - -", "[ckey(name)].chat.default_output")
 
@@ -78,7 +82,7 @@ Channel
 				if(C.show_colors)
 					C << output({"<span style='text-align: center;'><b><font color='#0000ff'>[world.name] - Created by Xooxer</font></b></span>
 <span style='text-align: center;'><b><font color='#0000ff'>and the BYOND Community</font></b></span>
-<span style='text-align: center;'><b>[TextMan.fadetext("Still the greatest chat program on BYOND!", list("102000000","255000000","102000000","000000000","000000255"))]</b></span>
+<span style='text-align: center;'><b>[text_manager.fadeText("Still the greatest chat program on BYOND!", list("102000000","255000000","102000000","000000000","000000255"))]</b></span>
 <span style='text-align: center;'>Source available on the <a href='http://www.github.com/Stephen001/Chatters/'>Chatters Repository</a>.</span>
 <span style='text-align: center;'>Copyright (c) 2008 Andrew "Xooxer" Arnold</span>
 <span style='text-align: center;'><font color=red>- All Rights Reserved -</font></span>
@@ -93,223 +97,265 @@ Channel
 <span style='text-align: center;'>- All Rights  Reserved -</span>
 "}, "[ckey(name)].chat.default_output")
 
-			if(C.show_qotd) TextMan.QOTD(C)
-
-			if(C.show_welcome)
-				C << output("<center>[time2text(world.realtime+C.time_offset, list2text(C.long_date_format))]<br><b>Welcome, [C.name]!</b></center>", "[ckey(name)].chat.default_output")
+			if(C.show_qotd) text_manager.qotd(C)
+			if(C.show_welcome) C << output("<center>[time2text(world.realtime + C.time_offset, textutil.list2text(C.long_date_format, ""))]<br><b>Welcome, [C.name]!</b></center>", "[ckey(name)].chat.default_output")
 
 			C << output("<span style='text-align: center;'><b>Please report any issues with Chatters <a href='https://github.com/Stephen001/Chatters/issues?state=open'>here</a>!</b></span>", "[ckey(name)].chat.default_output")
-
 			C << output("<center>- - - - - - - - - - - - - - -</center>", "[ckey(name)].chat.default_output")
 
 			if(!chatters) chatters = new()
+
 			chatters += C
-			chatters = SortWho(chatters)
+			chatters = sortWho(chatters)
 
 			C.icon_state = "active"
-			UpdateWho()
+			updateWho()
 
-			world.status = "[Home.name] founded by [Home.founder] ([Home.chatters.len] chatter\s)"
+			world.status = "[home_channel.name] founded by [home_channel.founder] ([length(home_channel.chatters)] chatter\s)"
 
-			winset(C, "[ckey(Home.name)].default_input", "text='> ';focus=true;")
+			winset(C, "[ckey(home_channel.name)].default_input", "text='> ';focus=true;")
 
-			chanbot.Say("[C.name] has joined [name].")
-			chanbot.Say("You have joined [name] founded by [founder].",C)
-			chanbot.Say("[topic]",C)
+			chanbot.say("[C.name] has joined [name].")
+			chanbot.say("You have joined [name] founded by [founder].", C)
+			chanbot.say("[topic]", C)
 
 			if(C.client.address)
 				for(var/_ck in operators)
-					var/mob/chatter/op = ChatMan.Get(_ck)
-					if(op) chanbot.Say("[C.name]'s IP: [C.client.address]", op)
+					var/mob/chatter/op = chat_manager.getByKey(_ck)
+					if(op) chanbot.say("[C.name]'s IP: [C.client.address]", op)
 
-		Quit(mob/chatter/C)
+		quit(mob/chatter/C)
 			if(!C)
-				for(var/i=1 to chatters.len)
+				for(var/i = 1 to length(chatters))
 					if(!chatters[i]) chatters -= chatters[i]
-				UpdateWho()
+
+				updateWho()
+
 				return
 
 			C.Chan = null
 
 			if(chatters) chatters -= C
-			if(!chatters.len) chatters = null
+			if(!length(chatters)) chatters = null
 
-			UpdateWho()
+			updateWho()
 
-			chanbot.Say("[C.name] has quit [name].")
+			chanbot.say("[C.name] has quit [name].")
 
-			if(C && ChatMan.istelnet(C.key))
+			if(C && chat_manager.isTelnet(C.key))
 				C.Logout()
 
-		UpdateWho()
+		updateWho()
 			for(var/mob/chatter/C in chatters)
-				if(!ChatMan.istelnet(C.key))
-					for(var/i=1, i<=chatters.len, i++)
+				if(!chat_manager.isTelnet(C.key))
+					for(var/i = 1, i <= length(chatters), i ++)
 						var/mob/chatter/c = chatters[i]
 						if(isnull(c))
 							chatters -= chatters[i]
+
 							continue
+
 						if(C.client) winset(C, "[ckey(name)].who.grid", "current-cell=1,[i]")
 						var/n = c.name
-						if(!ChatMan.istelnet(c.key) && c.afk)
+
+						if(!chat_manager.isTelnet(c.key) && c.afk)
 							if(C.client)
 								if(!(c.ckey in C.Chan.operators)) winset(C, "[ckey(name)].who.grid", "style='body{color: gray;}'")
 								else winset(C, "[ckey(name)].who.grid", "style='body{color:gray;font-weight:bold}'")
 
-						else if(c.ckey in C.Chan.operators)
-							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
-						else if(c.ckey in C.Chan.mute)
-							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
-						else
-							if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];}'")
+						else if(c.ckey in C.Chan.operators) if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
+						else if(c.ckey in C.Chan.mute) if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
+						else if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];}'")
+
 						C << output(c, "[ckey(name)].who.grid")
 						c.name = n
-				if(C.client)
-					winset(C, "[ckey(name)].who.grid", "cells=1x[chatters.len]")
 
-		SortWho(list/L)
-			var/list/AFK
+				if(C.client)
+					winset(C, "[ckey(name)].who.grid", "cells=1x[length(chatters)]")
+
+		sortWho(list/L)
+			var/list/afk_list
+
 			for(var/mob/chatter/C in L)
 				if(C.afk)
-					if(!AFK) AFK = new
-					L -= C
-					AFK += C
-					if(!L.len) L = null
-			L = ListMan.atomSort(L)
-			AFK = ListMan.atomSort(AFK)
-			if(L && AFK)
-				return L + AFK
-			else if(AFK)
-				return AFK
-			else
-				return L
+					if(!afk_list)
+						afk_list = new
 
-		Say(mob/chatter/C, msg, clean, window)
-			if(ismute(C))
-				chanbot.Say("I'm sorry, but you appear to be muted.", C)
-				if(kText.hasPrefix(C.ckey, "guest")) chanbot.Say("Please login with your registered key, or visit http://www.byond.com/ to create a new key now.",C)
+					L -= C
+					afk_list += C
+
+					if(!length(L))
+						L = null
+
+			L = atomSort(L)
+			afk_list = atomSort(afk_list)
+
+			if(L && afk_list) return L + afk_list
+			else if(afk_list) return afk_list
+			else return L
+
+		atomSort(list/L = list())
+			var
+				atom/A1
+				atom/A2
+
+			if(length(L) > 1)
+				for(var/i = length(L), i > 0, i --)
+					for(var/j = 1, j < i, j ++)
+						A1 = L[j]
+						A2 = L[j + 1]
+
+						if(!istype(A1) || !istype(A2)) continue
+						if(ckey(A1.name) > ckey(A2.name))
+							L.Swap(j, j + 1)
+
+			if(!length(L)) L = null
+
+			return L
+
+		say(mob/chatter/C, msg, clean, window)
+			if(isMute(C))
+				chanbot.say("I'm sorry, but you appear to be muted.", C)
+				if(textutil.hasPrefix(C.ckey, "guest"))
+					chanbot.say("Please login with your registered key, or visit http://www.byond.com/ to create a new key now.",C)
+
 				return
 
 			msg = copytext(msg, 1, 1024)
 
 			if(!clean)
-				msg = TextMan.Sanitize(msg)
+				msg = text_manager.sanitize(msg)
 
-			var/raw_msg = msg
+			var
+				raw_msg = msg
+				smsg = text_manager.parseSmileys(msg)
 
-			var/smsg = TextMan.ParseSmileys(msg)
-			smsg = TextMan.ParseLinks(smsg)
-
-			msg = TextMan.ParseLinks(msg)
+			smsg = text_manager.parseLinks(smsg)
+			msg = text_manager.parseLinks(msg)
 
 			if(!window) window = "[ckey(name)].chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
-				if(c.ignoring(C) & CHAT_IGNORE) continue
+				if(c.ignoring(C) & CHAT_IGNORE)
+					continue
+
 				var/message = raw_msg
-				if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(raw_msg)
-				message = TextMan.ParseLinks(message)
-				message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-				var/Parsedmsg = c.ParseMsg(C,message,c.say_format)
-				if(Parsedmsg) c << output(Parsedmsg, "[window]")
+				if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = text_manager.parseSmileys(raw_msg)
 
+				message = text_manager.parseLinks(message)
+				message = text_manager.parseTags(message, c.show_colors, c.show_highlight, 0)
 
-		Me(mob/chatter/C, msg, clean, window)
-			if(ismute(C))
-				chanbot.Say("I'm sorry, but you appear to be muted.",C)
+				var/parsed_msg = c.parseMsg(C, message, c.say_format)
+				if(parsed_msg) c << output(parsed_msg, "[window]")
+
+		me(mob/chatter/C, msg, clean, window)
+			if(isMute(C))
+				chanbot.say("I'm sorry, but you appear to be muted.", C)
 				return
 
 			msg = copytext(msg, 1, 1024)
 
-			if(!clean) msg = TextMan.Sanitize(msg)
+			if(!clean) msg = text_manager.sanitize(msg)
 
-			var/raw_msg = msg
+			var
+				raw_msg = msg
+				smsg = text_manager.parseSmileys(msg)
 
-			var/smsg = TextMan.ParseSmileys(msg)
-			smsg = TextMan.ParseLinks(smsg)
-
-			msg = TextMan.ParseLinks(msg)
+			smsg = text_manager.parseLinks(smsg)
+			msg = text_manager.parseLinks(msg)
 
 			if(!window) window = "[ckey(name)].chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
 				if(!c.ignoring(C))
 					var/message
-					if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(raw_msg)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					var/Parsedmsg = c.ParseMsg(C,message,c.me_format, 1)
-					if(Parsedmsg) c << output(Parsedmsg, "[window]")
+					if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = text_manager.parseSmileys(raw_msg)
 
-		My(mob/chatter/C, msg, clean, window)
-			if(ismute(C))
-				chanbot.Say("I'm sorry, but you appear to be muted.",C)
+					message = text_manager.parseLinks(message)
+					message = text_manager.parseTags(message, c.show_colors, c.show_highlight, 0)
+
+					var/parsed_msg = c.parseMsg(C,message, c.me_format, 1)
+					if(parsed_msg) c << output(parsed_msg, "[window]")
+
+		my(mob/chatter/C, msg, clean, window)
+			if(isMute(C))
+				chanbot.say("I'm sorry, but you appear to be muted.",C)
 				return
 
 			msg = copytext(msg, 1, 1024)
-			if(!clean) msg = TextMan.Sanitize(msg)
+			if(!clean) msg = text_manager.sanitize(msg)
 
-			var/raw_msg = msg
+			var
+				raw_msg = msg
+				smsg = text_manager.parseSmileys(msg)
 
-			var/smsg = TextMan.ParseSmileys(msg)
-			smsg = TextMan.ParseLinks(smsg)
-
-			msg = TextMan.ParseLinks(msg)
+			smsg = text_manager.parseLinks(smsg)
+			msg = text_manager.parseLinks(msg)
 
 			if(!window) window = "[ckey(name)].chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
 				if(!c.ignoring(C))
 					var/message
-					if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = TextMan.ParseSmileys(raw_msg)
-					message = TextMan.ParseLinks(message)
-					message = TextMan.ParseTags(message, c.show_colors, c.show_highlight,0)
-					var/Parsedmsg = c.ParseMsg(C,message,c.me_format, 2)
-					if(Parsedmsg) c << output(Parsedmsg, "[window]")
+					if(c.show_smileys && !(c.ignoring(C) & SMILEY_IGNORE)) message = text_manager.parseSmileys(raw_msg)
 
-		GoAFK(mob/chatter/C, msg)
-			if(ChatMan.istelnet(C.key)) return
+					message = text_manager.parseLinks(message)
+					message = text_manager.parseTags(message, c.show_colors, c.show_highlight, 0)
+
+					var/parsed_msg = c.parseMsg(C,message, c.me_format, 2)
+					if(parsed_msg) c << output(parsed_msg, "[window]")
+
+		goAFK(mob/chatter/C, msg)
+			if(chat_manager.isTelnet(C.key))
+				return
+
 			C.afk = TRUE
 			C.away_at = world.realtime
 			msg = copytext(msg, 1, 1024)
-			msg = TextMan.Sanitize(msg)
+			msg = text_manager.sanitize(msg)
 			C.away_reason = msg
 
 			var/raw_msg = msg
 
-			chatters = SortWho(chatters)
+			chatters = sortWho(chatters)
 			C.icon_state = "away"
-			UpdateWho()
-			Home.chanbot.Say("You are now AFK.", C)
-			if(!ismute(C))
+			updateWho()
+			home_channel.chanbot.say("You are now AFK.", C)
+
+			if(!isMute(C))
 				for(var/mob/chatter/c in chatters)
 					if(!(c.ignoring(C) & CHAT_IGNORE))
 						var/rsn = ""
 						if(ckey(raw_msg)) rsn = "([raw_msg])"
 
-						c << output("[c.ParseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now AFK. [rsn]", "[ckey(name)].chat.default_output")
+						c << output("[c.parseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now AFK. [rsn]", "[ckey(name)].chat.default_output")
 
-		ReturnAFK(mob/chatter/C)
+		returnAFK(mob/chatter/C)
 			if(!C) return
+
 			C.afk = FALSE
 			C.away_reason = null
-			chatters = SortWho(chatters)
+			chatters = sortWho(chatters)
 			C.icon_state = "active"
-			UpdateWho()
-			Home.chanbot.Say("You are no longer AFK.", C)
-			if(!ismute(C))
+
+			updateWho()
+
+			home_channel.chanbot.say("You are no longer AFK.", C)
+
+			if(!isMute(C))
 				for(var/mob/chatter/c in chatters)
 					if(!(c.ignoring(C) & CHAT_IGNORE))
-						c << output("[c.ParseTime()] <font color=[C.name_color]>[C.name]</font> is back from <b>AFK</b> after [round(((world.realtime - C.away_at)/600),1)] minute\s of inactivity.", "[ckey(name)].chat.default_output")
+						c << output("[c.parseTime()] <font color=[C.name_color]>[C.name]</font> is back from <b>AFK</b> after [round(((world.realtime - C.away_at)/600),1)] minute\s of inactivity.", "[ckey(name)].chat.default_output")
+
 			C.away_at = null
 
-		ismute(mob/M)
-			if(mute && mute.len)
+		isMute(mob/M)
+			if(mute && length(mute))
 				var/search = ""
+
 				if(istext(M)) search = ckey(M)
 				else if(ismob(M)) search = M.ckey
 				else return 1
-				if(kText.hasPrefix(search, "guest"))
-					if("guest" in mute) return 1
-				else
-					if(search in mute) return 1
+
+				if(textutil.hasPrefix(search, "guest")) if("guest" in mute) return 1
+				else if(search in mute) return 1

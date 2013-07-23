@@ -9,31 +9,23 @@
 // END_FILE_DIR
 
 // BEGIN_PREFERENCES
+#define DEBUG
 // END_PREFERENCES
 
 // BEGIN_INCLUDE
 #include "code\_global.dm"
 #include "code\client.dm"
 #include "code\world.dm"
-#include "code\controllers\console.dm"
-#include "code\controllers\managers\botman.dm"
-#include "code\controllers\managers\chanman.dm"
-#include "code\controllers\managers\chatman.dm"
-#include "code\controllers\managers\errman.dm"
-#include "code\controllers\managers\eventman.dm"
-#include "code\controllers\managers\listman.dm"
-#include "code\controllers\managers\logman.dm"
-#include "code\controllers\managers\msghand.dm"
-#include "code\controllers\managers\msgman.dm"
-#include "code\controllers\managers\quoteman.dm"
-#include "code\controllers\managers\Server.dm"
-#include "code\controllers\managers\textman.dm"
 #include "code\libraries\ktext\kText.dm"
 #include "code\libraries\s_smiley\alphabetics.dm"
-#include "code\libraries\s_smiley\replacetext.dm"
 #include "code\libraries\s_smiley\replaceword.dm"
 #include "code\libraries\s_smiley\s_smiley.dm"
-#include "code\models\atoms.dm"
+#include "code\managers\botman.dm"
+#include "code\managers\chanman.dm"
+#include "code\managers\chatman.dm"
+#include "code\managers\msghand.dm"
+#include "code\managers\quoteman.dm"
+#include "code\managers\textman.dm"
 #include "code\models\bot.dm"
 #include "code\models\channel.dm"
 #include "code\models\messenger.dm"
@@ -50,8 +42,6 @@
 #include "code\views\set\misc.dm"
 #include "code\views\set\style.dm"
 #include "code\views\set\system.dm"
-#include "code\views\set\style\colors.dm"
-#include "code\views\set\style\formats.dm"
 // END_INCLUDE
 
 

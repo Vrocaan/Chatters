@@ -1,28 +1,27 @@
 mob
 	chatter
 		verb
-			BrowseMisc()
+			browseMisc()
 				set hidden = 1
-				SetDisplay("misc")
+				setDisplay("misc")
 
-			SetDefaultMisc()
+			setDefaultMisc()
 				set hidden = 1
 
-				SetShowSmileys(1)
+				setShowSmileys(1)
 
-			SetShowSmileys(t as text|null)
+			setShowSmileys(t as text|null)
 				set hidden = 1
 
 				if(t)
 					winset(src, "misc.show_smileys", "is-checked=true")
 					show_smileys = TRUE
-				else
-					if(winget(src, "misc.show_smileys", "is-checked")=="true")
-						show_smileys = TRUE
-					else
-						show_smileys = FALSE
 
-			FlipPanes()
+				else
+					if(winget(src, "misc.show_smileys", "is-checked")=="true") show_smileys = TRUE
+					else show_smileys = FALSE
+
+			flipPanes()
 				set hidden = 1
 
 				if(winget(src, "misc.flip_panes", "is-checked")=="true") flip_panes = TRUE

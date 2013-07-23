@@ -1,8 +1,8 @@
 /*
-kText by Keeth
+textutil by Keeth
 */
 
-kText
+textutil
 	var
 		const
 			// padText() sides
@@ -121,7 +121,7 @@ kText
 
 		/**
 		 * The case-sensitive version of findWhich().
-		 * @see kText.findWhich()
+		 * @see textutil.findWhich()
 		 */
 		findWhichCase(string, sub, which=1)
 			if(which==1)
@@ -159,7 +159,7 @@ kText
 
 		/**
 		 * The case-sensitive version of text2list().
-		 * @see kText.text2list()
+		 * @see textutil.text2list()
 		 */
 		text2listCase(string, delimiter=" ")
 			var/list/listified = new, last=1
@@ -179,11 +179,11 @@ kText
 		 * IE: list2text(list("this", "is", "a", "test"), " ") would return "this is a test".
 		 */
 		list2text(list/list, delimiter=" ")
-			if(!list || !istype(list, /list) || list.len < 1)
+			if(!list || !istype(list, /list) || length(list) < 1)
 				return null
 
 			var/stringified = "[list[1]]"
-			for(var/i=2 to list.len)
+			for(var/i=2 to length(list))
 				stringified += "[delimiter][list[i]]"
 
 			return stringified
@@ -208,7 +208,7 @@ kText
 
 		/**
 		 * The case-sensitive version of replaceText().
-		 * @see kText.replaceText()
+		 * @see textutil.replaceText()
 		 */
 		replaceTextCase(string, sub, replace)
 			var/replacified, last=1
@@ -330,7 +330,7 @@ kText
 
 		/**
 		 * The case-sensitive version of autoComplete().
-		 * @see kText.autoComplete()
+		 * @see textutil.autoComplete()
 		 */
 		autoCompleteCase(string, needle)
 			if(istype(string, /list))
@@ -393,7 +393,7 @@ kText
 
 		/**
 		 * The case-sensitive version of matchKeys().
-		 * @see kText.matchKeys()
+		 * @see textutil.matchKeys()
 		 */
 		matchKeysCase(string, needle)
 			var/list/needleKeywords		= text2list(needle, " ") // get space delimited list of match keywords
@@ -444,7 +444,7 @@ kText
 		|* These functions were added simply to be "feature complete," so I can claim
 		|* the library does what Deadron's library does and then some.
 		|* In this way, people who *want* these functions AND *want* the functions of
-		|* kText, they can just include kText by itself.
+		|* textutil, they can just include textutil by itself.
 		\*///////////////////////////////////////////////////////////////////////////
 
 		/**
@@ -471,7 +471,7 @@ kText
 
 		/**
 		 * The case-sensitive version of file2list().
-		 * @see kText.file2list()
+		 * @see textutil.file2list()
 		 */
 		file2listCase(file, delimiter="\n")
 			if(!isfile(file) || !fexists(file))
@@ -499,7 +499,7 @@ kText
 
 		/**
 		 * The case-sensitive version of hasPrefix().
-		 * @see kText.hasPrefix()
+		 * @see textutil.hasPrefix()
 		 */
 		hasPrefixCase(string, prefix)
 			return findtextEx(string, prefix, 1, length(prefix)+1)
@@ -520,7 +520,7 @@ kText
 
 		/**
 		 * The case-sensitive version of hasSuffix().
-		 * @see kText.hasSuffix()
+		 * @see textutil.hasSuffix()
 		 */
 		hasSuffixCase(string, suffix)
 			var/start = length(string)-length(suffix)+1

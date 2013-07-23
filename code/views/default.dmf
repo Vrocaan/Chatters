@@ -10,7 +10,7 @@ window "channel"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #dcdcdc
 		is-visible = false
 		is-disabled = false
 		is-transparent = false
@@ -289,7 +289,7 @@ window "cim"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #dcdcdc
 		is-visible = false
 		is-disabled = false
 		is-transparent = false
@@ -597,7 +597,7 @@ window "chat"
 window "color_picker"
 	elem "color_picker"
 		type = MAIN
-		pos = 537,124
+		pos = 281,0
 		size = 136x226
 		anchor1 = none
 		anchor2 = none
@@ -605,7 +605,7 @@ window "color_picker"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #dcdcdc
 		is-visible = false
 		is-disabled = false
 		is-transparent = false
@@ -7819,7 +7819,7 @@ window "default"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #dcdcdc
 		is-visible = true
 		is-disabled = false
 		is-transparent = false
@@ -7938,7 +7938,7 @@ window "help"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #dcdcdc
 		is-visible = false
 		is-disabled = false
 		is-transparent = false
@@ -8262,7 +8262,7 @@ window "settings"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #dcdcdc
 		is-visible = false
 		is-disabled = false
 		is-transparent = false
@@ -8573,7 +8573,7 @@ window "showcontent"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #dcdcdc
 		is-visible = false
 		is-disabled = false
 		is-transparent = false
@@ -9145,7 +9145,7 @@ window "style_colors"
 		is-checked = false
 		group = ""
 		button-type = pushbutton
-	elem "interface"
+	elem "interface_color"
 		type = INPUT
 		pos = 274,71
 		size = 83x20
@@ -10112,88 +10112,6 @@ window "style_formats"
 		multi-line = false
 		is-password = false
 		no-command = false
-	elem "label19"
-		type = LABEL
-		pos = 104,281
-		size = 137x20
-		anchor1 = 0,0
-		anchor2 = none
-		font-family = "Trebuchet MS,Arial"
-		font-size = 10
-		font-style = ""
-		text-color = #000000
-		background-color = #e9e9e9
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = ""
-		on-size = ""
-		text = "Name Notify"
-		image = ""
-		image-mode = center
-		keep-aspect = false
-		align = center
-		text-wrap = false
-	elem "forced"
-		type = BUTTON
-		pos = 241,281
-		size = 48x20
-		anchor1 = 0,0
-		anchor2 = none
-		font-family = "Trebuchet MS,Arial"
-		font-size = 10
-		font-style = ""
-		text-color = #000000
-		background-color = #e9e9e9
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = ""
-		on-size = ""
-		text = "Yes"
-		image = ""
-		command = "SetNameNotify \"true\""
-		is-flat = false
-		stretch = false
-		is-checked = false
-		group = "namenotify"
-		button-type = radio
-	elem "no_forced"
-		type = BUTTON
-		pos = 289,281
-		size = 48x20
-		anchor1 = 0,0
-		anchor2 = none
-		font-family = "Trebuchet MS,Arial"
-		font-size = 10
-		font-style = ""
-		text-color = #000000
-		background-color = #e9e9e9
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = ""
-		on-size = ""
-		text = "No"
-		image = ""
-		command = "SetNameNotify \"false\""
-		is-flat = false
-		stretch = false
-		is-checked = true
-		group = "namenotify"
-		button-type = radio
 
 window "system"
 	elem "system"
@@ -10425,7 +10343,7 @@ window "system"
 		button-type = checkbox
 	elem "show_highlight"
 		type = BUTTON
-		pos = 4,103
+		pos = 4,83
 		size = 235x20
 		anchor1 = 0,0
 		anchor2 = none
@@ -10449,34 +10367,6 @@ window "system"
 		is-flat = false
 		stretch = false
 		is-checked = true
-		group = ""
-		button-type = checkbox
-	elem "clear_reboot"
-		type = BUTTON
-		pos = 4,83
-		size = 235x20
-		anchor1 = 0,0
-		anchor2 = none
-		font-family = "Trebuchet MS,Arial"
-		font-size = 10
-		font-style = ""
-		text-color = #000000
-		background-color = #e9e9e9
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = ""
-		on-size = ""
-		text = "Clear Chat on Reboot"
-		image = ""
-		command = "SetClearOnReboot"
-		is-flat = false
-		stretch = false
-		is-checked = false
 		group = ""
 		button-type = checkbox
 	elem "label30"
@@ -10675,7 +10565,7 @@ window "who"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #dcdcdc
 		is-visible = true
 		is-disabled = false
 		is-transparent = false

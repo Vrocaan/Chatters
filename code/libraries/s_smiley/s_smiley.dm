@@ -67,7 +67,7 @@ smiley
 	New()
 		..()
 		for(var/smiley in smileys)
-			var/new_string = replacetext( replacetext(smiley, "<", "&lt;"), ">", "&gt;" )
+			var/new_string = textutil.replaceText( textutil.replaceText(smiley, "<", "&lt;"), ">", "&gt;" )
 			if(!cmptext(new_string, smiley))
 				smileys += new_string
 
