@@ -213,6 +213,8 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
+			if(!ckey(smsg)) return
+
 			if(!window) window = "[ckey(name)].chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
@@ -244,6 +246,8 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
+			if(!ckey(smsg)) return
+
 			if(!window) window = "[ckey(name)].chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
@@ -271,6 +275,8 @@ Channel
 
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
+
+			if(!ckey(smsg)) return
 
 			if(!window) window = "[ckey(name)].chat.default_output"
 
