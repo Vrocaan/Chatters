@@ -803,31 +803,13 @@ mob
 				if(ismob(target)) C = target
 				else C = chatter_manager.getByKey(target)
 
-				if(!C || !C.client)
-					server_manager.bot.say("[target] is not currently in the channel.", src)
-					return
+				var/AssocEntry/entry
 
-				var/AssocEntry/entry = assoc_manager.findByClient(C.client)
-
-				if(entry)
-					server_manager.bot.say("[C.key] has the following information in the association database:", src)
-					server_manager.bot.rawSay("<b>Associated ckeys:</b> [textutil.list2text(entry.ckeys, ", ")]", src)
-					server_manager.bot.rawSay("<b>Associated ips:</b> [textutil.list2text(entry.ips, ", ")]", src)
-					server_manager.bot.rawSay("<b>Associated computer ids:</b> [textutil.list2text(entry.cids, ", ")]", src)
-
+				if(C && C.client) entry = assoc_manager.findByClient(C.client)
 				else
-					server_manager.bot.say("No information found for [C.key].", src)
-
-			checkAssocByCkey(target as text)
-				set hidden = 1
-
-				if(!target) return
-				if(!server_manager.home) return
-				if(!(ckey in server_manager.home.operators))
-					server_manager.bot.say("You do not have access to this command.", src)
-					return
-
-				var/AssocEntry/entry = assoc_manager.findByCkey(ckey(target))
+					entry = assoc_manager.findByCkey(ckey(target))
+					if(!entry) entry = assoc_manager.findByIP(target)
+					if(!entry) entry = assoc_manager.findByCID(target)
 
 				if(entry)
 					server_manager.bot.say("[target] has the following information in the association database:", src)
@@ -835,28 +817,7 @@ mob
 					server_manager.bot.rawSay("<b>Associated ips:</b> [textutil.list2text(entry.ips, ", ")]", src)
 					server_manager.bot.rawSay("<b>Associated computer ids:</b> [textutil.list2text(entry.cids, ", ")]", src)
 
-				else
-					server_manager.bot.say("No information found for [target].", src)
-
-			checkAssocByIP(target as text)
-				set hidden = 1
-
-				if(!target) return
-				if(!server_manager.home) return
-				if(!(ckey in server_manager.home.operators))
-					server_manager.bot.say("You do not have access to this command.", src)
-					return
-
-				var/AssocEntry/entry = assoc_manager.findByIP(ckey(target))
-
-				if(entry)
-					server_manager.bot.say("[target] has the following information in the association database:", src)
-					server_manager.bot.rawSay("<b>Associated ckeys:</b> [textutil.list2text(entry.ckeys, ", ")]", src)
-					server_manager.bot.rawSay("<b>Associated ips:</b> [textutil.list2text(entry.ips, ", ")]", src)
-					server_manager.bot.rawSay("<b>Associated computer ids:</b> [textutil.list2text(entry.cids, ", ")]", src)
-
-				else
-					server_manager.bot.say("No information found for [target].", src)
+				else server_manager.bot.say("No information found for [target].", src)
 
 			checkIP(target as text)
 				set hidden = 1
