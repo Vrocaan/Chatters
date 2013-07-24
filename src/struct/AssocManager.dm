@@ -13,13 +13,13 @@ AssocManager
 
 	proc
 		saveDB()
-			var/savefile/f = new("data/assoc_db.sav")
+			var/savefile/f = new("./data/assoc_db.sav")
 			Write(f)
 
 
 		loadDB()
-			if(fexists("data/assoc_db.sav"))
-				var/savefile/f = new("data/assoc_db.sav")
+			if(fexists("./data/assoc_db.sav"))
+				var/savefile/f = new("./data/assoc_db.sav")
 				Read(f)
 
 			if(!entries) entries = list()

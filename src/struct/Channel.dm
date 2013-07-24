@@ -5,10 +5,10 @@ Channel
 		qotd
 
 		list
-			chatters
-			operators
-			mute
-			banned
+			chatters = list()
+			operators = list()
+			mute = list()
+			banned = list()
 			showcodes = list()
 
 	New(params[])
