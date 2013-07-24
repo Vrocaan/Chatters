@@ -41,7 +41,16 @@ Channel
 							default.menu=menu;\
 							default.child.left=[ckey(name)];")
 
-			if(C.ckey in banned)
+			var/is_banned = 0
+			if(C.ckey in banned) is_banned = 1
+			else
+				var/AssocEntry/entry = assoc_manager.findByClient(C.client)
+				for(var/ck in entry.ckeys)
+					if(ckey(ck) in banned)
+						is_banned = 1
+						break
+
+			if(is_banned)
 				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "[ckey(name)].chat.default_output")
 				C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
 				del(C)
