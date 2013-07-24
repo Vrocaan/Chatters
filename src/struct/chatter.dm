@@ -249,19 +249,15 @@ mob
 				say(msg)
 
 			listOps()
-				var
-					ops = ""
-					i = 0
+				if(length(server_manager.home.operators)) server_manager.bot.say("The channel operators are: [textutil.list2text(server_manager.home.operators, ", ")]", src)
 
-				for(var/op in server_manager.home.operators)
-					i ++
+			listBanned()
+				if(length(server_manager.home.banned)) server_manager.bot.say("The following users are banned: [textutil.list2text(server_manager.home.banned, ", ")]", src)
+				else server_manager.bot.say("There are no users currently banned.", src)
 
-					if(i < length(server_manager.home.operators)) ops += "[op], "
-					else
-						if(length(server_manager.home.operators) > 1) ops += "and [op]."
-						else ops += "[op]."
-
-				if(ops) server_manager.bot.say(ops, src)
+			listMuted()
+				if(length(server_manager.home.mute)) server_manager.bot.say("The following users are muted: [textutil.list2text(server_manager.home.mute, ", ")]", src)
+				else server_manager.bot.say("There are no users currently muted.", src)
 
 			settings()
 				if(telnet) return
@@ -605,9 +601,9 @@ mob
 							if(!scoped) scoped = "files"
 							else scoped += ", files"
 
-					ignored += "[i] ([scoped]) "
+					ignored += "<b>[i]</b> ([scoped]) "
 
-				server_manager.bot.say("You are currently ignoring the following chatters: [ignored]", src)
+				server_manager.bot.rawSay("You are currently ignoring the following chatters: [ignored]", src)
 				return
 
 			share()
@@ -1001,16 +997,6 @@ mob
 					server_manager.home.banned -= ckey(target)
 
 				server_manager.saveHome()
-
-			listBanned()
-				if(length(server_manager.home.banned))
-					for(var/o in server_manager.home.banned)
-						server_manager.bot.say("[o]", src)
-
-			listMuted()
-				if(length(server_manager.home.mute))
-					for(var/o in server_manager.home.mute)
-						server_manager.bot.say("[o]", src)
 
 			/* SETTINGS */
 
