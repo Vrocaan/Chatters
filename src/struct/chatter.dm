@@ -86,6 +86,8 @@ mob
 
 			..()
 
+			del(src)
+
 		proc
 			inactivityLoop()
 				while(src && client)
