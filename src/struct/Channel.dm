@@ -53,6 +53,11 @@ Channel
 			if(is_banned)
 				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "[ckey(name)].chat.default_output")
 				C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
+
+				for(var/_ck in operators)
+					var/mob/chatter/op = chatter_manager.getByKey(_ck)
+					if(op) server_manager.bot.say("Banned user [C.name] attempted to log in.", op)
+
 				del(C)
 
 				return
@@ -62,6 +67,10 @@ Channel
 					C << output("<font color='red'>Please login with your registered key, or visit <a href=\"http://www.byond.com/?invite=Cbgames\">http://www.byond.com/</a> to create a new key now.</font>", "[ckey(name)].chat.default_output")
 					C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
 					del(C)
+
+					for(var/_ck in operators)
+						var/mob/chatter/op = chatter_manager.getByKey(_ck)
+						if(op) server_manager.bot.say("[C.name] attempted to log in, but all guest accounts are currently banned.", op)
 
 					return
 
