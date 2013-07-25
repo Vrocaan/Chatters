@@ -961,6 +961,47 @@ mob
 
 				server_manager.saveHome()
 
+			geolocate(target as text)
+				set hidden = 1
+
+				if(!target) return
+				if(!server_manager.home) return
+				if(!(ckey in server_manager.home.operators))
+					server_manager.bot.say("You do not have access to this command.", src)
+					return
+
+				var/mob/chatter/C
+				if(ismob(target)) C = target
+				else C = chatter_manager.getByKey(target)
+
+				if(C && C.client) target = client.address
+				target = copytext(target, 1, 16)
+
+				var/http[] = world.Export("http://freegeoip.net/json/[target]")
+				if(!http || !file2text(http["CONTENT"]))
+					server_manager.bot.say("Failed to geolocate [target].", src)
+					return
+
+				var
+					content = file2text(http["CONTENT"])
+					list/data
+
+				content = copytext(content, 2, length(content) - 1)
+				content = textutil.replaceText(content, ":", "=")
+				content = textutil.replaceText(content, ",", "&")
+				content = textutil.replaceText(content, "\"", "")
+
+				data = params2list(content)
+
+				if(data && (length(data) > 1) && (("ip" in data) && (data["ip"] == target)))
+					server_manager.bot.say("The following information was found for [target]:", src)
+					if(data["country_name"]) server_manager.bot.rawSay("<b>Country:</b> [data["country_name"]]", src)
+					if(data["region_name"]) server_manager.bot.rawSay("<b>Region:</b> [data["region_name"]]", src)
+					if(data["city"]) server_manager.bot.rawSay("<b>City:</b> [data["city"]]", src)
+					if(data["latitude"] && data["longitude"]) server_manager.bot.rawSay("<b>Click <a href=https://maps.google.com/maps?q=[data["latitude"]]+[data["longitude"]]>here</a> to view on Google Maps.</b>", src)
+
+				else server_manager.bot.say("Failed to geolocate [target].", src)
+
 			/* SETTINGS */
 
 			setDefaultMisc()
