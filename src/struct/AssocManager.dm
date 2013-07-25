@@ -57,18 +57,22 @@ AssocManager
 
 			for(var/AssocEntry/e in sentries)
 				for(var/ip in e.ips)
+					if(!(ip in all_ips)) all_ips += ip
 					all_ips[ip] = entry
 					if(!(ip in entry.ips)) entry.ips += ip
 
 				for(var/cid in e.cids)
+					if(!(cid in all_cids)) all_cids += cid
 					all_cids[cid] = entry
 					if(!(cid in entry.cids)) entry.cids += cid
 
 				for(var/ckey in e.ckeys)
+					if(!(ckey in all_ckeys)) all_ckeys += ckey
 					all_ckeys[ckey] = entry
 					if(!(ckey in entry.ckeys)) entry.ckeys += ckey
 
-				entries -= entry
+				entries -= e
+				del(e)
 
 			entries += entry
 
@@ -129,18 +133,18 @@ AssocManager
 		addClient(client/c)
 			if(!c || !istype(c, /client)) return
 
-			if((c.ckey in all_ckeys) || (c.computer_id && c.computer_id in all_cids) || (c.address && c.address in all_ips))
+			if((c.ckey in all_ckeys) || (c.computer_id && (c.computer_id in all_cids)) || (c.address && (c.address in all_ips)))
 				var/list/sentries = list()
 
 				if(c.ckey in all_ckeys)
 					var/AssocEntry/entry = all_ckeys[c.ckey]
 					sentries += entry
 
-				if(c.computer_id && c.computer_id in all_cids)
+				if(c.computer_id && (c.computer_id in all_cids))
 					var/AssocEntry/entry = all_cids[c.computer_id]
 					if(!(entry in sentries)) sentries += entry
 
-				if(c.address && c.address in all_ips)
+				if(c.address && (c.address in all_ips))
 					var/AssocEntry/entry = all_ips[c.address]
 					if(!(entry in sentries)) sentries += entry
 
