@@ -139,25 +139,34 @@ Channel
 				if(!chatter_manager.isTelnet(C.key))
 					for(var/i = 1, i <= length(chatters), i ++)
 						var/mob/chatter/c = chatters[i]
-						if(isnull(c))
+						if(isnull(c) || !c.client)
 							chatters -= chatters[i]
 
 							continue
 
-						if(C.client) winset(C, "[ckey(name)].who.grid", "current-cell=1,[i]")
-						var/n = c.name
+						if(c.client && C.client)
+							winset(C, "[ckey(name)].who.grid", "current-cell=1,[i]")
+							var/n = c.name
 
-						if(!chatter_manager.isTelnet(c.key) && c.afk)
-							if(C.client)
+							if(c.afk)
+								c.icon_state = "away"
 								if(!(c.ckey in server_manager.home.operators)) winset(C, "[ckey(name)].who.grid", "style='body{color: gray;}'")
 								else winset(C, "[ckey(name)].who.grid", "style='body{color:gray;font-weight:bold}'")
 
-						else if(c.ckey in server_manager.home.operators) if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
-						else if(c.ckey in server_manager.home.mute) if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
-						else if(C.client) winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];}'")
+							else if(c.ckey in server_manager.home.operators)
+								c.icon_state = "active"
+								winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
 
-						C << output(c, "[ckey(name)].who.grid")
-						c.name = n
+							else if(c.ckey in server_manager.home.mute)
+								c.icon_state = "active"
+								winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
+
+							else
+								c.icon_state = "active"
+								winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];}'")
+
+							C << output(c, "[ckey(name)].who.grid")
+							c.name = n
 
 				if(C.client)
 					winset(C, "[ckey(name)].who.grid", "cells=1x[length(chatters)]")
@@ -313,7 +322,6 @@ Channel
 			var/raw_msg = msg
 
 			chatters = sortWho(chatters)
-			C.icon_state = "away"
 			updateWho()
 			server_manager.bot.say("You are now AFK.", C)
 
@@ -331,7 +339,6 @@ Channel
 			C.afk = FALSE
 			C.away_reason = null
 			chatters = sortWho(chatters)
-			C.icon_state = "active"
 
 			updateWho()
 
