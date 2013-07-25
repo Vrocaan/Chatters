@@ -1007,14 +1007,14 @@ mob
 
 				data = params2list(content)
 
-				if(data && (length(data) > 1) && (("ip" in data) && (data["ip"] == target)))
+				if(data && (length(data) > 1) && (("ip" in data) && (ckey(data["ip"]) == ckey(target))))
 					server_manager.bot.say("The following information was found for [target]:", src)
 					if(data["country_name"]) server_manager.bot.rawSay("<b>Country:</b> [data["country_name"]]", src)
 					if(data["region_name"]) server_manager.bot.rawSay("<b>Region:</b> [data["region_name"]]", src)
 					if(data["city"]) server_manager.bot.rawSay("<b>City:</b> [data["city"]]", src)
 					if(data["latitude"] && data["longitude"]) server_manager.bot.rawSay("<b>Click <a href=https://maps.google.com/maps?q=[data["latitude"]]+[data["longitude"]]>here</a> to view on Google Maps.</b>", src)
 
-				else server_manager.bot.say("Failed to geolocate [target].", src)
+				else server_manager.bot.say("Failed to geolocate [target] ([content]).", src)
 
 			/* SETTINGS */
 
