@@ -988,7 +988,7 @@ mob
 				if(ismob(target)) C = target
 				else C = chatter_manager.getByKey(target)
 
-				if(C && C.client) target = client.address
+				if(C && C.client) target = C.client.address
 				target = copytext(target, 1, 16)
 
 				var/http[] = world.Export("http://freegeoip.net/json/[target]")
