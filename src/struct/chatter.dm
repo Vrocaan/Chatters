@@ -792,6 +792,20 @@ mob
 
 				server_manager.bot.my(n)
 
+			purgeAssoc(data as text)
+				set hidden = 1
+
+				if(!data) return
+				if(!server_manager.home) return
+				if(!(ckey in server_manager.home.operators))
+					server_manager.bot.say("You do not have access to this command.", src)
+					return
+
+				if(data)
+					var/d = assoc_manager.purge(data)
+					if(d) server_manager.bot.say("Purged [data] from the association database: [d] entrie(s) removed.", src)
+					else server_manager.bot.say("No entries found for [data] to be purged.", src)
+
 			checkAssoc(target as text)
 				set hidden = 1
 

@@ -27,6 +27,29 @@ AssocManager
 			if(!all_cids) all_cids = list()
 			if(!all_ckeys) all_ckeys = list()
 
+		purge(data)
+			. = 0
+
+			all_ips -= data
+			all_ckeys -= ckey(data)
+			all_cids -= data
+
+			for(var/AssocEntry/entry in entries)
+				if(data in entry.ips)
+					entry.ips -= data
+					. ++
+
+				if(ckey(data) in entry.ckeys)
+					entry.ckeys -= ckey(data)
+					. ++
+
+				if(data in entry.cids)
+					entry.cids -= data
+					. ++
+
+				if(!length(entry.ips) && !length(entry.ckeys) && !length(entry.cids))
+					entries -= entry
+
 		combineEntries(list/sentries)
 			if(!length(sentries)) return
 
