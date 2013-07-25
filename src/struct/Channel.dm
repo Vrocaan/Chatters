@@ -100,10 +100,10 @@ Channel
 
 			if(!chatters) chatters = new()
 
-			chatters += C
-			chatters = sortWho(chatters)
+			C.afk = FALSE
+			C.away_at = 0
 
-			C.icon_state = "active"
+			chatters += C
 			updateWho()
 
 			world.status = "[server_manager.home.name] ([length(server_manager.home.chatters)] chatter\s)"
@@ -135,14 +135,16 @@ Channel
 			server_manager.bot.say("[C.name] has quit [name].")
 
 		updateWho()
+			for(var/i = 1, i <= length(chatters), i ++)
+				var/mob/chatter/c = chatters[i]
+				if(!c || !c.client) chatters -= c
+
+			chatters = sortWho(chatters)
+
 			for(var/mob/chatter/C in chatters)
 				if(!chatter_manager.isTelnet(C.key))
 					for(var/i = 1, i <= length(chatters), i ++)
 						var/mob/chatter/c = chatters[i]
-						if(isnull(c) || !c.client)
-							chatters -= chatters[i]
-
-							continue
 
 						if(c.client && C.client)
 							winset(C, "[ckey(name)].who.grid", "current-cell=1,[i]")
@@ -168,8 +170,8 @@ Channel
 							C << output(c, "[ckey(name)].who.grid")
 							c.name = n
 
-				if(C.client)
-					winset(C, "[ckey(name)].who.grid", "cells=1x[length(chatters)]")
+					if(C.client)
+						winset(C, "[ckey(name)].who.grid", "cells=1x[length(chatters)]")
 
 		sortWho(list/L)
 			var/list/afk_list
@@ -321,7 +323,6 @@ Channel
 
 			var/raw_msg = msg
 
-			chatters = sortWho(chatters)
 			updateWho()
 			server_manager.bot.say("You are now AFK.", C)
 
@@ -338,7 +339,6 @@ Channel
 
 			C.afk = FALSE
 			C.away_reason = null
-			chatters = sortWho(chatters)
 
 			updateWho()
 
