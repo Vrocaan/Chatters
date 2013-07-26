@@ -699,7 +699,7 @@ mob
 				if(ismob(target)) C = target
 				else C = chatter_manager.getByKey(target)
 
-				if(C) winset(C, "[ckey(server_manager.home.name)].ops_button", "is-visible=true")
+				if(C) winset(C, "ops_button", "is-visible=true")
 
 			demote(target as text)
 				set hidden = 1
@@ -723,7 +723,7 @@ mob
 				if(ismob(target)) C = target
 				else C = chatter_manager.getByKey(target)
 
-				if(C) winset(C, "[ckey(server_manager.home.name)].ops_button", "is-visible=true")
+				if(C) winset(C, "ops_button", "is-visible=true")
 
 			setTopic(ntopic as text)
 				set hidden = 1
@@ -1045,8 +1045,8 @@ mob
 				if(winget(src, "misc.flip_panes", "is-checked")=="true") flip_panes = TRUE
 				else flip_panes = FALSE
 
-				if(!flip_panes) winset(src, "default.child", "left=[ckey(server_manager.home.name)];right=[ckey(server_manager.home.name)].who;splitter=80")
-				else winset(src, "default.child", "left=[ckey(server_manager.home.name)].who;right=[ckey(server_manager.home.name)];splitter=20")
+				if(!flip_panes) winset(src, "default.child", "left=channel;right=channel.who;splitter=80")
+				else winset(src, "default.child", "left=who;right=channel;splitter=20")
 
 			toggleSettings()
 				set hidden = 1
@@ -1264,7 +1264,7 @@ mob
 				if(isnull(t)) t = "body { background-color: #ffffff; }"
 
 				default_output_style = t
-				winset(src, "[ckey(server_manager.home.name)].chat.default_output", "style=\"[text_manager.escapeQuotes(t)]\";")
+				winset(src, "chat.default_output", "style=\"[text_manager.escapeQuotes(t)]\";")
 				winset(src, "style_formats.output_style", "text=\"[text_manager.escapeQuotes(default_output_style)]\";")
 
 			setDefaultColorStyle()
