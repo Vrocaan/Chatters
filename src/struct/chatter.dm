@@ -32,6 +32,8 @@ mob
 			tmp/list/msgs
 			tmp/MessageHandler/msg_hand
 			tmp/color_scope
+			tmp/AssocEntry/viewing_entry
+			tmp/viewing_log
 
 			list
 				ignoring
@@ -75,10 +77,6 @@ mob
 				show_highlight = FALSE
 
 				server_manager.home.join(src)
-
-		Click()
-			var/Messenger/im = new(usr, key)
-			im.display(usr)
 
 		Logout()
 			if(server_manager)
@@ -695,8 +693,13 @@ mob
 					server_manager.home.operators += ckey(target)
 
 				server_manager.home.updateWho()
-
 				server_manager.logger.trace("[key] promoted [target] to operator.")
+
+				var/mob/chatter/C
+				if(ismob(target)) C = target
+				else C = chatter_manager.getByKey(target)
+
+				if(C) winset(C, "[ckey(server_manager.home.name)].ops_button", "is-visible=true")
 
 			demote(target as text)
 				set hidden = 1
@@ -714,8 +717,13 @@ mob
 					server_manager.home.operators -= ckey(target)
 
 				server_manager.home.updateWho()
-
 				server_manager.logger.trace("[key] demoted [target] from operator.")
+
+				var/mob/chatter/C
+				if(ismob(target)) C = target
+				else C = chatter_manager.getByKey(target)
+
+				if(C) winset(C, "[ckey(server_manager.home.name)].ops_button", "is-visible=true")
 
 			setTopic(ntopic as text)
 				set hidden = 1
@@ -1595,3 +1603,129 @@ mob
 							interface_color = color
 							winset(src, "style_colors.interface_button", "background-color='[color]'")
 							winset(src, "style_colors.interface_color", "text='[color]'")
+
+			/* OPS VIEW */
+
+			toggleOpsView()
+				set hidden = 1
+
+				if(ckey in server_manager.home.operators)
+					if(winget(src, "ops", "is-visible") == "false")
+						setOpsDisplay("tracker")
+						winshow(src, "ops")
+
+					else winshow(src, "ops", 0)
+
+			setOpsDisplay(page as text)
+				set hidden = 1
+
+				if(!(ckey in server_manager.home.operators)) return
+
+				refreshAllOps()
+
+				switch(page)
+					if("tracker") winset(src, "ops.ops_child", "left=ops_tracker")
+					if("logs") winset(src, "ops.ops_child", "left=ops_logs")
+
+			refreshAllOps()
+				set hidden = 1
+
+				if(!(ckey in server_manager.home.operators)) return
+
+				updateViewingEntry()
+				updateTracker()
+				updateViewingLog()
+				updateLogs()
+
+			updateTracker()
+				set hidden = 1
+
+				if(!(ckey in server_manager.home.operators)) return
+
+				var/c = 1
+				for(var/i in assoc_manager.all_ckeys)
+					winset(src, "ops_tracker.ckeys", "current-cell=1,[c]")
+					winset(src, "ops_tracker.ckeys", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+					src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[i]>[i]</a>", "ops_tracker.ckeys")
+					c ++
+
+				winset(src, "ops_tracker.ckeys", "cells=1x[length(assoc_manager.all_ckeys)]")
+
+				c = 1
+				for(var/i in assoc_manager.all_ips)
+					winset(src, "ops_tracker.ips", "current-cell=1,[c]")
+					winset(src, "ops_tracker.ips", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+					src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewip;ip=[i]>[i]</a>", "ops_tracker.ips")
+					c ++
+
+				winset(src, "ops_tracker.ips", "cells=1x[length(assoc_manager.all_ips)]")
+
+				c = 1
+				for(var/i in assoc_manager.all_cids)
+					winset(src, "ops_tracker.cids", "current-cell=1,[c]")
+					winset(src, "ops_tracker.cids", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+					src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewcid;cid=[i]>[i]</a>", "ops_tracker.cids")
+					c ++
+
+				winset(src, "ops_tracker.cids", "cells=1x[length(assoc_manager.all_cids)]")
+
+			updateViewingEntry()
+				set hidden = 1
+
+				if(!(ckey in server_manager.home.operators)) return
+
+				if(viewing_entry)
+					var/c = 1
+					for(var/i in viewing_entry.ckeys)
+						winset(src, "ops_tracker.sel_ckeys", "current-cell=1,[c]")
+						winset(src, "ops_tracker.sel_ckeys", "style='body{text-align: center; background-color: [(c % 2) ? ("#CCCCCC") : ("#DDDDDD")];}'")
+						src << output("[i]", "ops_tracker.sel_ckeys")
+						c ++
+
+					winset(src, "ops_tracker.sel_ckeys", "cells=1x[length(assoc_manager.all_ckeys)]")
+
+					c = 1
+					for(var/i in viewing_entry.ips)
+						winset(src, "ops_tracker.sel_ips", "current-cell=1,[c]")
+						winset(src, "ops_tracker.sel_ips", "style='body{text-align: center; background-color: [(c % 2) ? ("#CCCCCC") : ("#DDDDDD")];}'")
+						src << output("[i]", "ops_tracker.sel_ips")
+						c ++
+
+					winset(src, "ops_tracker.sel_ips", "cells=1x[length(assoc_manager.all_ips)]")
+
+					c = 1
+					for(var/i in viewing_entry.cids)
+						winset(src, "ops_tracker.sel_cids", "current-cell=1,[c]")
+						winset(src, "ops_tracker.sel_cids", "style='body{text-align: center; background-color: [(c % 2) ? ("#CCCCCC") : ("#DDDDDD")];}'")
+						src << output("[i]", "ops_tracker.sel_cids")
+						c ++
+
+					winset(src, "ops_tracker.sel_cids", "cells=1x[length(assoc_manager.all_cids)]")
+
+			updateLogs()
+				set hidden = 1
+
+				if(!(ckey in server_manager.home.operators)) return
+
+				var/list/logs = list()
+				for(var/l in flist("./data/logs/"))
+					logs += l
+
+				if(length(logs))
+					var/c = 1
+					for(var/i in logs)
+						winset(src, "ops_logs.grid", "current-cell=1,[c]")
+						winset(src, "ops_logs.grid", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+						src << output("<a href=\"byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=logs_viewlog;log=[i]\">[i]</a>", "ops_logs.grid")
+						c ++
+
+					winset(src, "ops_logs.grid", "cells=1x[length(logs)]")
+
+			updateViewingLog()
+				set hidden = 1
+
+				if(!(ckey in server_manager.home.operators)) return
+
+				if(viewing_log)
+					if(fexists(viewing_log))
+						src << output(file2text(viewing_log), "ops_logs.browser")

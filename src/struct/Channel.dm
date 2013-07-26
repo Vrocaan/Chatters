@@ -78,11 +78,14 @@ Channel
 
 					return
 
-			if(C.flip_panes) winset(C, "default.child", "left=[ckey(server_manager.home.name)].who;right=[ckey(server_manager.home.name)];splitter=20")
+			if(C.flip_panes) winset(C, "default.child", "left=[ckey(name)].who;right=[ckey(name)];splitter=20")
 			C.setInterfaceColor(C.interface_color)
 
 			winshow(C, ckey(name), 1)
-			winset(C, "[ckey(server_manager.home.name)].chat.default_output", "style='[C.default_output_style]';")
+			winset(C, "[ckey(name)].chat.default_output", "style='[C.default_output_style]';")
+
+			if(C.ckey in operators) winset(C, "[ckey(name)].ops_button", "is-visible=true")
+			else winset(C, "[ckey(name)].ops_button", "is-visible=false")
 
 			C << output("<center>- - - - - - - - - - - - - - -", "[ckey(name)].chat.default_output")
 
@@ -119,9 +122,9 @@ Channel
 			chatters += C
 			updateWho()
 
-			world.status = "[server_manager.home.name] ([length(server_manager.home.chatters)] chatter\s)"
+			world.status = "[name] ([length(chatters)] chatter\s)"
 
-			winset(C, "[ckey(server_manager.home.name)].default_input", "text='> ';focus=true;")
+			winset(C, "[ckey(name)].default_input", "text='> ';focus=true;")
 
 			server_manager.bot.say("[C.name] has joined [name].")
 			server_manager.bot.say("[topic]", C)
