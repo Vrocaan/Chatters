@@ -242,7 +242,7 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
-			if(!ckey(smsg)) return
+			if(textutil.isWhitespace(msg)) return
 
 			if(!window) window = "[ckey(name)].chat.default_output"
 
@@ -275,7 +275,7 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
-			if(!ckey(smsg)) return
+			if(textutil.isWhitespace(msg)) return
 
 			if(!window) window = "[ckey(name)].chat.default_output"
 
@@ -305,7 +305,7 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
-			if(!ckey(smsg)) return
+			if(textutil.isWhitespace(msg)) return
 
 			if(!window) window = "[ckey(name)].chat.default_output"
 

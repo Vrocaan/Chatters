@@ -301,7 +301,7 @@ mob
 							return
 
 						msg = copytext(msg, 1, 1024)
-						if(!ckey(msg)) return
+						if(textutil.isWhitespace(msg)) return
 
 						var/Messenger/im = new(src, C.name)
 						im.display(src)
@@ -316,7 +316,7 @@ mob
 							return
 
 						msg = copytext(msg, 1, 1024)
-						if(!ckey(msg)) return
+						if(textutil.isWhitespace(msg)) return
 
 						var/Messenger/im = new(src, C)
 						im.display(src)
