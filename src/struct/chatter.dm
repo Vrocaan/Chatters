@@ -1622,31 +1622,14 @@ mob
 				if(!(ckey in server_manager.home.operators)) return
 
 				var/c = 1
-				for(var/i in assoc_manager.all_ckeys)
+				for(var/AssocEntry/entry in assoc_manager.entries)
 					winset(src, "ops_tracker.ckeys", "current-cell=1,[c]")
 					winset(src, "ops_tracker.ckeys", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
-					src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[i]>[i]</a>", "ops_tracker.ckeys")
+					var/e1 = entry.ckeys[1]
+					src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[e1]>[textutil.list2text(entry.ckeys, ", ")]</a>", "ops_tracker.ckeys")
 					c ++
 
 				winset(src, "ops_tracker.ckeys", "cells=1x[length(assoc_manager.all_ckeys)]")
-
-				c = 1
-				for(var/i in assoc_manager.all_ips)
-					winset(src, "ops_tracker.ips", "current-cell=1,[c]")
-					winset(src, "ops_tracker.ips", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
-					src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewip;ip=[i]>[i]</a>", "ops_tracker.ips")
-					c ++
-
-				winset(src, "ops_tracker.ips", "cells=1x[length(assoc_manager.all_ips)]")
-
-				c = 1
-				for(var/i in assoc_manager.all_cids)
-					winset(src, "ops_tracker.cids", "current-cell=1,[c]")
-					winset(src, "ops_tracker.cids", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
-					src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewcid;cid=[i]>[i]</a>", "ops_tracker.cids")
-					c ++
-
-				winset(src, "ops_tracker.cids", "cells=1x[length(assoc_manager.all_cids)]")
 
 			updateViewingEntry()
 				set hidden = 1
