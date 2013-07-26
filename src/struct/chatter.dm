@@ -1008,37 +1008,16 @@ mob
 					server_manager.bot.say("You do not have access to this command.", src)
 					return
 
-				var/mob/chatter/C
-				if(ismob(target)) C = target
-				else C = chatter_manager.getByKey(target)
+				var/list/data = assoc_manager.geolocate(target)
 
-				if(C && C.client) target = C.client.address
-				target = copytext(target, 1, 16)
-
-				var/http[] = world.Export("http://freegeoip.net/json/[target]")
-				if(!http || !file2text(http["CONTENT"]))
-					server_manager.bot.say("Failed to geolocate [target].", src)
-					return
-
-				var
-					content = file2text(http["CONTENT"])
-					list/data
-
-				content = copytext(content, 2, length(content) - 1)
-				content = textutil.replaceText(content, ":", "=")
-				content = textutil.replaceText(content, ",", "&")
-				content = textutil.replaceText(content, "\"", "")
-
-				data = params2list(content)
-
-				if(data && (length(data) > 1) && (("ip" in data) && (ckey(data["ip"]) == ckey(target))))
+				if(data && (length(data) > 1) && ("ip" in data))
 					server_manager.bot.say("The following information was found for [target]:", src)
 					if(data["country_name"]) server_manager.bot.rawSay("<b>Country:</b> [data["country_name"]]", src)
 					if(data["region_name"]) server_manager.bot.rawSay("<b>Region:</b> [data["region_name"]]", src)
 					if(data["city"]) server_manager.bot.rawSay("<b>City:</b> [data["city"]]", src)
 					if(data["latitude"] && data["longitude"]) server_manager.bot.rawSay("<b>Click <a href=https://maps.google.com/maps?q=[data["latitude"]]+[data["longitude"]]>here</a> to view on Google Maps.</b>", src)
 
-				else server_manager.bot.say("Failed to geolocate [target] ([content]).", src)
+				else server_manager.bot.say("Failed to geolocate [target].", src)
 
 				server_manager.logger.trace("[key] used geolocate to search for \"[target]\".")
 
@@ -1679,7 +1658,8 @@ mob
 					for(var/i in viewing_entry.ckeys)
 						winset(src, "ops_tracker.sel_ckeys", "current-cell=1,[c]")
 						winset(src, "ops_tracker.sel_ckeys", "style='body{text-align: center; background-color: [(c % 2) ? ("#CCCCCC") : ("#DDDDDD")];}'")
-						src << output("[i]", "ops_tracker.sel_ckeys")
+						var/od = viewing_entry.ckeys[i]
+						src << output("[i] [od ? "([od])" : ""]", "ops_tracker.sel_ckeys")
 						c ++
 
 					winset(src, "ops_tracker.sel_ckeys", "cells=1x[length(viewing_entry.ckeys)]")
@@ -1688,7 +1668,17 @@ mob
 					for(var/i in viewing_entry.ips)
 						winset(src, "ops_tracker.sel_ips", "current-cell=1,[c]")
 						winset(src, "ops_tracker.sel_ips", "style='body{text-align: center; background-color: [(c % 2) ? ("#CCCCCC") : ("#DDDDDD")];}'")
-						src << output("[i]", "ops_tracker.sel_ips")
+
+						var/list/locdata = viewing_entry.ips[i]
+						if(locdata)
+							var/od = ""
+							if(locdata["city"]) od += "[locdata["city"]], "
+							if(locdata["region_name"]) od += "[locdata["region_name"]], "
+							if(locdata["country_name"]) od += "[locdata["country_name"]]"
+							if(od) src << output("[i] ([od])", "ops_tracker.sel_ips")
+							else src << output("[i] (no location information)", "ops_tracker.sel_ips")
+
+						else src << output("[i] (no location information)", "ops_tracker.sel_ips")
 						c ++
 
 					winset(src, "ops_tracker.sel_ips", "cells=1x[length(viewing_entry.ips)]")
@@ -1697,7 +1687,8 @@ mob
 					for(var/i in viewing_entry.cids)
 						winset(src, "ops_tracker.sel_cids", "current-cell=1,[c]")
 						winset(src, "ops_tracker.sel_cids", "style='body{text-align: center; background-color: [(c % 2) ? ("#CCCCCC") : ("#DDDDDD")];}'")
-						src << output("[i]", "ops_tracker.sel_cids")
+						var/od = viewing_entry.cids[i]
+						src << output("[i] [od ? "(last login: [od])" : ""]", "ops_tracker.sel_cids")
 						c ++
 
 					winset(src, "ops_tracker.sel_cids", "cells=1x[length(viewing_entry.cids)]")
