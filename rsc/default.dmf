@@ -7862,7 +7862,7 @@ window "default"
 		statusbar = false
 		can-close = true
 		can-minimize = true
-		can-resize = false
+		can-resize = true
 		is-pane = false
 		is-minimized = false
 		is-maximized = false
@@ -7886,7 +7886,7 @@ window "default"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #dcdcdc
 		is-visible = true
 		is-disabled = false
 		is-transparent = false
