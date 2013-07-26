@@ -1159,7 +1159,7 @@ mob
 				winset(src, "style_formats.time_format", "text='[textutil.list2text(time_format, "")]'")
 				winset(src, "style_formats.date_format", "text='[textutil.list2text(date_format, "")]'")
 				winset(src, "style_formats.long_date_format", "text='[textutil.list2text(long_date_format, "")]'")
-				winset(src, "style_formats.output_style", "text='[default_output_style]'")
+				winset(src, "style_formats.output_style", "text=\"[text_manager.escapeQuotes(default_output_style)]\"")
 
 				if(show_title) winset(src, "system.show_title", "is-checked=true")
 				else winset(src, "system.show_title", "is-checked=false")
@@ -1185,8 +1185,8 @@ mob
 				var/time = text_manager.stripHTML(parseTime())
 				src << output(time, "system.time")
 
-				winset(src, "system.auto_afk", "text='[auto_away]'")
-				winset(src, "system.away_msg", "text='[auto_reason]'")
+				winset(src, "system.auto_afk", "text=\"[auto_away]\"")
+				winset(src, "system.away_msg", "text=\"[text_manager.escapeQuotes(auto_reason)]\"")
 
 			setDisplay(page as text)
 				set hidden = 1
@@ -1219,7 +1219,7 @@ mob
 					list/required = list("$name","$msg")
 
 				say_format = chatter_manager.parseFormat(t, variables, required)
-				winset(src, "style_formats.chat_format", "text='[t]'")
+				winset(src, "style_formats.chat_format", "text=\"[text_manager.escapeQuotes(t)]\"")
 
 			setEmoteFormat(t as text|null)
 				set hidden = 1
@@ -1231,7 +1231,7 @@ mob
 					list/required = list("$name","$msg")
 
 				me_format = chatter_manager.parseFormat(t, variables, required)
-				winset(src, "style_formats.emote_format", "text='[t]'")
+				winset(src, "style_formats.emote_format", "text=\"[text_manager.escapeQuotes(t)]\"")
 
 			setInlineEmoteFormat(t as text|null)
 				set hidden = 1
@@ -1243,7 +1243,7 @@ mob
 					list/required = list("$name","$rp","$msg")
 
 				rpsay_format = chatter_manager.parseFormat(t, variables, required)
-				winset(src, "style_formats.inline_emote_format", "text='[t]'")
+				winset(src, "style_formats.inline_emote_format", "text=\"[text_manager.escapeQuotes(t)]\"")
 
 			setTimeFormat(t as text|null)
 				set hidden = 1
@@ -1252,7 +1252,7 @@ mob
 
 				var/list/variables = list("hh","mm","ss")
 				time_format = chatter_manager.parseFormat(t, variables)
-				winset(src, "style_formats.time_format", "text='[t]'")
+				winset(src, "style_formats.time_format", "text=\"[text_manager.escapeQuotes(t)]\"")
 
 			setDateFormat(t as text|null)
 				set hidden = 1
@@ -1261,7 +1261,7 @@ mob
 
 				var/list/variables = list("YYYY","YY","Month","MMM","MM","Day","DDD","DD")
 				date_format = chatter_manager.parseFormat(t, variables)
-				winset(src, "style_formats.date_format", "text='[t]'")
+				winset(src, "style_formats.date_format", "text=\"[text_manager.escapeQuotes(t)]\"")
 
 			setLongDateFormat(t as text|null)
 				set hidden = 1
@@ -1277,8 +1277,8 @@ mob
 				if(isnull(t)) t = "body { background-color: #ffffff; }"
 
 				default_output_style = t
-				winset(src, "[ckey(server_manager.home.name)].chat.default_output", "style='[t]';")
-				winset(src, "style_formats.output_style", "text='[default_output_style]';")
+				winset(src, "[ckey(server_manager.home.name)].chat.default_output", "style=\"[text_manager.escapeQuotes(t)]\";")
+				winset(src, "style_formats.output_style", "text=\"[text_manager.escapeQuotes(default_output_style)]\";")
 
 			setDefaultColorStyle()
 				set hidden = 1
@@ -1548,14 +1548,14 @@ mob
 				if(isnull(t)) t = 15
 
 				auto_away = t
-				winset(src, "system.auto_afk", "text='[t]'")
+				winset(src, "system.auto_afk", "text=\"[t]\"")
 
 			setAwayMsg(t as text|null)
 				set hidden = 1
 				if(isnull(t)) t = "I have gone auto-AFK."
 
 				auto_reason = t
-				winset(src, "system.away_msg", "text='[t]'")
+				winset(src, "system.away_msg", "text=\"[text_manager.escapeQuotes(t)]\"")
 
 			pickColor(color as text|null)
 				set hidden = 1

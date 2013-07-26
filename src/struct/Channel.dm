@@ -32,7 +32,7 @@ Channel
 			winset(C, null, "[window].default_input.is-default=true;\
 							[window].chat.default_output.is-default=true;\
 							[window].chat.default_output.is-disabled=false;\
-							[window].topic_label.text='[topic]';\
+							[window].topic_label.text=\"[text_manager.escapeQuotes(topic)]\";\
 							[window].child.left=[window].chat;\
 							[window].child.right=;\
 							default.child.right=[window].who;\

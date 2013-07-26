@@ -539,3 +539,8 @@ TextManager
 			. = list()
 			for(var/i = 1, i <= length(string), i ++)
 				. += copytext(string, i, i + 1)
+
+		escapeQuotes(string)
+			string = textutil.replaceText(string, "'" , "\'")
+			string = textutil.replaceText(string, "\"" , "\\\"")
+			return string
