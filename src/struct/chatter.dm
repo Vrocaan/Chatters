@@ -1682,7 +1682,7 @@ mob
 						src << output("[i]", "ops_tracker.sel_ckeys")
 						c ++
 
-					winset(src, "ops_tracker.sel_ckeys", "cells=1x[length(assoc_manager.all_ckeys)]")
+					winset(src, "ops_tracker.sel_ckeys", "cells=1x[length(viewing_entry.ckeys)]")
 
 					c = 1
 					for(var/i in viewing_entry.ips)
@@ -1691,7 +1691,7 @@ mob
 						src << output("[i]", "ops_tracker.sel_ips")
 						c ++
 
-					winset(src, "ops_tracker.sel_ips", "cells=1x[length(assoc_manager.all_ips)]")
+					winset(src, "ops_tracker.sel_ips", "cells=1x[length(viewing_entry.ips)]")
 
 					c = 1
 					for(var/i in viewing_entry.cids)
@@ -1700,7 +1700,7 @@ mob
 						src << output("[i]", "ops_tracker.sel_cids")
 						c ++
 
-					winset(src, "ops_tracker.sel_cids", "cells=1x[length(assoc_manager.all_cids)]")
+					winset(src, "ops_tracker.sel_cids", "cells=1x[length(viewing_entry.cids)]")
 
 			updateLogs()
 				set hidden = 1
