@@ -60,7 +60,6 @@ ChatterManager
 			if("logs_viewlog")
 				if(trg && trg.ckey in server_manager.home.operators)
 					var/log = href_list["log"]
-					world.log << log
 					if(log && fexists("./data/logs/[log]"))
 						trg.viewing_log = "./data/logs/[log]"
 						trg.updateViewingLog()

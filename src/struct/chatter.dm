@@ -945,8 +945,8 @@ mob
 				server_manager.bot.say("[C.name] has been kicked by \[b][name]\[/b].")
 				server_manager.logger.trace("[key] kicked [C.name].")
 
-				C << output("You have been kicked from [server_manager.home.name] by [name].", "[ckey(server_manager.home.name)].chat.default_output")
-				C << output("<font color=red>Connection closed.", "[ckey(server_manager.home.name)].chat.default_output")
+				C << output("You have been kicked from [server_manager.home.name] by [name].", "chat.default_output")
+				C << output("<font color=red>Connection closed.", "chat.default_output")
 
 				server_manager.home.chatters -= C
 				server_manager.home.updateWho()
@@ -976,8 +976,8 @@ mob
 				server_manager.logger.trace("[key] banned [target].")
 
 				if(C)
-					C << output("You have been banned from [server_manager.home.name] by [name]", "[ckey(server_manager.home.name)].chat.default_output")
-					C << output("<font color=red>Connection closed.", "[ckey(server_manager.home.name)].chat.default_output")
+					C << output("You have been banned from [server_manager.home.name] by [name]", "chat.default_output")
+					C << output("<font color=red>Connection closed.", "chat.default_output")
 
 					server_manager.home.chatters -= C
 					server_manager.home.updateWho()
@@ -1438,13 +1438,13 @@ mob
 					winset(src, "style_colors.interface_color", "text='[interface_color]'")
 
 					if(server_manager.home)
-						winset(src, "[ckey(server_manager.home.name)].interfacebar_1", "background-color='[interface_color]';")
-						winset(src, "[ckey(server_manager.home.name)].interfacebar_2", "background-color='[interface_color]';")
+						winset(src, "interfacebar_1", "background-color='[interface_color]';")
+						winset(src, "interfacebar_2", "background-color='[interface_color]';")
 						winset(src, "cim.interfacebar_3", "background-color='[interface_color]';")
 						winset(src, "cim.interfacebar_4", "background-color='[interface_color]';")
 						winset(src, "settings.interfacebar_5", "background-color='[interface_color]';")
 						winset(src, "showcontent.interfacebar_6", "background-color='[interface_color]';")
-						winset(src, "[ckey(server_manager.home.name)].who.interfacebar_7", "background-color='[interface_color]';")
+						winset(src, "who.interfacebar_7", "background-color='[interface_color]';")
 
 						for(var/ck in msg_handlers)
 							winset(src, "cim_[ckey(ck)].interfacebar_3", "background-color='[interface_color]';")

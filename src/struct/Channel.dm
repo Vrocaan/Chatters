@@ -24,22 +24,7 @@ Channel
 				del(C)
 				return
 
-			winclone(C, "channel", ckey(name))
-			winclone(C, "who", "[ckey(name)].who")
-			winclone(C, "chat", "[ckey(name)].chat")
-
-			var/window = ckey(name)
-			winset(C, null, "[window].default_input.is-default=true;\
-							[window].chat.default_output.is-default=true;\
-							[window].chat.default_output.is-disabled=false;\
-							[window].topic_label.text=\"[text_manager.escapeQuotes(topic)]\";\
-							[window].child.left=[window].chat;\
-							[window].child.right=;\
-							default.child.right=[window].who;\
-							default.can-resize=true;\
-							default.title='[name] - Chatters';\
-							default.menu=menu;\
-							default.child.left=[ckey(name)];")
+			winset(C, null, "channel.default_input.is-default=true;channel.topic_label.text=\"[text_manager.escapeQuotes(topic)]\";")
 
 			var/is_banned = 0
 			if(C.ckey in banned) is_banned = 1
@@ -51,8 +36,8 @@ Channel
 						break
 
 			if(is_banned)
-				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "[ckey(name)].chat.default_output")
-				C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
+				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "chat.default_output")
+				C << output("<font color='red'>Connection closed.</font>", "chat.default_output")
 
 				for(var/_ck in operators)
 					var/mob/chatter/op = chatter_manager.getByKey(_ck)
@@ -67,7 +52,7 @@ Channel
 			if(textutil.hasPrefix(C.ckey, "guest"))
 				if("guest" in banned)
 					C << output("<font color='red'>Please login with your registered key, or visit <a href=\"http://www.byond.com/?invite=Cbgames\">http://www.byond.com/</a> to create a new key now.</font>", "[ckey(name)].chat.default_output")
-					C << output("<font color='red'>Connection closed.</font>", "[ckey(name)].chat.default_output")
+					C << output("<font color='red'>Connection closed.</font>", "chat.default_output")
 					del(C)
 
 					for(var/_ck in operators)
@@ -78,16 +63,16 @@ Channel
 
 					return
 
-			if(C.flip_panes) winset(C, "default.child", "left=[ckey(name)].who;right=[ckey(name)];splitter=20")
+			if(C.flip_panes) winset(C, "default.child", "left=who;right=channel;splitter=20")
 			C.setInterfaceColor(C.interface_color)
 
 			winshow(C, ckey(name), 1)
-			winset(C, "[ckey(name)].chat.default_output", "style='[C.default_output_style]';")
+			winset(C, "chat.default_output", "style='[C.default_output_style]';")
 
-			if(C.ckey in operators) winset(C, "[ckey(name)].ops_button", "is-visible=true")
-			else winset(C, "[ckey(name)].ops_button", "is-visible=false")
+			if(C.ckey in operators) winset(C, "channel.ops_button", "is-visible=true")
+			else winset(C, "channel.ops_button", "is-visible=false")
 
-			C << output("<center>- - - - - - - - - - - - - - -", "[ckey(name)].chat.default_output")
+			C << output("<center>- - - - - - - - - - - - - - -", "chat.default_output")
 
 			if(C.show_title)
 				if(C.show_colors)
@@ -97,7 +82,7 @@ Channel
 <span style='text-align: center;'>Source available on the <a href='http://www.github.com/Stephen001/Chatters/'>Chatters Repository</a>.</span>
 <span style='text-align: center;'>Copyright (c) 2008 Andrew "Xooxer" Arnold</span>
 <span style='text-align: center;'><font color=red>- All Rights Reserved -</font></span>
-"}, "[ckey(name)].chat.default_output")
+"}, "chat.default_output")
 
 				else
 					C << output({"<span style='text-align: center;'><b>[world.name] - Created by Xooxer</b></span>
@@ -106,13 +91,13 @@ Channel
 <span style='text-align: center;'>Source available on the <a href='http://www.github.com/Stephen001/Chatters/'>Chatters Repository</a>.</span>
 <span style='text-align: center;'>Copyright (c) 2008 Andrew "Xooxer" Arnold</span>
 <span style='text-align: center;'>- All Rights  Reserved -</span>
-"}, "[ckey(name)].chat.default_output")
+"}, "chat.default_output")
 
 			if(C.show_qotd) text_manager.qotd(C)
-			if(C.show_welcome) C << output("<center>[time2text(world.realtime + C.time_offset, textutil.list2text(C.long_date_format, ""))]<br><b>Welcome, [C.name]!</b></center>", "[ckey(name)].chat.default_output")
+			if(C.show_welcome) C << output("<center>[time2text(world.realtime + C.time_offset, textutil.list2text(C.long_date_format, ""))]<br><b>Welcome, [C.name]!</b></center>", "chat.default_output")
 
-			C << output("<span style='text-align: center;'><b>Please report any issues with Chatters <a href='https://github.com/Stephen001/Chatters/issues?state=open'>here</a>!</b></span>", "[ckey(name)].chat.default_output")
-			C << output("<center>- - - - - - - - - - - - - - -</center>", "[ckey(name)].chat.default_output")
+			C << output("<span style='text-align: center;'><b>Please report any issues with Chatters <a href='https://github.com/Stephen001/Chatters/issues?state=open'>here</a>!</b></span>", "chat.default_output")
+			C << output("<center>- - - - - - - - - - - - - - -</center>", "chat.default_output")
 
 			if(!chatters) chatters = new()
 
@@ -124,7 +109,7 @@ Channel
 
 			world.status = "[name] ([length(chatters)] chatter\s)"
 
-			winset(C, "[ckey(name)].default_input", "text='> ';focus=true;")
+			winset(C, "channel.default_input", "text='> ';focus=true;")
 
 			server_manager.bot.say("[C.name] has joined [name].")
 			server_manager.bot.say("[topic]", C)
@@ -167,31 +152,31 @@ Channel
 						var/mob/chatter/c = chatters[i]
 
 						if(c.client && C.client)
-							winset(C, "[ckey(name)].who.grid", "current-cell=1,[i]")
+							winset(C, "who.grid", "current-cell=1,[i]")
 							var/n = c.name
 
 							if(c.afk)
 								c.icon_state = "away"
-								if(!(c.ckey in server_manager.home.operators)) winset(C, "[ckey(name)].who.grid", "style='body{color: gray;}'")
-								else winset(C, "[ckey(name)].who.grid", "style='body{color:gray;font-weight:bold}'")
+								if(!(c.ckey in server_manager.home.operators)) winset(C, "who.grid", "style='body{color: gray;}'")
+								else winset(C, "who.grid", "style='body{color:gray;font-weight:bold}'")
 
 							else if(c.ckey in server_manager.home.operators)
 								c.icon_state = "active"
-								winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
+								winset(C, "who.grid", "style='body{color:[c.name_color];font-weight:bold}'")
 
 							else if(c.ckey in server_manager.home.mute)
 								c.icon_state = "active"
-								winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
+								winset(C, "who.grid", "style='body{color:[c.name_color];text-decoration:line-through;}'")
 
 							else
 								c.icon_state = "active"
-								winset(C, "[ckey(name)].who.grid", "style='body{color:[c.name_color];}'")
+								winset(C, "who.grid", "style='body{color:[c.name_color];}'")
 
-							C << output(c, "[ckey(name)].who.grid")
+							C << output(c, "who.grid")
 							c.name = n
 
 					if(C.client)
-						winset(C, "[ckey(name)].who.grid", "cells=1x[length(chatters)]")
+						winset(C, "who.grid", "cells=1x[length(chatters)]")
 
 		sortWho(list/L)
 			var/list/afk_list
@@ -255,7 +240,7 @@ Channel
 
 			if(textutil.isWhitespace(msg)) return
 
-			if(!window) window = "[ckey(name)].chat.default_output"
+			if(!window) window = "chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
 				if(c.ignoring(C) & CHAT_IGNORE)
@@ -288,7 +273,7 @@ Channel
 
 			if(textutil.isWhitespace(msg)) return
 
-			if(!window) window = "[ckey(name)].chat.default_output"
+			if(!window) window = "chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
 				if(!c.ignoring(C))
@@ -318,7 +303,7 @@ Channel
 
 			if(textutil.isWhitespace(msg)) return
 
-			if(!window) window = "[ckey(name)].chat.default_output"
+			if(!window) window = "chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
 				if(!c.ignoring(C))
@@ -352,7 +337,7 @@ Channel
 						var/rsn = ""
 						if(ckey(raw_msg)) rsn = "([raw_msg])"
 
-						c << output("[c.parseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now AFK. [rsn]", "[ckey(name)].chat.default_output")
+						c << output("[c.parseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now AFK. [rsn]", "chat.default_output")
 
 		returnAFK(mob/chatter/C)
 			if(!C) return
@@ -367,7 +352,7 @@ Channel
 			if(!isMute(C))
 				for(var/mob/chatter/c in chatters)
 					if(!(c.ignoring(C) & CHAT_IGNORE))
-						c << output("[c.parseTime()] <font color=[C.name_color]>[C.name]</font> is back from <b>AFK</b> after [round(((world.realtime - C.away_at)/600),1)] minute\s of inactivity.", "[ckey(name)].chat.default_output")
+						c << output("[c.parseTime()] <font color=[C.name_color]>[C.name]</font> is back from <b>AFK</b> after [round(((world.realtime - C.away_at)/600),1)] minute\s of inactivity.", "chat.default_output")
 
 			C.away_at = null
 

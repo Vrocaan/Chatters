@@ -280,10 +280,10 @@ TextManager
 			server_manager.home.qotd = text_manager.parseTags(qotd, trg.show_colors, trg.show_highlight)
 
 			if(server_manager.home.qotd)
-				if(trg.show_colors) trg << output("<center><b>[fadeText("Developer Quote of the Day", list("255000000","000000000"))]</b>", "[ckey(server_manager.home.name)].chat.default_output")
-				else trg << output("<center><b>Developer Quote of the Day</b>", "[ckey(server_manager.home.name)].chat.default_output")
+				if(trg.show_colors) trg << output("<center><b>[fadeText("Developer Quote of the Day", list("255000000","000000000"))]</b>", "chat.default_output")
+				else trg << output("<center><b>Developer Quote of the Day</b>", "chat.default_output")
 
-				trg << output("<center><i style='font-family: Arial'>[server_manager.home.qotd]</i></center>", "[ckey(server_manager.home.name)].chat.default_output")
+				trg << output("<center><i style='font-family: Arial'>[server_manager.home.qotd]</i></center>", "chat.default_output")
 
 		// Simple string matching procedure.
 		// Crashed, C*a*h*d will match.

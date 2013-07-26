@@ -27,15 +27,9 @@ client
 		..(command)
 
 	Click(object, location, control, params)
-		if(control == "[ckey(server_manager.home.name)].who.grid")
+		if(control == "who.grid")
 			var/Messenger/im = new(mob, key)
 			im.display(mob)
-
-		else
-			world.log << object
-			world.log << params
-			world.log << control
-			world.log << location
 
 	New()
 		..()
