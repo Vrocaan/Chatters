@@ -38,7 +38,7 @@ client
 		assoc_manager.addClient(src)
 
 	Del()
-		if(server_manager.logger)
+		if(server_manager)
 			server_manager.logger.info("Client [key] successfully deleted.")
 
 		..()
