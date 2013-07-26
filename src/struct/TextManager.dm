@@ -1,4 +1,10 @@
 TextManager
+	New()
+		server_manager.logger.info("Successfully created TextManager.")
+
+	Del()
+		server_manager.logger.info("Successfully deleted TextManager.")
+
 	var
 		list
 			tags = list("\[code]"       = "\[/code]",

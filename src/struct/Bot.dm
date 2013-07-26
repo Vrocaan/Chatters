@@ -97,17 +97,14 @@ Bot
 		setName(new_name, save = 1)
 			if(!new_name) new_name = "chanBot"
 			name = "@" + new_name
-			if(save) server_manager.saveBot(src)
 
 		setNameColor(new_color, save = 1)
 			if(!new_color) new_color = "#f00"
 			name_color = new_color
-			if(save) server_manager.saveBot(src)
 
 		setTextColor(new_color, save = 1)
 			if(!new_color) new_color = "#000"
 			text_color = new_color
-			if(save) server_manager.saveBot(src)
 
 		setTopic(new_value, save)
 			server_manager.home.topic = new_value
@@ -116,5 +113,3 @@ Bot
 				if(chatter_manager.isTelnet(C.key)) continue
 				if(!C.client) continue
 				winset(C, "[ckey(server_manager.home.name)].topic_label", "text='[new_value]';")
-
-			if(save) server_manager.saveHome()

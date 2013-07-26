@@ -695,7 +695,8 @@ mob
 					server_manager.home.operators += ckey(target)
 
 				server_manager.home.updateWho()
-				server_manager.saveHome()
+
+				server_manager.logger.trace("[key] promoted [target] to operator.")
 
 			demote(target as text)
 				set hidden = 1
@@ -713,7 +714,8 @@ mob
 					server_manager.home.operators -= ckey(target)
 
 				server_manager.home.updateWho()
-				server_manager.saveHome()
+
+				server_manager.logger.trace("[key] demoted [target] from operator.")
 
 			setTopic(ntopic as text)
 				set hidden = 1
@@ -725,6 +727,7 @@ mob
 					return
 
 				server_manager.bot.setTopic(ntopic, 1)
+				server_manager.logger.trace("[key] set the topic to [ntopic].")
 
 			botSetTextColor(n as text)
 				set hidden = 1
@@ -736,6 +739,7 @@ mob
 					return
 
 				server_manager.bot.setTextColor(n, 1)
+				server_manager.logger.trace("[key] set the bot text color to [n].")
 
 			botSetNameColor(n as text)
 				set hidden = 1
@@ -747,6 +751,7 @@ mob
 					return
 
 				server_manager.bot.setNameColor(n, 1)
+				server_manager.logger.trace("[key] set the bot name color to [n].")
 
 			botSetName(n as text)
 				set hidden = 1
@@ -758,6 +763,7 @@ mob
 					return
 
 				server_manager.bot.setName(n, 1)
+				server_manager.logger.trace("[key] set the bot's name to [n].")
 
 			botSay(n as text)
 				set hidden = 1
@@ -769,6 +775,7 @@ mob
 					return
 
 				server_manager.bot.say(n)
+				server_manager.logger.trace("[key] issued botSay: [html_encode(n)]")
 
 			botMe(n as text)
 				set hidden = 1
@@ -780,6 +787,7 @@ mob
 					return
 
 				server_manager.bot.me(n)
+				server_manager.logger.trace("[key] issued botMe: [html_encode(n)]")
 
 			botMy(n as text)
 				set hidden = 1
@@ -791,6 +799,7 @@ mob
 					return
 
 				server_manager.bot.my(n)
+				server_manager.logger.trace("[key] issued botMy: [html_encode(n)]")
 
 			purgeAssoc(data as text)
 				set hidden = 1
@@ -805,6 +814,8 @@ mob
 					var/d = assoc_manager.purge(data)
 					if(d) server_manager.bot.say("Purged [data] from the association database: [d] entrie(s) removed.", src)
 					else server_manager.bot.say("No entries found for [data] to be purged.", src)
+
+				server_manager.logger.trace("[key] purged \"[data]\" from association database.")
 
 			checkAssoc(target as text)
 				set hidden = 1
@@ -835,6 +846,8 @@ mob
 
 				else server_manager.bot.say("No information found for [target].", src)
 
+				server_manager.logger.trace("[key] searched for \"[target]\" in the association database.")
+
 			checkIP(target as text)
 				set hidden = 1
 
@@ -854,6 +867,8 @@ mob
 
 				if(C.client.address) server_manager.bot.say("[C.name]'s IP: [C.client.address]", src)
 				else server_manager.bot.say("[C.name]'s IP is unknown.", src)
+
+				server_manager.logger.trace("[key] checked the IP of [target].")
 
 			mute(target as text)
 				set hidden = 1
@@ -876,7 +891,7 @@ mob
 
 				else server_manager.bot.say("You cannot mute an operator.", src)
 
-				server_manager.saveHome()
+				server_manager.logger.trace("[key] muted [target].")
 
 			unmute(target as text)
 				set hidden = 1
@@ -896,7 +911,7 @@ mob
 
 					else server_manager.bot.say("[target] is not muted.", src)
 
-				server_manager.saveHome()
+				server_manager.logger.trace("[key] unmuted [target].")
 
 			kick(target as text)
 				set hidden = 1
@@ -920,6 +935,7 @@ mob
 					return
 
 				server_manager.bot.say("[C.name] has been kicked by \[b][name]\[/b].")
+				server_manager.logger.trace("[key] kicked [C.name].")
 
 				C << output("You have been kicked from [server_manager.home.name] by [name].", "[ckey(server_manager.home.name)].chat.default_output")
 				C << output("<font color=red>Connection closed.", "[ckey(server_manager.home.name)].chat.default_output")
@@ -949,6 +965,8 @@ mob
 				server_manager.bot.say("[target] has been banned by \[b][name]\[/b].")
 				server_manager.home.banned += ckey(target)
 
+				server_manager.logger.trace("[key] banned [target].")
+
 				if(C)
 					C << output("You have been banned from [server_manager.home.name] by [name]", "[ckey(server_manager.home.name)].chat.default_output")
 					C << output("<font color=red>Connection closed.", "[ckey(server_manager.home.name)].chat.default_output")
@@ -957,8 +975,6 @@ mob
 					server_manager.home.updateWho()
 
 					C.Logout()
-
-				server_manager.saveHome()
 
 			unban(target as text)
 				set hidden = 1
@@ -973,7 +989,7 @@ mob
 					server_manager.bot.say("[target] has been unbanned by \[b][name]\[/b].")
 					server_manager.home.banned -= ckey(target)
 
-				server_manager.saveHome()
+				server_manager.logger.trace("[key] unbanned [target].")
 
 			geolocate(target as text)
 				set hidden = 1
@@ -1015,6 +1031,8 @@ mob
 					if(data["latitude"] && data["longitude"]) server_manager.bot.rawSay("<b>Click <a href=https://maps.google.com/maps?q=[data["latitude"]]+[data["longitude"]]>here</a> to view on Google Maps.</b>", src)
 
 				else server_manager.bot.say("Failed to geolocate [target] ([content]).", src)
+
+				server_manager.logger.trace("[key] used geolocate to search for \"[target]\".")
 
 			/* SETTINGS */
 

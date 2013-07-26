@@ -8,19 +8,29 @@ AssocManager
 	New()
 		loadDB()
 
+		server_manager.logger.info("Successfully created AssocManager.")
+
 	Del()
 		saveDB()
+
+		server_manager.logger.info("Successfully deleted AssocManager.")
 
 	proc
 		saveDB()
 			var/savefile/f = new("./data/assoc_db.sav")
 			Write(f)
 
+			if(fexists("./data/assoc_db.sav")) server_manager.logger.info("Successfully saved assoc_db.sav.")
+			else server_manager.logger.error("assoc_db.sav does not exist after saving.")
 
 		loadDB()
 			if(fexists("./data/assoc_db.sav"))
 				var/savefile/f = new("./data/assoc_db.sav")
 				Read(f)
+
+				server_manager.logger.info("Successfully loaded assoc_db.sav.")
+
+			else server_manager.logger.info("assoc_db.sav does not exist to be loaded.")
 
 			if(!entries) entries = list()
 			if(!all_ips) all_ips = list()
@@ -49,6 +59,8 @@ AssocManager
 
 				if(!length(entry.ips) && !length(entry.ckeys) && !length(entry.cids))
 					entries -= entry
+
+			server_manager.logger.trace("[data] purged from association database.")
 
 		combineEntries(list/sentries)
 			if(!length(sentries)) return
@@ -174,6 +186,8 @@ AssocManager
 				all_ckeys[c.ckey] = entry
 
 				entries += entry
+
+				server_manager.logger.trace("New client added to association manager: [c.key]")
 
 AssocEntry
 	var

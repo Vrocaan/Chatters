@@ -1,4 +1,10 @@
 ChatterManager
+	New()
+		server_manager.logger.info("Successfully created ChatterManager.")
+
+	Del()
+		server_manager.logger.info("Successfully deleted ChatterManager.")
+
 	Topic(href, href_list)
 		..()
 

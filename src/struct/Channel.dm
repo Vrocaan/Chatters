@@ -58,6 +58,8 @@ Channel
 					var/mob/chatter/op = chatter_manager.getByKey(_ck)
 					if(op) server_manager.bot.say("Banned user [C.name] attempted to log in.", op)
 
+				server_manager.logger.info("Banned user [C.name] attempted to log in.")
+
 				del(C)
 
 				return
@@ -71,6 +73,8 @@ Channel
 					for(var/_ck in operators)
 						var/mob/chatter/op = chatter_manager.getByKey(_ck)
 						if(op) server_manager.bot.say("[C.name] attempted to log in, but all guest accounts are currently banned.", op)
+
+					server_manager.logger.info("[C.name] attempted to log in, but all guest accounts are currently banned.")
 
 					return
 
@@ -127,6 +131,8 @@ Channel
 					var/mob/chatter/op = chatter_manager.getByKey(_ck)
 					if(op) server_manager.bot.say("[C.name]'s IP: [C.client.address]", op)
 
+			server_manager.logger.info("[C.key] successfully logged in.")
+
 		quit(mob/chatter/C)
 			if(!C)
 				for(var/i = 1 to length(chatters))
@@ -142,6 +148,8 @@ Channel
 			updateWho()
 
 			server_manager.bot.say("[C.name] has quit [name].")
+
+			server_manager.logger.info("[C.key] successfully quit.")
 
 		updateWho()
 			for(var/i = 1, i <= length(chatters), i ++)
