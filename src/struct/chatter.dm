@@ -699,7 +699,7 @@ mob
 				if(ismob(target)) C = target
 				else C = chatter_manager.getByKey(target)
 
-				if(C) winset(C, "ops_button", "is-visible=true")
+				if(C) winset(C, "channel.ops_button", "is-visible=true")
 
 			demote(target as text)
 				set hidden = 1
@@ -723,7 +723,7 @@ mob
 				if(ismob(target)) C = target
 				else C = chatter_manager.getByKey(target)
 
-				if(C) winset(C, "ops_button", "is-visible=true")
+				if(C) winset(C, "channel.ops_button", "is-visible=true")
 
 			setTopic(ntopic as text)
 				set hidden = 1
