@@ -9476,37 +9476,9 @@ window "ops_tracker"
 		macro = ""
 		menu = ""
 		on-close = ""
-	elem "button15"
-		type = BUTTON
-		pos = 617,424
-		size = 200x20
-		anchor1 = 100,100
-		anchor2 = none
-		font-family = "Trebuchet MS,Arial"
-		font-size = 10
-		font-style = ""
-		text-color = #ffffff
-		background-color = #d50b0b
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = "is-checked"
-		on-size = ""
-		text = "Apply Sticky Ban"
-		image = ""
-		command = "applyStickBan"
-		is-flat = true
-		stretch = false
-		is-checked = false
-		group = ""
-		button-type = pushbutton
 	elem "button6"
 		type = BUTTON
-		pos = 617,400
+		pos = 617,424
 		size = 200x20
 		anchor1 = 100,100
 		anchor2 = none
@@ -9535,7 +9507,7 @@ window "ops_tracker"
 	elem "label66"
 		type = LABEL
 		pos = 617,4
-		size = 200x392
+		size = 200x416
 		anchor1 = 100,0
 		anchor2 = 100,100
 		font-family = "Trebuchet MS,Arial"
@@ -9561,7 +9533,7 @@ window "ops_tracker"
 	elem "notes_browser"
 		type = BROWSER
 		pos = 621,24
-		size = 192x368
+		size = 192x392
 		anchor1 = 100,0
 		anchor2 = 100,100
 		font-family = ""
