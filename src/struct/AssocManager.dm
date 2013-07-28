@@ -8,19 +8,19 @@ AssocManager
 	New()
 		loadDB()
 
-		server_manager.logger.info("Successfully created AssocManager.")
+		server_manager.logger.info("Created AssocManager.")
 
 	Del()
 		saveDB()
 
-		server_manager.logger.info("Successfully deleted AssocManager.")
+		server_manager.logger.info("Deleted AssocManager.")
 
 	proc
 		saveDB()
 			var/savefile/f = new("./data/assoc_db.sav")
 			Write(f)
 
-			if(fexists("./data/assoc_db.sav")) server_manager.logger.info("Successfully saved assoc_db.sav.")
+			if(fexists("./data/assoc_db.sav")) server_manager.logger.info("Saved assoc_db.sav.")
 			else server_manager.logger.error("assoc_db.sav does not exist after saving.")
 
 		loadDB()
@@ -28,7 +28,7 @@ AssocManager
 				var/savefile/f = new("./data/assoc_db.sav")
 				Read(f)
 
-				server_manager.logger.info("Successfully loaded assoc_db.sav.")
+				server_manager.logger.info("Loaded assoc_db.sav.")
 
 			else server_manager.logger.info("assoc_db.sav does not exist to be loaded.")
 

@@ -1613,7 +1613,6 @@ mob
 
 				updateViewingEntry()
 				updateTracker()
-				updateViewingLog()
 				updateLogs()
 
 			updateTracker()

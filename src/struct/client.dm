@@ -35,11 +35,7 @@ client
 	New()
 		..()
 
-		server_manager.logger.info("Client [key] successfully created.")
 		assoc_manager.addClient(src)
 
 	Del()
-		if(server_manager)
-			server_manager.logger.info("Client [key] successfully deleted.")
-
 		..()
