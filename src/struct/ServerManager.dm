@@ -39,6 +39,7 @@ ServerManager
 			S["mute"]		<< home.mute
 			S["banned"]		<< home.banned
 			S["operators"]  << home.operators
+			S["topic"]      << home.topic
 
 			if(fexists("./data/server_home.sav")) logger.info("Successfully saved server_home.sav.")
 			else logger.error("server_home.sav does not exist after saving.")
@@ -57,6 +58,8 @@ ServerManager
 
 				S["operators"] >> temp
 				if(length(temp)) home.operators |= temp
+
+				if(S["topic"]) S["topic"] >> home.topic
 
 				logger.info("Successfully loaded server_home.sav.")
 
