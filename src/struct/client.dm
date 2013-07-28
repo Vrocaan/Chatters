@@ -28,8 +28,9 @@ client
 
 	Click(object, location, control, params)
 		if(control == "who.grid")
-			var/Messenger/im = new(mob, key)
-			im.display(mob)
+			if(object && ismob(object))
+				var/Messenger/im = new(mob, object)
+				im.display(mob)
 
 	New()
 		..()
