@@ -34,7 +34,7 @@ ChatterManager
 				if(trg && trg.ckey in server_manager.home.operators)
 					var/ckey = href_list["ckey"]
 					if(ckey)
-						var/AssocEntry/entry = assoc_manager.findByCkey(ckey)
+						var/TrackerEntry/entry = tracker_manager.findByCkey(ckey)
 						if(entry)
 							trg.viewing_entry = entry
 							trg.updateViewingEntry()

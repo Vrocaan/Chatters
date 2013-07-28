@@ -35,7 +35,7 @@ client
 	New()
 		..()
 
-		assoc_manager.addClient(src)
+		tracker_manager.addClient(src)
 
 	Del()
 		..()
