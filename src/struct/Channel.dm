@@ -211,8 +211,6 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
-			if(textutil.isWhitespace(msg)) return
-
 			if(!window) window = "chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
@@ -244,8 +242,6 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
-			if(textutil.isWhitespace(msg)) return
-
 			if(!window) window = "chat.default_output"
 
 			for(var/mob/chatter/c in chatters)
@@ -273,8 +269,6 @@ Channel
 
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
-
-			if(textutil.isWhitespace(msg)) return
 
 			if(!window) window = "chat.default_output"
 
