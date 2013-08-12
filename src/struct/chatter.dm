@@ -1043,7 +1043,7 @@ mob
 				if(winget(src, "misc.flip_panes", "is-checked")=="true") flip_panes = TRUE
 				else flip_panes = FALSE
 
-				if(!flip_panes) winset(src, "default.child", "left=channel;right=channel.who;splitter=80")
+				if(!flip_panes) winset(src, "default.child", "left=channel;right=who;splitter=80")
 				else winset(src, "default.child", "left=who;right=channel;splitter=20")
 
 			toggleSettings()
