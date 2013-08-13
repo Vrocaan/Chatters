@@ -1618,10 +1618,10 @@ mob
 
 				if(!(ckey in server_manager.home.operators)) return
 
-				var/c = 1
+				var/c = 0
 				for(var/TrackerEntry/entry in tracker_manager.entries)
 					if(length(entry.ckeys))
-						winset(src, "ops_tracker.ckeys", "current-cell=1,[length(tracker_manager.all_ckeys) - c + 1]")
+						winset(src, "ops_tracker.ckeys", "current-cell=1,[length(tracker_manager.all_ckeys) - c]")
 						winset(src, "ops_tracker.ckeys", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
 
 						var/list/ekeys = list()
@@ -1632,7 +1632,7 @@ mob
 						src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[entry.ckeys[1]]>[textutil.list2text(ekeys, ", ")]</a>", "ops_tracker.ckeys")
 						c ++
 
-				winset(src, "ops_tracker.ckeys", "cells=1x[length(tracker_manager.all_ckeys)]")
+				winset(src, "ops_tracker.ckeys", "cells=1x[c]")
 
 			updateViewingEntry()
 				set hidden = 1
