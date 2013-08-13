@@ -41,6 +41,8 @@ Channel
 				return
 
 			if(C.flip_panes) winset(C, "default.child", "left=who;right=channel;splitter=20")
+			else winset(C, "default.child", "left=channel;right=who;splitter=80")
+
 			C.setInterfaceColor(C.interface_color)
 
 			winshow(C, ckey(name), 1)
