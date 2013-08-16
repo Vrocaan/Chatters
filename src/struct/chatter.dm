@@ -1618,10 +1618,10 @@ mob
 
 				if(!(ckey in server_manager.home.operators)) return
 
-				var/c = 0
+				var/c = 1
 				for(var/TrackerEntry/entry in tracker_manager.entries)
-					if(length(entry.ckeys))
-						winset(src, "ops_tracker.ckeys", "current-cell=1,[length(tracker_manager.all_ckeys) - c]")
+					if(length(entry.ckeys) && length(ckey(entry.ckeys[1])))
+						winset(src, "ops_tracker.ckeys", "current-cell=1,[c]")
 						winset(src, "ops_tracker.ckeys", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
 
 						var/list/ekeys = list()
