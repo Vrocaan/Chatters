@@ -228,7 +228,7 @@ mob
 			ping()
 				set hidden = 1
 
-				src << output("<font color=red face=Courier>Pong ([time2text(world.timeofday, "hh:mm:ss")])!</font>", "chat.default_output")
+				src << output("<font color=red face=Courier>Pong ([time2text(world.timeofday, "hh:mm:ss")])!</font>", "default_output")
 
 			who()
 				set hidden = 1
@@ -961,8 +961,8 @@ mob
 				server_manager.bot.say("[C.name] has been kicked by \[b][name]\[/b].")
 				server_manager.logger.trace("[key] kicked [C.name].")
 
-				C << output("You have been kicked from [server_manager.home.name] by [name].", "chat.default_output")
-				C << output("<font color=red>Connection closed.", "chat.default_output")
+				C << output("You have been kicked from [server_manager.home.name] by [name].", "default_output")
+				C << output("<font color=red>Connection closed.", "default_output")
 
 				server_manager.home.chatters -= C
 				server_manager.home.updateWho()
@@ -992,8 +992,8 @@ mob
 				server_manager.logger.trace("[key] banned [target].")
 
 				if(C)
-					C << output("You have been banned from [server_manager.home.name] by [name]", "chat.default_output")
-					C << output("<font color=red>Connection closed.", "chat.default_output")
+					C << output("You have been banned from [server_manager.home.name] by [name]", "default_output")
+					C << output("<font color=red>Connection closed.", "default_output")
 
 					server_manager.home.chatters -= C
 					server_manager.home.updateWho()
@@ -1280,7 +1280,7 @@ mob
 				if(isnull(t)) t = "body { background-color: #ffffff; }"
 
 				default_output_style = t
-				winset(src, "chat.default_output", "style=\"[text_manager.escapeQuotes(t)]\";")
+				winset(src, "default_output", "style=\"[text_manager.escapeQuotes(t)]\";")
 				winset(src, "style_formats.output_style", "text=\"[text_manager.escapeQuotes(default_output_style)]\";")
 
 			setDefaultColorStyle()
