@@ -225,6 +225,11 @@ mob
 							else return ign
 
 		verb
+			ping()
+				set hidden = 1
+
+				src << output("<font color=red face=Courier>Pong ([time2text(world.timeofday, "hh:mm:ss")])!</font>", "chat.default_output")
+
 			viewHelp()
 				set hidden = 1
 
