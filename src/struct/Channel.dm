@@ -121,6 +121,9 @@ Channel
 					var/mob/chatter/op = chatter_manager.getByKey(_ck)
 					if(op) server_manager.bot.say("[C.name]'s IP: [C.client.address]", op)
 
+			if(chatter_manager.isTelnet(C.key))
+				C.who()
+
 		quit(mob/chatter/C)
 			if(!C)
 				for(var/i = 1 to length(chatters))
@@ -359,6 +362,9 @@ Channel
 				if(textutil.hasPrefix(search, "guest")) if("guest" in mute) return 1
 				else if(search in mute) return 1
 
+				if(textutil.hasPrefix(search, "telnet")) if("telnet" in mute) return 1
+				else if(search in mute) return 1
+
 		isBanned(mob/chatter/M)
 			if(M.ckey in banned) return 1
 			else
@@ -369,6 +375,9 @@ Channel
 				else return 1
 
 				if(textutil.hasPrefix(search, "guest")) if("guest" in banned) return 1
+				else if(search in banned) return 1
+
+				if(textutil.hasPrefix(search, "telnet")) if("telnet" in banned) return 1
 				else if(search in banned) return 1
 
 				var/TrackerEntry/entry
