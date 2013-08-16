@@ -230,6 +230,19 @@ mob
 
 				src << output("<font color=red face=Courier>Pong ([time2text(world.timeofday, "hh:mm:ss")])!</font>", "chat.default_output")
 
+			who()
+				set hidden = 1
+
+				var/list/names = list()
+				for(var/mob/chatter/C in server_manager.home.chatters)
+					var/n = C.key
+					if(C.afk) n += " (afk)"
+					if(C.ckey in server_manager.home.mute) n += " (muted)"
+					if(C.ckey in ignoring) n += " (ignored)"
+					names += n
+
+				server_manager.bot.say("The following users are online: [textutil.list2text(names, ", ")]", src)
+
 			viewHelp()
 				set hidden = 1
 
