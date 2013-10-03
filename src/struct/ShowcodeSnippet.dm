@@ -52,7 +52,7 @@ ShowcodeSnippet
 					<style>body {margin: 4px; overflow: auto; background-color: #ffffff}</style>
 					<title>[owner]'s Showtext</title>
 					</head>
-					<body>[src.code]</body>
+					<body>[html_encode(src.code)]</body>
 					</html>"}
 
 			return html
