@@ -12,16 +12,14 @@ TextManager
 						"\[i]"          = "\[/i]",
 						"\[u]"          = "\[/u]",
 						"\[s]"          = "\[/s]",
-						"\[#"           = "\[/#]",
-						"\[img]"        = "\[/img]")
+						"\[#"           = "\[/#]")
 
 			html = list("<code>"        = "</code>",
 						"<b>"           = "</b>",
 						"<i>"           = "</i>",
 						"<u>"           = "</u>",
 						"<s>"           = "</s>",
-						"<font color=#" = "</font>",
-						"<img src='"    = "'>")
+						"<font color=#" = "</font>")
 
 			links = list("id"	   	    = "http://www.byond.com/forum/?post=$s",
 						 "hub"		    = "http://www.byond.com/games/$s",
@@ -47,7 +45,8 @@ TextManager
 						 "bash"		    = "http://www.bash.org/?$s",
 						 "condo"	    = "http://gazoot.byondhome.com/condo/site.dmb?browse&owner=$s",
 						 "issue"	    = "https://github.com/Stephen001/Chatters/issues/$s",
-						 "dm"			= "http://www.byond.com/docs/ref/info.html#$s")
+						 "dm"			= "http://www.byond.com/docs/ref/info.html#$s",
+						 "z0r"			= "http://z0r.de/$s")
 
 	proc
 		sanitize(msg)
