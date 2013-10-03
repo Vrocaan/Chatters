@@ -11,8 +11,6 @@ Channel
 			banned = list()
 			showcodes = list()
 
-		tmp/uptime = 0
-
 	New(params[])
 		if(params)
 			name = params["name"]
@@ -20,28 +18,7 @@ Channel
 
 		..()
 
-		spawn() sysClockLoop()
-
 	proc
-		sysClockLoop()
-			while(src)
-				var
-					m = round(uptime / 60)
-					h = round(m / 60)
-					s = 0
-
-				m -= h * 60
-				s = uptime - (m * 60) - (h * 60 * 60)
-
-
-				if(length(chatters))
-					for(var/mob/chatter/M in chatters)
-						M << output("[h]:[(m < 10) ? ("0[m]") : m]:[(s < 10) ? ("0[s]") : s]", "who.sysclock")
-
-				uptime ++
-
-				sleep(10)
-
 		join(mob/chatter/C)
 			if(!C || !C.client)
 				del(C)

@@ -12066,7 +12066,7 @@ window "who"
 	elem "who"
 		type = MAIN
 		pos = 281,0
-		size = 120x240
+		size = 120x245
 		anchor1 = none
 		anchor2 = none
 		font-family = ""
@@ -12102,32 +12102,6 @@ window "who"
 		macro = ""
 		menu = ""
 		on-close = ""
-	elem "sysclock"
-		type = LABEL
-		pos = 4,216
-		size = 112x20
-		anchor1 = 0,100
-		anchor2 = 100,100
-		font-family = "Trebuchet MS,Arial"
-		font-size = 10
-		font-style = ""
-		text-color = #000000
-		background-color = #fafafa
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = ""
-		on-size = ""
-		text = "0:00:00"
-		image = ""
-		image-mode = center
-		keep-aspect = false
-		align = center
-		text-wrap = false
 	elem "label5"
 		type = LABEL
 		pos = 4,28
@@ -12209,7 +12183,7 @@ window "who"
 	elem "grid"
 		type = GRID
 		pos = 4,34
-		size = 112x182
+		size = 112x206
 		anchor1 = 0,0
 		anchor2 = 100,100
 		font-family = "Trebuchet MS,Arial"
