@@ -23,7 +23,7 @@ Snippet
 
 			var/content
 
-			if(content_type == 1) // showcode
+			if(content_type == SNIPPET_CODE) // showcode
 				if(C.show_highlight && data)
 					content = {"
 						<html>
@@ -32,7 +32,7 @@ Snippet
 						<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
 						<style>body {margin: 4px; overflow: auto; background-color: #ffffff}</style>
 						<script>hljs.initHighlightingOnLoad();</script>
-						<title>[owner]'s Highlighted Showcode</title>
+						<title>[owner]'s Highlighted Code</title>
 						</head>
 						<body><pre><code>[html_encode(data)]</code></pre></body>
 						</html>"}
@@ -42,20 +42,23 @@ Snippet
 						<html>
 						<head>
 						<style>body {margin: 4px; overflow: auto; background-color: #ffffff}</style>
-						<title>[owner]'s Showcode</title>
+						<title>[owner]'s Code</title>
 						</head>
 						<body><pre><code>[data]</code></pre></body>
 						</html> "}
 
-			else if(content_type == 2) // showtext
+			else if(content_type == SNIPPET_TEXT) // showtext
 				content = {"
 					<html>
 					<head>
 					<style>body {margin: 4px; overflow: auto; background-color: #ffffff}</style>
-					<title>[owner]'s Showtext</title>
+					<title>[owner]'s Text</title>
 					</head>
-					<body>[data]</body>
+					<body>[html_encode(data)]</body>
 					</html>"}
+
+			else if(content_type == SNIPPET_HTML)
+				content = {"[data]"}
 
 			return content
 
@@ -65,7 +68,8 @@ Snippet
 				var/ct
 
 				switch(content_type)
-					if(1) ct = "code"
-					if(2) ct = "text"
+					if(SNIPPET_CODE) ct = "code"
+					if(SNIPPET_TEXT) ct = "text"
+					if(SNIPPET_HTML) ct = "HTML"
 
 				server_manager.bot.rawSay("Click <a href='byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(owner)]&action=showcontent&index=[id]'>here</a> to view [owner]'s [ct].")

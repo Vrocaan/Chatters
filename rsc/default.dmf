@@ -10127,8 +10127,8 @@ window "showcontent"
 		on-close = ""
 	elem "label24"
 		type = LABEL
-		pos = 200,323
-		size = 179x20
+		pos = 4,299
+		size = 375x44
 		anchor1 = 0,100
 		anchor2 = 100,100
 		font-family = "Trebuchet MS,Arial"
@@ -10145,23 +10145,23 @@ window "showcontent"
 		right-click = false
 		saved-params = ""
 		on-size = ""
-		text = ""
+		text = "Select Content Type"
 		image = ""
 		image-mode = stretch
 		keep-aspect = false
-		align = center
+		align = top
 		text-wrap = false
-	elem "button9"
+	elem "button17"
 		type = BUTTON
-		pos = 102,323
-		size = 98x20
+		pos = 144,319
+		size = 92x20
 		anchor1 = 0,100
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
 		font-size = 10
 		font-style = ""
 		text-color = #000000
-		background-color = #c8c8c8
+		background-color = #e9e9e9
 		is-visible = true
 		is-disabled = false
 		is-transparent = false
@@ -10171,7 +10171,35 @@ window "showcontent"
 		right-click = false
 		saved-params = "is-checked"
 		on-size = ""
-		text = "Share as Text"
+		text = "HTML"
+		image = ""
+		command = "postContent \"html"
+		is-flat = true
+		stretch = false
+		is-checked = false
+		group = ""
+		button-type = pushbutton
+	elem "button9"
+		type = BUTTON
+		pos = 76,319
+		size = 64x20
+		anchor1 = 0,100
+		anchor2 = none
+		font-family = "Trebuchet MS,Arial"
+		font-size = 10
+		font-style = ""
+		text-color = #000000
+		background-color = #e9e9e9
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "is-checked"
+		on-size = ""
+		text = "Text"
 		image = ""
 		command = "postContent \"text"
 		is-flat = true
@@ -10181,15 +10209,15 @@ window "showcontent"
 		button-type = pushbutton
 	elem "button8"
 		type = BUTTON
-		pos = 4,323
-		size = 98x20
+		pos = 8,319
+		size = 64x20
 		anchor1 = 0,100
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
 		font-size = 10
 		font-style = ""
 		text-color = #000000
-		background-color = #c8c8c8
+		background-color = #e9e9e9
 		is-visible = true
 		is-disabled = false
 		is-transparent = false
@@ -10199,7 +10227,7 @@ window "showcontent"
 		right-click = false
 		saved-params = "is-checked"
 		on-size = ""
-		text = "Share as Code"
+		text = "Code"
 		image = ""
 		command = "postContent \"code"
 		is-flat = true
@@ -10262,7 +10290,7 @@ window "showcontent"
 	elem "content_input"
 		type = INPUT
 		pos = 4,28
-		size = 375x291
+		size = 375x267
 		anchor1 = 0,0
 		anchor2 = 100,100
 		font-family = "Trebuchet MS,Arial"

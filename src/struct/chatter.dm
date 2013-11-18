@@ -652,11 +652,13 @@ mob
 
 				S.owner = "[name]"
 				S.data = content
-				S.send()
 
 				switch(t)
 					if("code") S.content_type = SNIPPET_CODE
 					if("text") S.content_type = SNIPPET_TEXT
+					if("html") S.content_type = SNIPPET_HTML
+
+				S.send()
 
 				winshow(src, "showcontent", 0)
 				winset(src, "showcontent.content_input", "text=")
