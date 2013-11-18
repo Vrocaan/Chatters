@@ -10135,7 +10135,7 @@ window "showcontent"
 		font-size = 10
 		font-style = ""
 		text-color = #000000
-		background-color = #c8c8c8
+		background-color = #e9e9e9
 		is-visible = true
 		is-disabled = false
 		is-transparent = false
@@ -10154,14 +10154,14 @@ window "showcontent"
 	elem "button17"
 		type = BUTTON
 		pos = 144,319
-		size = 92x20
+		size = 64x20
 		anchor1 = 0,100
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
 		font-size = 10
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #c8c8c8
 		is-visible = true
 		is-disabled = false
 		is-transparent = false
@@ -10189,7 +10189,7 @@ window "showcontent"
 		font-size = 10
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #c8c8c8
 		is-visible = true
 		is-disabled = false
 		is-transparent = false
@@ -10217,7 +10217,7 @@ window "showcontent"
 		font-size = 10
 		font-style = ""
 		text-color = #000000
-		background-color = #e9e9e9
+		background-color = #c8c8c8
 		is-visible = true
 		is-disabled = false
 		is-transparent = false
