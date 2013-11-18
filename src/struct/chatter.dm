@@ -631,52 +631,32 @@ mob
 					winset(src, "showcontent.content_input", "text=")
 					winshow(src, "showcontent", 0)
 
-			showCode()
+			postContent(t as text)
 				set hidden = 1
 
+				if(!t) return
 				if(telnet) return
 				if(afk) returnAFK()
 
-				var/ShowcodeSnippet/S = new
+				var/Snippet/S = new
 
 				if(server_manager.home.isMute(src))
 					server_manager.bot.say("I'm sorry, but you appear to be muted.", src)
 					return
 
-				var/iCode = winget(src, "showcontent.content_input", "text")
+				var/content = winget(src, "showcontent.content_input", "text")
 
-				if(!iCode)
+				if(!content)
 					del(S)
-					return 0
-
-				S.owner = "[src.name]"
-				S.code = iCode
-				S.send(1)
-
-				winshow(src, "showcontent", 0)
-				winset(src, "showcontent.content_input", "text=")
-
-			showText(t as text|null|mob in server_manager.home.chatters)
-				set hidden = 1
-
-				if(telnet) return
-				if(afk) returnAFK()
-				var/ShowcodeSnippet/S = new
-
-				if(server_manager.home.isMute(src))
-					server_manager.bot.say("I'm sorry, but you appear to be muted.", src)
 					return
 
-				var/iCode = winget(src, "showcontent.content_input", "text")
-
-				if(!iCode)
-					del(S)
-
-					return 0
-
-				S.owner = "[src.name]"
-				S.code = iCode
+				S.owner = "[name]"
+				S.data = content
 				S.send()
+
+				switch(t)
+					if("code") S.content_type = SNIPPET_CODE
+					if("text") S.content_type = SNIPPET_TEXT
 
 				winshow(src, "showcontent", 0)
 				winset(src, "showcontent.content_input", "text=")

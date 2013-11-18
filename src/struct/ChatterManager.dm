@@ -12,23 +12,14 @@ ChatterManager
 		if(href_list["target"]) trg = locate(href_list["target"])
 
 		switch(href_list["action"])
-			if("showcode")
-				var/ShowcodeSnippet/snippet = server_manager.home.showcodes[text2num(href_list["index"])]
+			if("showcontent")
+				var/Snippet/snippet = server_manager.home.snippets[text2num(href_list["index"])]
 
 				if(snippet.target && snippet.target != usr.ckey && usr.ckey != trg.ckey)
 					// This is a private message they are not allowed to view.
 					return
 
-				else usr << browse(snippet.returnHTML(trg, 1), "window=showcode_[snippet.id];display=1;size=800x500;border=1;can_close=1;can_resize=1;titlebar=1")
-
-			if("showtext")
-				var/ShowcodeSnippet/snippet = server_manager.home.showcodes[text2num(href_list["index"])]
-
-				if (snippet.target && snippet.target != usr.ckey && usr.ckey != trg.ckey)
-					// This is a private message they are not allowed to view.
-					return
-
-				else usr << browse(snippet.returnHTML(trg), "window=showtext_[snippet.id];display=1;size=800x500;border=1;can_close=1;can_resize=1;titlebar=1")
+				else usr << browse(snippet.getContent(trg, 1), "window=showcontent_[snippet.id];display=1;size=800x500;border=1;can_close=1;can_resize=1;titlebar=1")
 
 			if("tracker_viewckey")
 				if(trg && trg.ckey in server_manager.home.operators)

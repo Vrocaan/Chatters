@@ -10173,7 +10173,7 @@ window "showcontent"
 		on-size = ""
 		text = "Share as Text"
 		image = ""
-		command = "ShowText"
+		command = "postContent \"text"
 		is-flat = true
 		stretch = false
 		is-checked = false
@@ -10201,7 +10201,7 @@ window "showcontent"
 		on-size = ""
 		text = "Share as Code"
 		image = ""
-		command = "ShowCode"
+		command = "postContent \"code"
 		is-flat = true
 		stretch = false
 		is-checked = false

@@ -2,6 +2,8 @@
 // END_INTERNALS
 // BEGIN_FILE_DIR
 #define FILE_DIR .
+#define FILE_DIR "rsc"
+#define FILE_DIR "rsc/icons"
 // END_FILE_DIR
 // BEGIN_PREFERENCES
 #define DEBUG
@@ -26,7 +28,7 @@
 #include "src\struct\Messenger.dm"
 #include "src\struct\QuoteManager.dm"
 #include "src\struct\ServerManager.dm"
-#include "src\struct\ShowcodeSnippet.dm"
+#include "src\struct\Snippet.dm"
 #include "src\struct\TextManager.dm"
 #include "src\struct\TrackerManager.dm"
 #include "src\struct\world.dm"

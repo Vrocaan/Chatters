@@ -9,7 +9,7 @@ Channel
 			operators = list()
 			mute = list()
 			banned = list()
-			showcodes = list()
+			snippets = list()
 
 		tmp/uptime = 0
 
