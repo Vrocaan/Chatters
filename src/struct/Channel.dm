@@ -10,7 +10,6 @@ Channel
 			mute = list()
 			banned = list()
 			snippets = list()
-			showcodes = list()
 
 	New(params[])
 		if(params)

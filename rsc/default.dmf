@@ -12197,8 +12197,8 @@ window "who"
 		text-wrap = false
 	elem "grid"
 		type = GRID
-		pos = 4,34
-		size = 112x202
+		pos = 4,30
+		size = 112x210
 		anchor1 = 0,0
 		anchor2 = 100,100
 		font-family = "Trebuchet MS,Arial"
