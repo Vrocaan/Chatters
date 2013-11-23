@@ -12081,7 +12081,7 @@ window "who"
 	elem "who"
 		type = MAIN
 		pos = 281,0
-		size = 120x240
+		size = 120x245
 		anchor1 = none
 		anchor2 = none
 		font-family = ""
