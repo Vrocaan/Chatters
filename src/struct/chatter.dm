@@ -25,15 +25,18 @@ mob
 			show_highlight = TRUE
 			flip_panes = FALSE
 
-			tmp/afk = FALSE
-			tmp/telnet = FALSE
-			tmp/away_at = 0
-			tmp/away_reason
-			tmp/list/msgs
-			tmp/MessageHandler/msg_hand
-			tmp/color_scope
-			tmp/TrackerEntry/viewing_entry
-			tmp/viewing_log
+			tmp
+				afk = FALSE
+				telnet = FALSE
+				away_at = 0
+				away_reason
+				list/msgs
+				MessageHandler/msg_hand
+				color_scope
+
+				TrackerEntry/viewing_entry
+				viewing_log
+				tracker_search = ""
 
 			list
 				ignoring
@@ -228,7 +231,7 @@ mob
 			ping()
 				set hidden = 1
 
-				src << output("<font color=red face=Courier>Pong ([time2text(world.timeofday, "hh:mm:ss")])!</font>", "chat.default_output")
+				src << output("<font color=red face=Courier>Pong ([time2text(world.timeofday, "hh:mm:ss")])!</font>", "default_output")
 
 			who()
 				set hidden = 1
@@ -631,51 +634,33 @@ mob
 					winset(src, "showcontent.content_input", "text=")
 					winshow(src, "showcontent", 0)
 
-			showCode()
+			postContent(t as text)
 				set hidden = 1
 
+				if(!t) return
 				if(telnet) return
 				if(afk) returnAFK()
 
-				var/ShowcodeSnippet/S = new
+				var/Snippet/S = new
 
 				if(server_manager.home.isMute(src))
 					server_manager.bot.say("I'm sorry, but you appear to be muted.", src)
 					return
 
-				var/iCode = winget(src, "showcontent.content_input", "text")
+				var/content = winget(src, "showcontent.content_input", "text")
 
-				if(!iCode)
+				if(!content)
 					del(S)
-					return 0
-
-				S.owner = "[src.name]"
-				S.code = iCode
-				S.send(1)
-
-				winshow(src, "showcontent", 0)
-				winset(src, "showcontent.content_input", "text=")
-
-			showText(t as text|null|mob in server_manager.home.chatters)
-				set hidden = 1
-
-				if(telnet) return
-				if(afk) returnAFK()
-				var/ShowcodeSnippet/S = new
-
-				if(server_manager.home.isMute(src))
-					server_manager.bot.say("I'm sorry, but you appear to be muted.", src)
 					return
 
-				var/iCode = winget(src, "showcontent.content_input", "text")
+				S.owner = "[name]"
+				S.data = content
 
-				if(!iCode)
-					del(S)
+				switch(t)
+					if("code") S.content_type = SNIPPET_CODE
+					if("text") S.content_type = SNIPPET_TEXT
+					if("html") S.content_type = SNIPPET_HTML
 
-					return 0
-
-				S.owner = "[src.name]"
-				S.code = iCode
 				S.send()
 
 				winshow(src, "showcontent", 0)
@@ -961,8 +946,8 @@ mob
 				server_manager.bot.say("[C.name] has been kicked by \[b][name]\[/b].")
 				server_manager.logger.trace("[key] kicked [C.name].")
 
-				C << output("You have been kicked from [server_manager.home.name] by [name].", "chat.default_output")
-				C << output("<font color=red>Connection closed.", "chat.default_output")
+				C << output("You have been kicked from [server_manager.home.name] by [name].", "default_output")
+				C << output("<font color=red>Connection closed.", "default_output")
 
 				server_manager.home.chatters -= C
 				server_manager.home.updateWho()
@@ -992,8 +977,8 @@ mob
 				server_manager.logger.trace("[key] banned [target].")
 
 				if(C)
-					C << output("You have been banned from [server_manager.home.name] by [name]", "chat.default_output")
-					C << output("<font color=red>Connection closed.", "chat.default_output")
+					C << output("You have been banned from [server_manager.home.name] by [name]", "default_output")
+					C << output("<font color=red>Connection closed.", "default_output")
 
 					server_manager.home.chatters -= C
 					server_manager.home.updateWho()
@@ -1280,7 +1265,7 @@ mob
 				if(isnull(t)) t = "body { background-color: #ffffff; }"
 
 				default_output_style = t
-				winset(src, "chat.default_output", "style=\"[text_manager.escapeQuotes(t)]\";")
+				winset(src, "default_output", "style=\"[text_manager.escapeQuotes(t)]\";")
 				winset(src, "style_formats.output_style", "text=\"[text_manager.escapeQuotes(default_output_style)]\";")
 
 			setDefaultColorStyle()
@@ -1631,12 +1616,40 @@ mob
 				updateTracker()
 				updateLogs()
 
+			searchTracker()
+				set hidden = 1
+
+				if(!(ckey in server_manager.home.operators)) return
+
+				var/target = winget(src, "ops_tracker.entrysearch", "text")
+
+				if(target)
+					var/mob/chatter/C
+					if(ismob(target)) C = target
+					else C = chatter_manager.getByKey(target)
+
+					var/TrackerEntry/entry
+
+					if(C && C.client) entry = tracker_manager.findByClient(C.client)
+					else
+						entry = tracker_manager.findByCkey(ckey(target))
+						if(!entry) entry = tracker_manager.findByIP(target)
+						if(!entry) entry = tracker_manager.findByCID(target)
+
+					if(entry)
+						viewing_entry = entry
+						updateViewingEntry()
+
 			updateTracker()
 				set hidden = 1
 
 				if(!(ckey in server_manager.home.operators)) return
 
-				var/c = 1
+				var
+					c = 1
+					list/added = list()
+					cur = ""
+
 				for(var/TrackerEntry/entry in tracker_manager.entries)
 					if(length(entry.ckeys) && length(ckey(entry.ckeys[1])))
 						winset(src, "ops_tracker.ckeys", "current-cell=1,[c]")
@@ -1647,7 +1660,11 @@ mob
 							if(entry.ckeys[ck]) ekeys += entry.ckeys[ck]
 							else ekeys += ck
 
-						src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[entry.ckeys[1]]>[textutil.list2text(ekeys, ", ")]</a>", "ops_tracker.ckeys")
+						cur = textutil.list2text(ekeys, ", ")
+						if(cur in added) continue
+
+						added += cur
+						src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[entry.ckeys[1]]>[cur]</a>", "ops_tracker.ckeys")
 						c ++
 
 				winset(src, "ops_tracker.ckeys", "cells=1x[c]")

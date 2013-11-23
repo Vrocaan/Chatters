@@ -11,6 +11,10 @@
 #define FILES_IGNORE  64
 #define FULL_IGNORE   128
 
+#define SNIPPET_CODE 1
+#define SNIPPET_TEXT 2
+#define SNIPPET_HTML 3
+
 // Global variables and procedures
 var/global
 	Logger/log4dm = new

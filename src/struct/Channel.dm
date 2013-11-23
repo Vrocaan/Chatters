@@ -9,7 +9,7 @@ Channel
 			operators = list()
 			mute = list()
 			banned = list()
-			showcodes = list()
+			snippets = list()
 
 	New(params[])
 		if(params)
@@ -27,8 +27,8 @@ Channel
 			winset(C, null, "channel.default_input.is-default=true;channel.topic_label.text=\"[text_manager.escapeQuotes(topic)]\";")
 
 			if(isBanned(C))
-				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "chat.default_output")
-				C << output("<font color='red'>Connection closed.</font>", "chat.default_output")
+				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "default_output")
+				C << output("<font color='red'>Connection closed.</font>", "default_output")
 
 				for(var/_ck in operators)
 					var/mob/chatter/op = chatter_manager.getByKey(_ck)
@@ -46,12 +46,12 @@ Channel
 			C.setInterfaceColor(C.interface_color)
 
 			winshow(C, ckey(name), 1)
-			winset(C, "chat.default_output", "style='[C.default_output_style]';")
+			winset(C, "default_output", "style='[C.default_output_style]';")
 
 			if(C.ckey in operators) winset(C, "channel.ops_button", "is-visible=true")
 			else winset(C, "channel.ops_button", "is-visible=false")
 
-			C << output("<center>- - - - - - - - - - - - - - -", "chat.default_output")
+			C << output("<center>- - - - - - - - - - - - - - -", "default_output")
 
 			if(C.show_title)
 				if(C.show_colors)
@@ -61,7 +61,7 @@ Channel
 <span style='text-align: center;'>Source available on the <a href='http://www.github.com/Stephen001/Chatters/'>Chatters Repository</a>.</span>
 <span style='text-align: center;'>Copyright (c) 2008 Andrew "Xooxer" Arnold</span>
 <span style='text-align: center;'><font color=red>- All Rights Reserved -</font></span>
-"}, "chat.default_output")
+"}, "default_output")
 
 				else
 					C << output({"<span style='text-align: center;'><b>[world.name] - Created by Xooxer</b></span>
@@ -70,13 +70,13 @@ Channel
 <span style='text-align: center;'>Source available on the <a href='http://www.github.com/Stephen001/Chatters/'>Chatters Repository</a>.</span>
 <span style='text-align: center;'>Copyright (c) 2008 Andrew "Xooxer" Arnold</span>
 <span style='text-align: center;'>- All Rights  Reserved -</span>
-"}, "chat.default_output")
+"}, "default_output")
 
 			if(C.show_qotd) text_manager.qotd(C)
-			if(C.show_welcome) C << output("<center>[time2text(world.realtime + C.time_offset, textutil.list2text(C.long_date_format, ""))]<br><b>Welcome, [C.name]!</b></center>", "chat.default_output")
+			if(C.show_welcome) C << output("<center>[time2text(world.realtime + C.time_offset, textutil.list2text(C.long_date_format, ""))]<br><b>Welcome, [C.name]!</b></center>", "default_output")
 
-			C << output("<span style='text-align: center;'><b>Please report any issues with Chatters <a href='https://github.com/Stephen001/Chatters/issues?state=open'>here</a>!</b></span>", "chat.default_output")
-			C << output("<center>- - - - - - - - - - - - - - -</center>", "chat.default_output")
+			C << output("<span style='text-align: center;'><b>Please report any issues with Chatters <a href='https://github.com/Stephen001/Chatters/issues?state=open'>here</a>!</b></span>", "default_output")
+			C << output("<center>- - - - - - - - - - - - - - -</center>", "default_output")
 
 			if(!chatters) chatters = new()
 
@@ -216,7 +216,7 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
-			if(!window) window = "chat.default_output"
+			if(!window) window = "default_output"
 
 			for(var/mob/chatter/c in chatters)
 				if(c.ignoring(C) & CHAT_IGNORE)
@@ -247,7 +247,7 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
-			if(!window) window = "chat.default_output"
+			if(!window) window = "default_output"
 
 			for(var/mob/chatter/c in chatters)
 				if(!c.ignoring(C))
@@ -275,7 +275,7 @@ Channel
 			smsg = text_manager.parseLinks(smsg)
 			msg = text_manager.parseLinks(msg)
 
-			if(!window) window = "chat.default_output"
+			if(!window) window = "default_output"
 
 			for(var/mob/chatter/c in chatters)
 				if(!c.ignoring(C))
@@ -309,7 +309,7 @@ Channel
 						var/rsn = ""
 						if(ckey(raw_msg)) rsn = "([raw_msg])"
 
-						c << output("[c.parseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now AFK. [rsn]", "chat.default_output")
+						c << output("[c.parseTime()] [c.show_colors ? "<font color=[C.name_color]>[C.name]</font>" : "[C.name]"] is now AFK. [rsn]", "default_output")
 
 		returnAFK(mob/chatter/C)
 			if(!C) return
@@ -324,7 +324,7 @@ Channel
 			if(!isMute(C))
 				for(var/mob/chatter/c in chatters)
 					if(!(c.ignoring(C) & CHAT_IGNORE))
-						c << output("[c.parseTime()] <font color=[C.name_color]>[C.name]</font> is back from <b>AFK</b> after [round(((world.realtime - C.away_at)/600),1)] minute\s of inactivity.", "chat.default_output")
+						c << output("[c.parseTime()] <font color=[C.name_color]>[C.name]</font> is back from <b>AFK</b> after [round(((world.realtime - C.away_at)/600),1)] minute\s of inactivity.", "default_output")
 
 			C.away_at = null
 
