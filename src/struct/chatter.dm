@@ -25,15 +25,18 @@ mob
 			show_highlight = TRUE
 			flip_panes = FALSE
 
-			tmp/afk = FALSE
-			tmp/telnet = FALSE
-			tmp/away_at = 0
-			tmp/away_reason
-			tmp/list/msgs
-			tmp/MessageHandler/msg_hand
-			tmp/color_scope
-			tmp/TrackerEntry/viewing_entry
-			tmp/viewing_log
+			tmp
+				afk = FALSE
+				telnet = FALSE
+				away_at = 0
+				away_reason
+				list/msgs
+				MessageHandler/msg_hand
+				color_scope
+
+				TrackerEntry/viewing_entry
+				viewing_log
+				tracker_search = ""
 
 			list
 				ignoring
@@ -1613,12 +1616,40 @@ mob
 				updateTracker()
 				updateLogs()
 
+			searchTracker()
+				set hidden = 1
+
+				if(!(ckey in server_manager.home.operators)) return
+
+				var/target = winget(src, "ops_tracker.entrysearch", "text")
+
+				if(target)
+					var/mob/chatter/C
+					if(ismob(target)) C = target
+					else C = chatter_manager.getByKey(target)
+
+					var/TrackerEntry/entry
+
+					if(C && C.client) entry = tracker_manager.findByClient(C.client)
+					else
+						entry = tracker_manager.findByCkey(ckey(target))
+						if(!entry) entry = tracker_manager.findByIP(target)
+						if(!entry) entry = tracker_manager.findByCID(target)
+
+					if(entry)
+						viewing_entry = entry
+						updateViewingEntry()
+
 			updateTracker()
 				set hidden = 1
 
 				if(!(ckey in server_manager.home.operators)) return
 
-				var/c = 1
+				var
+					c = 1
+					list/added = list()
+					cur = ""
+
 				for(var/TrackerEntry/entry in tracker_manager.entries)
 					if(length(entry.ckeys) && length(ckey(entry.ckeys[1])))
 						winset(src, "ops_tracker.ckeys", "current-cell=1,[c]")
@@ -1629,7 +1660,11 @@ mob
 							if(entry.ckeys[ck]) ekeys += entry.ckeys[ck]
 							else ekeys += ck
 
-						src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[entry.ckeys[1]]>[textutil.list2text(ekeys, ", ")]</a>", "ops_tracker.ckeys")
+						cur = textutil.list2text(ekeys, ", ")
+						if(cur in added) continue
+
+						added += cur
+						src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[entry.ckeys[1]]>[cur]</a>", "ops_tracker.ckeys")
 						c ++
 
 				winset(src, "ops_tracker.ckeys", "cells=1x[c]")

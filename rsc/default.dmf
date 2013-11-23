@@ -9361,8 +9361,8 @@ window "ops_tracker"
 		on-close = ""
 	elem "label67"
 		type = LABEL
-		pos = 4,353
-		size = 200x91
+		pos = 4,377
+		size = 200x67
 		anchor1 = 0,100
 		anchor2 = none
 		font-family = "Trebuchet MS,Arial"
@@ -9385,37 +9385,9 @@ window "ops_tracker"
 		keep-aspect = false
 		align = top
 		text-wrap = false
-	elem "button16"
-		type = BUTTON
-		pos = 8,420
-		size = 192x20
-		anchor1 = 0,100
-		anchor2 = none
-		font-family = "Trebuchet MS,Arial"
-		font-size = 10
-		font-style = ""
-		text-color = #000000
-		background-color = #c8c8c8
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = "is-checked"
-		on-size = ""
-		text = "Clear Search"
-		image = ""
-		command = "clearTrackerSearch"
-		is-flat = true
-		stretch = false
-		is-checked = false
-		group = ""
-		button-type = pushbutton
 	elem "button15"
 		type = BUTTON
-		pos = 8,396
+		pos = 8,420
 		size = 192x20
 		anchor1 = 0,100
 		anchor2 = none
@@ -9443,7 +9415,7 @@ window "ops_tracker"
 		button-type = pushbutton
 	elem "entrysearch"
 		type = INPUT
-		pos = 8,372
+		pos = 8,396
 		size = 192x20
 		anchor1 = 0,100
 		anchor2 = none
@@ -9719,7 +9691,7 @@ window "ops_tracker"
 	elem "label62"
 		type = LABEL
 		pos = 4,4
-		size = 200x345
+		size = 200x369
 		anchor1 = 0,0
 		anchor2 = 0,100
 		font-family = "Trebuchet MS,Arial"
@@ -9745,7 +9717,7 @@ window "ops_tracker"
 	elem "ckeys"
 		type = GRID
 		pos = 8,24
-		size = 192x321
+		size = 192x345
 		anchor1 = 0,0
 		anchor2 = 0,100
 		font-family = "Trebuchet MS,Arial"
