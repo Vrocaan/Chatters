@@ -46,7 +46,9 @@ TextManager
 						 "issue"	    = "https://github.com/Stephen001/Chatters/issues/$s",
 						 "dm"			= "http://www.byond.com/docs/ref/info.html#$s",
 						 "z0r"			= "http://z0r.de/$s",
-						 "xkcd"			= "http://xkcd.com/$s")
+						 "xkcd"			= "http://xkcd.com/$s",
+						 "smbc"			= "http://www.smbc-comics.com/?id=$s",
+						 "cyanide"		= "http://www.explosm.net/comics/$s")
 
 	proc
 		sanitize(msg)
