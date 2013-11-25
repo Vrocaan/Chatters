@@ -46,8 +46,9 @@ TextManager
 						 "condo"	    = "http://gazoot.byondhome.com/condo/site.dmb?browse&owner=$s",
 						 "issue"	    = "https://github.com/Stephen001/Chatters/issues/$s",
 						 "dm"			= "http://www.byond.com/docs/ref/info.html#$s",
-						 "z0r"			= "http://z0r.de/$s")
-
+						 "z0r"			= "http://z0r.de/$s",
+						 "xkcd"			= "http://www.xkcd.com/$s",
+						 "smbc"			= "http://www.smbc-comics.com/?id=$s")
 	proc
 		sanitize(msg)
 			if(!msg) return
