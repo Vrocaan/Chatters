@@ -810,6 +810,18 @@ mob
 				server_manager.bot.my(n)
 				server_manager.logger.trace("[key] issued botMy: [html_encode(n)]")
 
+			note(n as text)
+				set hidden = 1
+
+				if(!n) return
+				if(!server_manager.bot) return
+				if(!(ckey in server_manager.home.operators))
+					server_manager.bot.say("You do not have access to this command.", src)
+					return
+
+				server_manager.bot.say("Your note has been logged.", src)
+				server_manager.logger.info("Note from [key]: [n]")
+
 			purgeAssoc(data as text)
 				set hidden = 1
 
