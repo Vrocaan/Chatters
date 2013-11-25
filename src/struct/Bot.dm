@@ -96,15 +96,15 @@ Bot
 
 		setName(new_name, save = 1)
 			if(!new_name) new_name = "chanBot"
-			name = "@" + new_name
+			name = "@" + html_encode(new_name)
 
 		setNameColor(new_color, save = 1)
 			if(!new_color) new_color = "#f00"
-			name_color = new_color
+			name_color = copytext(html_encode(new_color), 1, 8)
 
 		setTextColor(new_color, save = 1)
 			if(!new_color) new_color = "#000"
-			text_color = new_color
+			text_color = copytext(html_encode(new_color), 1, 8)
 
 		setTopic(new_value, save)
 			server_manager.home.topic = new_value
