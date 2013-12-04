@@ -976,6 +976,7 @@ mob
 					return
 
 				var/mob/chatter/C = chatter_manager.getByKey(target)
+				if(C) target = ckey(C.key)
 
 				if(ckey(target) in server_manager.home.operators)
 					server_manager.bot.say("You cannot ban an operator.", src)
