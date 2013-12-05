@@ -61,39 +61,10 @@ ChatterManager
 			if(findtext(key, "Telnet @") == 1)
 				return 1
 
-		getByKey(chatter, local)
-			if(!length(chatter))
-				return
-
-			if(server_manager.home && server_manager.home.chatters)
-				var/first_char = text2ascii(copytext(chatter, 1, 2))
-				// If search starts with a number, search IPs.
-				if(first_char > 47 && first_char < 58)
-					// Exact IP first
-					for(var/mob/chatter/C in server_manager.home.chatters)
-						if(C.client.address == chatter)
-							return C
-
-					// Partial IP second
-					for(var/mob/chatter/C in server_manager.home.chatters)
-						if(text_manager.match(C.client.address, chatter))
-							return C
-
-				else
-					// Exact key search.
-					for(var/mob/chatter/C in server_manager.home.chatters)
-						if(ckey(C.name) == ckey(chatter))
-							return C
-
-					// Partial case-sensitive key search
-					for(var/mob/chatter/C in server_manager.home.chatters)
-						if(text_manager.match(C.key, chatter))
-							return C
-
-					// Partial non-case-sensitive key search
-					for(var/mob/chatter/C in server_manager.home.chatters)
-						if(text_manager.match(C.ckey, chatter))
-							return C
+		getByKey(chatter)
+			if(server_manager && server_manager.home)
+				for(var/mob/M in server_manager.home.chatters)
+					if(M.ckey == ckey(chatter)) return M
 
 		parseFormat(format, variables[], required[])
 			if(!format || !variables || !length(variables))

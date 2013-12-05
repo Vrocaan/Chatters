@@ -1,4 +1,4 @@
-TextManager
+﻿TextManager
 	New()
 		server_manager.logger.info("Created TextManager.")
 
@@ -41,12 +41,13 @@ TextManager
 						 "facebook"     = "http://www.facebook.com/$s",
 						 "reddit"       = "http://www.reddit.com/search?q=$s",
 						 "youtube"      = "http://www.youtube.com/results?search_query=$s",
-						 "bbash"	    = "http://gazoot.byondhome.com/bbash/?quote=$s",
 						 "bash"		    = "http://www.bash.org/?$s",
-						 "condo"	    = "http://gazoot.byondhome.com/condo/site.dmb?browse&owner=$s",
 						 "issue"	    = "https://github.com/Stephen001/Chatters/issues/$s",
 						 "dm"			= "http://www.byond.com/docs/ref/info.html#$s",
-						 "z0r"			= "http://z0r.de/$s")
+						 "z0r"			= "http://z0r.de/$s",
+						 "xkcd"			= "http://xkcd.com/$s",
+						 "smbc"			= "http://www.smbc-comics.com/?id=$s",
+						 "cyanide"		= "http://www.explosm.net/comics/$s")
 
 	proc
 		sanitize(msg)
