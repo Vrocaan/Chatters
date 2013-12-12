@@ -1,4 +1,4 @@
-﻿TextManager
+TextManager
 	New()
 		server_manager.logger.info("Created TextManager.")
 
