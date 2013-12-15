@@ -56,12 +56,6 @@ ChatterPersistenceHandler/Database
 				C.auto_away			= text2num(results["autoaway"])
 				C.auto_reason		= results["autoafkmessage"]
 				C.flip_panes		= text2num(results["flippanes"])
-				C.time_format		= params2list(results["timeformat"])
-				C.date_format		= params2list(results["dateformat"])
-				C.long_date_format	= params2list(results["longdateformat"])
-				C.say_format		= params2list(results["sayformat"])
-				C.rpsay_format		= params2list(results["rpsayformat"])
-				C.me_format			= params2list(results["emoteformat"])
 				C.fade_colors		= params2list(results["fadecolors"])
 				C.fade_name			= results["fadename"]
 				return TRUE
@@ -84,12 +78,6 @@ ChatterPersistenceHandler/Database
 			sql += "autoaway = [text2num(C.auto_away)], "
 			sql += "autoafkmessage = [server_manager.database.quote(C.auto_reason)], "
 			sql += "flippanes = [C.flip_panes ? 1 : 0], "
-			sql += "timeformat = [server_manager.database.quote(list2params(C.time_format))], "
-			sql += "dateformat = [server_manager.database.quote(list2params(C.date_format))], "
-			sql += "longdateformat = [server_manager.database.quote(list2params(C.long_date_format))], "
-			sql += "sayformat = [server_manager.database.quote(list2params(C.say_format))] ,"
-			sql += "rpsayformat = [server_manager.database.quote(list2params(C.rpsay_format))] ,"
-			sql += "emoteformat = [server_manager.database.quote(list2params(C.me_format))], "
 			sql += "fadecolors = [server_manager.database.quote(list2params(C.fade_colors))], "
 			sql += "fadename = [server_manager.database.quote(list2params(C.fade_name))] "
 			return sql
