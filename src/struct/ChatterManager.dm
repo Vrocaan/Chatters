@@ -44,6 +44,7 @@ ChatterManager
 
 			// Do not call client.Import on telnet users
 			if(!chatter_manager.isTelnet(C.key))
+				save(C) // This offers the ability to save to new mediums on login, like DBs.
 				load(C)
 				if(server_manager)
 					C.watchdog = new(server_manager.global_scheduler, C)
