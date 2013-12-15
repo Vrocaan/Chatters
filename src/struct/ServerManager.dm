@@ -124,6 +124,10 @@ ServerManager
 				var
 					chan_name  = server["name"]
 					chan_topic = server["topic"]
+					log_level  = server["logging_level"]
+
+				if (log_level)
+					logger.setLevel(text2level(log_level))
 
 				home = new(list("name" = chan_name, "topic" = chan_topic))
 
