@@ -4,10 +4,12 @@ ServerManager
 
 		Channel/home
 		Bot/bot
-		Logger/logger
-		Database/database
 		tmp
+			Database/database = null
+			Logger/logger     = null
+			EventScheduler/global_scheduler = new()
 			ChatterPersistenceHandler/persistenceHandler = new/ChatterPersistenceHandler/Fallback()
+
 
 	New()
 		createLogger()
@@ -18,10 +20,12 @@ ServerManager
 
 		loadHome()
 		loadBot()
+		global_scheduler.start()
 
 		logger.info("Created ServerManager")
 
 	Del()
+		global_scheduler.stop()
 		saveHome()
 		saveBot()
 

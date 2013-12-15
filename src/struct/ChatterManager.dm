@@ -45,6 +45,9 @@ ChatterManager
 			// Do not call client.Import on telnet users
 			if(!chatter_manager.isTelnet(C.key))
 				load(C)
+				if(server_manager)
+					C.watchdog = new(server_manager.global_scheduler, C)
+					server_manager.global_scheduler.schedule(C.watchdog, 600)
 
 		// Tests if the key is a telnet key eg: Telnet @127.000.000.001
 		isTelnet(key)
@@ -103,3 +106,14 @@ ChatterManager
 
 		save(mob/chatter/C)
 			server_manager.persistenceHandler.save(C)
+
+Event/Timer/Watchdog
+	var/mob/chatter/C
+
+	New(var/EventScheduler/scheduler, var/mob/chatter/C)
+		..(scheduler, 600)
+		src.C = C
+
+	fire()
+		..()
+		winget(C, "main", "is-visible")

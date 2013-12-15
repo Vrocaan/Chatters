@@ -37,6 +37,7 @@ mob
 				TrackerEntry/viewing_entry
 				viewing_log
 				tracker_search = ""
+				Event/Timer/Watchdog/watchdog = null
 
 			list
 				ignoring
@@ -84,7 +85,8 @@ mob
 		Logout()
 			if(server_manager)
 				server_manager.home.quit(src)
-
+				if (watchdog)
+					server_manager.global_scheduler.cancel(watchdog)
 			..()
 
 			del(src)
