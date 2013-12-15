@@ -7,7 +7,6 @@ ChatterManager
 
 	Topic(href, href_list)
 		..()
-
 		var/mob/chatter/trg
 		if(href_list["target"]) trg = locate(href_list["target"])
 
@@ -45,16 +44,7 @@ ChatterManager
 
 			// Do not call client.Import on telnet users
 			if(!chatter_manager.isTelnet(C.key))
-				var/client_file
-				client_file = C.client.Import()
-
-				if(client_file == "-1.sav")
-					client_file = null
-
-				if(client_file)
-					if(!load(C, client_file))
-						// Out of date or bad savefile, discard.
-						C.client.Export()
+				load(C)
 
 		// Tests if the key is a telnet key eg: Telnet @127.000.000.001
 		isTelnet(key)
@@ -108,16 +98,8 @@ ChatterManager
 
 			return L
 
-		load(mob/chatter/C, client_file)
-			var/savefile/F = new(client_file)
-			C.Read(F)
-
-			return TRUE
+		load(mob/chatter/C)
+			server_manager.persistenceHandler.load(C)
 
 		save(mob/chatter/C)
-			var/savefile/S = new()
-			C.Write(S)
-
-			sleep(10)
-
-			C.client.Export(S)
+			server_manager.persistenceHandler.save(C)

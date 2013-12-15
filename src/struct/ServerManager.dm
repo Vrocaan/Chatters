@@ -5,6 +5,9 @@ ServerManager
 		Channel/home
 		Bot/bot
 		Logger/logger
+		Database/database
+		tmp
+			ChatterPersistenceHandler/persistenceHandler = new/ChatterPersistenceHandler/Fallback()
 
 	New()
 		createLogger()
@@ -115,6 +118,7 @@ ServerManager
 				list/ban_list = params2list(config["bans"])
 				list/op_list = params2list(config["ops"])
 				list/server = params2list(config["server"])
+				list/database_list = params2list(config["database"])
 
 			if(server && length(server))
 				var
@@ -123,21 +127,35 @@ ServerManager
 
 				home = new(list("name" = chan_name, "topic" = chan_topic))
 
-				if(mute_list && length(mute_list))
+				if(length(mute_list))
 					home.mute = new
 					for(var/i in mute_list)
 						home.mute += ckey(i)
 
-				if(ban_list && length(ban_list))
+				if(length(ban_list))
 					home.banned = new
 					for(var/i in ban_list)
 						home.banned += ckey(i)
 
-				if(op_list && length(op_list))
+				if(length(op_list))
 					home.operators = list()
 					for(var/name in op_list)
 						var/op_key = ckey(op_list[name])
 						home.operators += op_key
+
+				if (length(database_list))
+					database = new()
+					database.host   = database_list["host"]
+					database.port   = database_list["port"]
+					database.user   = database_list["user"]
+					database.pass   = database_list["pass"]
+					database.dbname = database_list["dbname"]
+					if (database.connect())
+						logger.info("Database connection to [database.user]@[database.host]:[database.port] is valid.")
+						logger.info("Connected to [database.user]@[database.host]:[database.port].")
+						logger.info("Installed schema version is [database.installedSchema()], latest available in config is [database.latestAvailableSchema()], needs upgrade? [database.needsUpgrade()]")
+					else
+						logger.warn("Could not connect to database on [database.user]@[database.host]:[database.port], reason: [database.connection.ErrorMsg()]")
 
 				logger.info("Loaded server.cfg.")
 
