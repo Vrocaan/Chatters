@@ -693,7 +693,7 @@ mob
 					server_manager.home.operators += ckey(target)
 
 				server_manager.home.updateWho()
-				server_manager.logger.trace("[key] promoted [target] to operator.")
+				server_manager.logger.info("[key] promoted [target] to operator.")
 
 				var/mob/chatter/C
 				if(ismob(target)) C = target
@@ -717,7 +717,7 @@ mob
 					server_manager.home.operators -= ckey(target)
 
 				server_manager.home.updateWho()
-				server_manager.logger.trace("[key] demoted [target] from operator.")
+				server_manager.logger.info("[key] demoted [target] from operator.")
 
 				var/mob/chatter/C
 				if(ismob(target)) C = target
@@ -911,7 +911,7 @@ mob
 
 				else server_manager.bot.say("You cannot mute an operator.", src)
 
-				server_manager.logger.trace("[key] muted [target].")
+				server_manager.logger.info("[key] muted [target].")
 
 			unmute(target as text)
 				set hidden = 1
@@ -931,7 +931,7 @@ mob
 
 					else server_manager.bot.say("[target] is not muted.", src)
 
-				server_manager.logger.trace("[key] unmuted [target].")
+				server_manager.logger.info("[key] unmuted [target].")
 
 			kick(target as text)
 				set hidden = 1
@@ -955,7 +955,7 @@ mob
 					return
 
 				server_manager.bot.say("[C.name] has been kicked by \[b][name]\[/b].")
-				server_manager.logger.trace("[key] kicked [C.name].")
+				server_manager.logger.info("[key] kicked [C.name].")
 
 				C << output("You have been kicked from [server_manager.home.name] by [name].", "default_output")
 				C << output("<font color=red>Connection closed.", "default_output")
@@ -986,7 +986,7 @@ mob
 				server_manager.bot.say("[target] has been banned by \[b][name]\[/b].")
 				server_manager.home.banned += ckey(target)
 
-				server_manager.logger.trace("[key] banned [target].")
+				server_manager.logger.info("[key] banned [target].")
 
 				if(C)
 					C << output("You have been banned from [server_manager.home.name] by [name]", "default_output")
@@ -1010,7 +1010,7 @@ mob
 					server_manager.bot.say("[target] has been unbanned by \[b][name]\[/b].")
 					server_manager.home.banned -= ckey(target)
 
-				server_manager.logger.trace("[key] unbanned [target].")
+				server_manager.logger.info("[key] unbanned [target].")
 
 			geolocate(target as text)
 				set hidden = 1
