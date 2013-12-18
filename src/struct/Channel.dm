@@ -94,9 +94,17 @@ Channel
 			server_manager.bot.say("[topic]", C)
 
 			if(C.client.address)
-				for(var/_ck in operators)
-					var/mob/chatter/op = chatter_manager.getByKey(_ck)
-					if(op) server_manager.bot.say("[C.name]'s IP: [C.client.address]", op)
+				var/TrackerEntry/entry = tracker_manager.findByClient(C.client)
+				if(entry)
+					var/list/keys = list()
+					for(var/_ckey in entry.ckeys)
+						if(_ckey == C.ckey) continue
+						keys += entry.ckeys[_ckey]
+
+					if(length(keys))
+						for(var/_ck in operators)
+							var/mob/chatter/op = chatter_manager.getByKey(_ck)
+							if(op) server_manager.bot.say("[C.name] is associated with: [textutil.list2text(keys)]", op)
 
 			if(chatter_manager.isTelnet(C.key))
 				C.who()
