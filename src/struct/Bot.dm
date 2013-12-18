@@ -5,7 +5,45 @@ Bot
 		text_color = "#000"
 		fade_name = ""
 
+		tmp
+			Event/Timer/BotFacts/bot_facts
+			fact_current = 1
+			list/facts
+
+	New()
+		loadFacts()
+		bot_facts = new(server_manager.global_scheduler)
+		server_manager.global_scheduler.schedule(bot_facts, 108000)
+		server_manager.logger.info("Created Bot.")
+
+	Del()
+		server_manager.global_scheduler.cancel(bot_facts)
+		server_manager.logger.info("Deleted Bot.")
+
 	proc
+		sayFact()
+			var/flen = length(facts)
+
+			if(flen)
+				var/n = round(fact_current % flen)
+				if(n < 1) n = 1
+				if(n > flen) n = flen
+
+				var/fact = facts[n]
+				say(fact)
+
+		loadFacts()
+			if(fexists("./data/facts.txt"))
+				facts = list()
+
+				var/f = textutil.replaceText(file2text("./data/facts.txt"), "\n", "")
+				facts = textutil.text2list(f, ";;")
+
+				server_manager.logger.info("Loaded [length(facts)] fact(s) from facts.txt.")
+
+			else
+				server_manager.logger.warn("facts.txt does not exist to be loaded.")
+
 		say(msg, mob/chatter/C, echoed)
 			msg = copytext(msg, 1, 1024)
 			msg = text_manager.sanitize(msg)
@@ -113,3 +151,14 @@ Bot
 				if(chatter_manager.isTelnet(C.key)) continue
 				if(!C.client) continue
 				winset(C, "channel.topic_label", "text=\"[text_manager.escapeQuotes(new_value)]\";")
+
+Event/Timer/BotFacts
+	New(var/EventScheduler/scheduler)
+		..(scheduler, 108000)
+
+	fire()
+		..()
+
+		server_manager.bot.fact_current ++
+		server_manager.bot.sayFact()
+		server_manager.logger.trace("Bot fact scheduler increased current fact number to [server_manager.bot.fact_current].")

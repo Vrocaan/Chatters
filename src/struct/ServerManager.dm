@@ -4,14 +4,16 @@ ServerManager
 
 		Channel/home
 		Bot/bot
+
 		tmp
+			qotd_current = 1
 			Database/database = null
 			Logger/logger     = null
 			EventScheduler/global_scheduler = new()
 			ChatterPersistenceHandler/persistenceHandler = new/ChatterPersistenceHandler/Fallback()
 
-
 	New()
+		server_manager = src
 		createLogger()
 
 		if(!loadServerCfg())
@@ -35,7 +37,7 @@ ServerManager
 	proc
 		createLogger()
 			logger = log4dm.getLogger("log")
-			var/time = time2text(world.realtime, "DD.MM.YY")
+			var/time = time2text(world.realtime, "YYYY.MM.DD")
 			logger.htmlFileConfig("./data/logs/[time].html") // Set up a generic HTML file appender.
 
 			log4dm.startLogging()

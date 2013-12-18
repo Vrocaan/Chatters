@@ -693,7 +693,7 @@ mob
 					server_manager.home.operators += ckey(target)
 
 				server_manager.home.updateWho()
-				server_manager.logger.trace("[key] promoted [target] to operator.")
+				server_manager.logger.info("[key] promoted [target] to operator.")
 
 				var/mob/chatter/C
 				if(ismob(target)) C = target
@@ -717,7 +717,7 @@ mob
 					server_manager.home.operators -= ckey(target)
 
 				server_manager.home.updateWho()
-				server_manager.logger.trace("[key] demoted [target] from operator.")
+				server_manager.logger.info("[key] demoted [target] from operator.")
 
 				var/mob/chatter/C
 				if(ismob(target)) C = target
@@ -911,7 +911,7 @@ mob
 
 				else server_manager.bot.say("You cannot mute an operator.", src)
 
-				server_manager.logger.trace("[key] muted [target].")
+				server_manager.logger.info("[key] muted [target].")
 
 			unmute(target as text)
 				set hidden = 1
@@ -931,7 +931,7 @@ mob
 
 					else server_manager.bot.say("[target] is not muted.", src)
 
-				server_manager.logger.trace("[key] unmuted [target].")
+				server_manager.logger.info("[key] unmuted [target].")
 
 			kick(target as text)
 				set hidden = 1
@@ -955,7 +955,7 @@ mob
 					return
 
 				server_manager.bot.say("[C.name] has been kicked by \[b][name]\[/b].")
-				server_manager.logger.trace("[key] kicked [C.name].")
+				server_manager.logger.info("[key] kicked [C.name].")
 
 				C << output("You have been kicked from [server_manager.home.name] by [name].", "default_output")
 				C << output("<font color=red>Connection closed.", "default_output")
@@ -986,7 +986,7 @@ mob
 				server_manager.bot.say("[target] has been banned by \[b][name]\[/b].")
 				server_manager.home.banned += ckey(target)
 
-				server_manager.logger.trace("[key] banned [target].")
+				server_manager.logger.info("[key] banned [target].")
 
 				if(C)
 					C << output("You have been banned from [server_manager.home.name] by [name]", "default_output")
@@ -1010,7 +1010,7 @@ mob
 					server_manager.bot.say("[target] has been unbanned by \[b][name]\[/b].")
 					server_manager.home.banned -= ckey(target)
 
-				server_manager.logger.trace("[key] unbanned [target].")
+				server_manager.logger.info("[key] unbanned [target].")
 
 			geolocate(target as text)
 				set hidden = 1
@@ -1517,9 +1517,9 @@ mob
 
 				if(!(ckey in server_manager.home.operators)) return
 
-				updateViewingEntry()
-				updateTracker()
 				updateLogs()
+				updateViewingLog()
+				updateViewingEntry()
 
 			searchTracker()
 				set hidden = 1
@@ -1544,35 +1544,6 @@ mob
 					if(entry)
 						viewing_entry = entry
 						updateViewingEntry()
-
-			updateTracker()
-				set hidden = 1
-
-				if(!(ckey in server_manager.home.operators)) return
-
-				var
-					c = 1
-					list/added = list()
-					cur = ""
-
-				for(var/TrackerEntry/entry in tracker_manager.entries)
-					if(length(entry.ckeys) && length(ckey(entry.ckeys[1])))
-						winset(src, "ops_tracker.ckeys", "current-cell=1,[c]")
-						winset(src, "ops_tracker.ckeys", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
-
-						var/list/ekeys = list()
-						for(var/ck in entry.ckeys)
-							if(entry.ckeys[ck]) ekeys += entry.ckeys[ck]
-							else ekeys += ck
-
-						cur = textutil.list2text(ekeys, ", ")
-						if(cur in added) continue
-
-						added += cur
-						src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[entry.ckeys[1]]>[cur]</a>", "ops_tracker.ckeys")
-						c ++
-
-				winset(src, "ops_tracker.ckeys", "cells=1x[c]")
 
 			updateViewingEntry()
 				set hidden = 1
@@ -1631,13 +1602,14 @@ mob
 
 				if(viewing_entry)
 					var/nnotes = input(src, "Edit this entry's notes below.", "Edit Entry Notes", viewing_entry.notes) as null|message
+
 					if(nnotes)
 						viewing_entry.notes = nnotes
-						server_manager.logger.trace("[key] changed [viewing_entry.ckeys[1]]'s entry notes to [nnotes].")
+						server_manager.logger.info("[key] changed [viewing_entry.ckeys[1]]'s entry notes to [nnotes].")
 
-					else
+					else if(nnotes != null)
 						viewing_entry.notes = ""
-						server_manager.logger.trace("[key] cleared [viewing_entry.ckeys[1]]'s entry notes.")
+						server_manager.logger.info("[key] cleared [viewing_entry.ckeys[1]]'s entry notes.")
 
 					updateViewingEntry()
 
@@ -1648,13 +1620,22 @@ mob
 
 				var/list/logs = list()
 				for(var/l in flist("./data/logs/"))
-					logs += l
+					logs += copytext(l, 1, findtext(l, ".html"))
+
+				QuickSort(logs, /proc/SortLogCmp)
 
 				if(length(logs))
 					var/c = 1
+
 					for(var/i in logs)
 						winset(src, "ops_logs.grid", "current-cell=1,[c]")
-						winset(src, "ops_logs.grid", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+						if(c == 1)
+							winset(src, "ops_logs.grid", "style='body{text-align: center; font-weight: bold; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+							if(!viewing_log)
+								viewing_log = i
+
+						else winset(src, "ops_logs.grid", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+
 						src << output("<a href=\"byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=logs_viewlog;log=[i]\">[i]</a>", "ops_logs.grid")
 						c ++
 
@@ -1666,5 +1647,7 @@ mob
 				if(!(ckey in server_manager.home.operators)) return
 
 				if(viewing_log)
-					if(fexists(viewing_log))
-						src << output(file2text(viewing_log), "ops_logs.browser")
+					if(fexists("./data/logs/[viewing_log].html"))
+						src << output({"<html><body style="font-family: 'Trebuchet MS'; margin: 0px; padding: 0px; overflow: auto;">[file2text("./data/logs/[viewing_log].html")]</body></html>"}, "ops_logs.browser")
+
+proc/SortLogCmp(a, b) return (a < b)

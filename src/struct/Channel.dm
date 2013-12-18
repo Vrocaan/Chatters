@@ -30,10 +30,6 @@ Channel
 				C << output("<font color='red'>Sorry, you are banned from this channel.</font>", "default_output")
 				C << output("<font color='red'>Connection closed.</font>", "default_output")
 
-				for(var/_ck in operators)
-					var/mob/chatter/op = chatter_manager.getByKey(_ck)
-					if(op) server_manager.bot.say("Banned user [C.name] attempted to log in.", op)
-
 				server_manager.logger.info("Banned user [C.name] attempted to log in.")
 
 				del(C)
@@ -92,11 +88,6 @@ Channel
 
 			server_manager.bot.say("[C.name] has joined [name].")
 			server_manager.bot.say("[topic]", C)
-
-			if(C.client.address)
-				for(var/_ck in operators)
-					var/mob/chatter/op = chatter_manager.getByKey(_ck)
-					if(op) server_manager.bot.say("[C.name]'s IP: [C.client.address]", op)
 
 			if(chatter_manager.isTelnet(C.key))
 				C.who()
