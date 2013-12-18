@@ -5,16 +5,15 @@ ServerManager
 		Channel/home
 		Bot/bot
 
-		qotd_current = 1
-
 		tmp
+			qotd_current = 1
 			Database/database = null
 			Logger/logger     = null
 			EventScheduler/global_scheduler = new()
 			ChatterPersistenceHandler/persistenceHandler = new/ChatterPersistenceHandler/Fallback()
 
-
 	New()
+		server_manager = src
 		createLogger()
 
 		if(!loadServerCfg())

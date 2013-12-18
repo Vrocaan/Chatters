@@ -1,0 +1,23 @@
+The earth's magnetic field pulls the electron beams hitting the cathode ray tube in computer monitors. Every computer monitor has to be calibrated relative to its position in the earth's magnetic field. Adjust a monitor in the northern hemisphere and its colors will be wrong if you plug it into a computer in the southern hemisphere.;;
+Did you know, USB cables contain 4 multi-core cables inside, 1 for power, 1 for ground, and 2 for data, in inverse of one another. The 2 inverse data voltages allow for error correction without extra error check code data being sent.;;
+In 1801, Joseph Marle Jacquard invented the Jacquard loom, a mechanical, automated loom. Changeable punched cards controlled the operation of the loom. The punched card was later used by Charles Babbage as a method for storing programs for the Analytic Engine.;;
+In 1842-1843, Ada Lovelace translated an article about Charles Babbage's proposed Analytic Engine. In her notes, she describes an algorithm that is cited as the first computer program, making her the first computer programmer.;;
+In 1842-1843, Ada Lovelace theorized that the computer could, one day, play music and chess.;;
+Fortran was the first high level computer programming language used. It was invented by John Backus of IBM in 1954 and released commercially in 1957.;;
+The first computer game (1961) was Spacewar, programmed by Steve Russell. It took 200 man-hours to complete and it was written on a DEC Interactive mini computer. Russell never profited from Spacewar.;;
+Did you know the standard terminal size you see when you open command prompt, or terminals in Linux, or PuTTY, is 80 characters? It's 80 characters because 80 columns was the width of IBM's punch card format.
+;;
+The first hard drive was made by IBM in 1956 and was called IBM Model 350 Disk File. The first-generation storage unit was huge, with a cabinet the size of a cupboard that held 50 24-inch disks and held an impressive 5MB of data.;;
+The Atari Portfolio was released in 1989 and was the world’s first palmtop computer. Two years later it appeared in the film Terminator 2, where it was used by John Connor to hack an ATM and retrieve the key to the vault in the Cyberdyne lab.;;
+Many think the first mouse was invented in 1970 at Xerox PARC. However, the first mouse was invented by Douglas Engelbart in 1963. It was a wooden shell with two metal wheels.;;
+How powerful were the computers that took us to the moon? Turns out that the Apolo 11 computers had less processing power than a modern cellphone!;;
+Google uses an estimated 15 billion kWh of electricity per year, more than 30% of nations worldwide. Despite this, Google generates a lot of their own power with their solar panels!;;
+Google got its name from the mathematical figure googol, which denotes the number 'one followed by a hundred zeros'.;;
+Researchers consider that the first search engine was Archie, created in 1990 by Alan Emtage, a student at McGill University in Montreal, Canada.;;
+In the Deep Web, the part of the Web not currently catalogued by search engines, public information said to be 500 times larger than on the WWW.;;
+SRS stands for Shared Registry Server. The central system for all accredited registrars to access, register and control domain names.;;
+'Carnivore' is the Internet surveillance system developed by the US Federal Bureau of Investigation (FBI), who developed it to monitor the electronic transmissions of criminal suspects.;;
+The French Culture Ministry has banned the word 'e-mail' in all government ministries, documents, publications and Web sites, because 'e-mail' is an English word. They prefer to use the term 'courriel'.;;
+Telnet is one of the oldest forms of Internet connections. Today, it is used primarily to access online databases.;;
+60 billion emails are sent daily, 97% of which are spam.;;
+The first webcam was used in 1991 by researchers at Cambridge who wanted to check the status of the coffee pot without leaving their desk. The live feed was turned off after 10 years of use.;;

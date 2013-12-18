@@ -13,7 +13,10 @@ QuoteManager
 
 	var
 		list/quotes = null
-		tmp/Event/Timer/QuoteChanger/quote_changer_event
+
+		tmp
+			Event/Timer/QuoteChanger/quote_changer_event
+			Event/Timer/BotFacts/bot_facts
 
 	proc
 		loadQuotes()
