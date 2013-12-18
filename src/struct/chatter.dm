@@ -1518,7 +1518,6 @@ mob
 				if(!(ckey in server_manager.home.operators)) return
 
 				updateViewingEntry()
-				updateTracker()
 				updateLogs()
 
 			searchTracker()
@@ -1544,35 +1543,6 @@ mob
 					if(entry)
 						viewing_entry = entry
 						updateViewingEntry()
-
-			updateTracker()
-				set hidden = 1
-
-				if(!(ckey in server_manager.home.operators)) return
-
-				var
-					c = 1
-					list/added = list()
-					cur = ""
-
-				for(var/TrackerEntry/entry in tracker_manager.entries)
-					if(length(entry.ckeys) && length(ckey(entry.ckeys[1])))
-						winset(src, "ops_tracker.ckeys", "current-cell=1,[c]")
-						winset(src, "ops_tracker.ckeys", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
-
-						var/list/ekeys = list()
-						for(var/ck in entry.ckeys)
-							if(entry.ckeys[ck]) ekeys += entry.ckeys[ck]
-							else ekeys += ck
-
-						cur = textutil.list2text(ekeys, ", ")
-						if(cur in added) continue
-
-						added += cur
-						src << output("<a href=byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=tracker_viewckey;ckey=[entry.ckeys[1]]>[cur]</a>", "ops_tracker.ckeys")
-						c ++
-
-				winset(src, "ops_tracker.ckeys", "cells=1x[c]")
 
 			updateViewingEntry()
 				set hidden = 1
