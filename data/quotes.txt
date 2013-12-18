@@ -60,7 +60,7 @@ J. Osterhout##The best performance improvement is the transition from the nonwor
 Frederick Brooks##The magic of myth and legend has come true in our time. One types the correct incantation on a keyboard, and a display screen comes to life, showing things that never were nor could be.... The computer resembles the magic of legend in this respect, too. If one character, one pause, of the incantation is not strictly in proper form, the magic doesn't work. Human beings are not accustomed to being perfect, and few areas of human activity demand it. Adjusting to the requirement for perfection is, I think, the most difficult part of learning to program.;;
 Harlan Mills##The only way for errors to occur in a program is by being put there by the author. No other mechanisms are known. Programs can't acquire bugs by sitting around with other buggy programs.;;
 Seymour Cray##The trouble with programmers is that you can never tell what a programmer is doing until it's too late.;;
-Author Unknown##Constants also simplify modifying the program, should the value of pi change.
+Author Unknown##Constants also simplify modifying the program, should the value of pi change.;;
 Alan J. Perlis##There are two ways to write error-free programs; only the third one works.;;
 Lawrence Flon##There does not now, nor will there ever exist, a programming language in which it is the least bit hard to write bad programs.;;
 Bill Joy##We don't manage our time as well as we manage our space. There's an overhead of starting and an overhead of stopping a project because you kind of lose your momentum. And you've got to bracket and put aside all the things you're already doing. So you need reasonably large blocks of uninterrupted time if you're going to be successful at doing some of these things. That's why hackers tend to stay up late. If you stay up late and you have another hour of work to do, you can just stay up another hour later without running into a wall and having to stop. Whereas it might take three or four hours if you start over, you might finish if you just work that extra hour. If you're a morning person, the day always intrudes a fixed amount of time in the future. So it's much less efficient. Which is why I think computer people tend to be night people - because a machine doesn't get sleepy.;;
@@ -130,7 +130,7 @@ Francis Glassborow##Good programmers use their brains, but good guidelines save 
 Jeff Atwood##In software, we rarely have meaningful requirements. Even if we do, the only measure of success that matters is whether our solution solves the customer's shifting idea of what their problem is.;;
 Jim McCarthy##You can't have great software without a great team, and most software teams behave like dysfunctional families.;;
 Bertrand Meyer##You can either have software quality or you can have pointer arithmetic, but you cannot have both at the same time.;;
-Mark Minasi##If McDonalds were run like a software company, one out of every hundred Big Macs would give you food poisoning, and the response would be, We're sorry, here's a coupon for two more.' ;;
+Mark Minasi##If McDonalds were run like a software company, one out of every hundred Big Macs would give you food poisoning, and the response would be, We're sorry, here's a coupon for two more.';;
 Paul Ehrlich##To err is human, but to really foul things up you need a computer.;;
 Bill Gates, 1981##640K ought to be enough for anybody.;;
 Author Unknown##Deliver yesterday, code today, think tomorrow.;;

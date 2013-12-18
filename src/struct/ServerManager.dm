@@ -4,6 +4,9 @@ ServerManager
 
 		Channel/home
 		Bot/bot
+
+		qotd_current = 1
+
 		tmp
 			Database/database = null
 			Logger/logger     = null

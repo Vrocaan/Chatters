@@ -2,13 +2,18 @@ QuoteManager
 	New()
 		loadQuotes()
 
+		quote_changer_event = new(server_manager.global_scheduler)
+		server_manager.global_scheduler.schedule(quote_changer_event, 864000)
+
 		server_manager.logger.info("Created QuoteManager.")
 
 	Del()
+		server_manager.global_scheduler.cancel(quote_changer_event)
 		server_manager.logger.info("Deleted QuoteManager.")
 
 	var
 		list/quotes = null
+		tmp/Event/Timer/QuoteChanger/quote_changer_event
 
 	proc
 		loadQuotes()
@@ -40,11 +45,7 @@ QuoteManager
 			if(!quotes || !length(quotes)) return
 
 			var
-				t = time2text(world.timeofday, "MMDD")
-				month = text2num(copytext(t, 1, 3))
-				day = text2num(copytext(t, 3))
-
-				qloc = ((month - 1) * 30) + day // compute the location of today's quote in the quote list
+				qloc = server_manager.qotd_current
 				Quote/q
 				qlen = length(quotes)
 
@@ -66,3 +67,14 @@ Quote
 		text = ""
 		link = ""
 		author = ""
+
+
+Event/Timer/QuoteChanger
+	New(var/EventScheduler/scheduler)
+		..(scheduler, 864000)
+
+	fire()
+		..()
+
+		server_manager.qotd_current ++
+		server_manager.logger.trace("Quote scheduler increased current quote number to [server_manager.qotd_current].")
