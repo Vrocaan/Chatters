@@ -9243,7 +9243,7 @@ window "ops_logs"
 		anchor2 = 0,100
 		font-family = "Trebuchet MS,Arial"
 		font-size = 10
-		font-style = ""
+		font-style = "bold"
 		text-color = #000000
 		background-color = #e9e9e9
 		is-visible = true

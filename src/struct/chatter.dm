@@ -1517,8 +1517,9 @@ mob
 
 				if(!(ckey in server_manager.home.operators)) return
 
-				updateViewingEntry()
 				updateLogs()
+				updateViewingLog()
+				updateViewingEntry()
 
 			searchTracker()
 				set hidden = 1
@@ -1619,13 +1620,22 @@ mob
 
 				var/list/logs = list()
 				for(var/l in flist("./data/logs/"))
-					logs += l
+					logs += copytext(l, 1, findtext(l, ".html"))
+
+				QuickSort(logs, /proc/SortLogCmp)
 
 				if(length(logs))
 					var/c = 1
+
 					for(var/i in logs)
 						winset(src, "ops_logs.grid", "current-cell=1,[c]")
-						winset(src, "ops_logs.grid", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+						if(c == 1)
+							winset(src, "ops_logs.grid", "style='body{text-align: center; font-weight: bold; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+							if(!viewing_log)
+								viewing_log = i
+
+						else winset(src, "ops_logs.grid", "style='body{text-align: center; background-color: [(c % 2) ? ("#DDDDDD") : ("#EEEEEE")];}'")
+
 						src << output("<a href=\"byond://?src=\ref[chatter_manager]&target=\ref[chatter_manager.getByKey(key)]&action=logs_viewlog;log=[i]\">[i]</a>", "ops_logs.grid")
 						c ++
 
@@ -1637,5 +1647,7 @@ mob
 				if(!(ckey in server_manager.home.operators)) return
 
 				if(viewing_log)
-					if(fexists(viewing_log))
-						src << output(file2text(viewing_log), "ops_logs.browser")
+					if(fexists("./data/logs/[viewing_log].html"))
+						src << output({"<html><body style="font-family: 'Trebuchet MS'; margin: 0px; padding: 0px; overflow: auto;">[file2text("./data/logs/[viewing_log].html")]</body></html>"}, "ops_logs.browser")
+
+proc/SortLogCmp(a, b) return (a < b)

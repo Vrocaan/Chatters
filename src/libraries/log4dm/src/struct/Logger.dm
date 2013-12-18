@@ -58,7 +58,7 @@ Logger
 
 			#ifdef CHATTERS_LOGGING
 			for(var/Appender/FileAppender/appender in appenders)
-				var/time = time2text(world.realtime, "DD.MM.YY")
+				var/time = time2text(world.realtime, "YYYY.MM.DD")
 				if(!fexists("./data/logs/[time].html"))
 					appender.endLog()
 					appender.setOutputFile("./data/logs/[time].html")
