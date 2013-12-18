@@ -1600,14 +1600,15 @@ mob
 				if(!(ckey in server_manager.home.operators)) return
 
 				if(viewing_entry)
-					var/nnotes = input(src, "Edit this entry's notes below.", "Edit Entry Notes", viewing_entry.notes) as null|message
+					var/nnotes = input(src, "Edit this entry's notes below.", "Edit Entry Notes", viewing_entry.notes) as message
+
 					if(nnotes)
 						viewing_entry.notes = nnotes
-						server_manager.logger.trace("[key] changed [viewing_entry.ckeys[1]]'s entry notes to [nnotes].")
+						server_manager.logger.info("[key] changed [viewing_entry.ckeys[1]]'s entry notes to [nnotes].")
 
 					else
 						viewing_entry.notes = ""
-						server_manager.logger.trace("[key] cleared [viewing_entry.ckeys[1]]'s entry notes.")
+						server_manager.logger.info("[key] cleared [viewing_entry.ckeys[1]]'s entry notes.")
 
 					updateViewingEntry()
 
