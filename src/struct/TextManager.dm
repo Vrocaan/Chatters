@@ -47,6 +47,7 @@ TextManager
 						 "z0r"			= "http://z0r.de/$s",
 						 "xkcd"			= "http://xkcd.com/$s",
 						 "smbc"			= "http://www.smbc-comics.com/?id=$s",
+						 "zombocom"		= "http://www.zombo.com",
 						 "cyanide"		= "http://www.explosm.net/comics/$s")
 
 	proc
